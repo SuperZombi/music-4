@@ -1,0 +1,125 @@
+.line{
+  text-align: center; 
+  margin: 0;
+  padding: 0;
+  transform: translateY(-50%);
+}
+
+.line > li {
+    position: relative;
+    margin: 0 15px;
+    list-style: none;
+    padding: 0;
+    display: inline-block;
+    width: 12px;
+    height: 28px;
+    border-radius: 50%;
+    top: 35px;
+    background: #fff;
+}
+
+.line li:before {
+    content: "";
+    position: absolute;
+    background: #222;
+    width: 10px;
+    height: 9px;
+    border-radius: 3px;
+    top: -4px;
+    left: 1px;
+}
+.line li::after {
+    content: "";
+    top: -14px;
+    left: 9px;
+    position: absolute;
+    width: 52px;
+    height: 19px;
+    border-bottom: solid #222 2px;
+    border-radius: 30%;
+}
+
+.red {
+    background: #fb4545 !important;
+    animation: lightningRed 1s infinite;
+}
+
+.green {
+    background: #24D024 !important;
+    animation: lightningGreen 0.8s infinite;
+}
+
+.yellow {
+    background: #fff952 !important;
+    animation: lightningYellow 0.9s infinite;
+}
+
+.blue {
+    background: #0A53DE !important;
+    animation: lightningBlue 1.1s infinite;
+}
+
+.pink {
+    background: #f53896 !important;
+    animation: lightningPink 1.2s infinite;
+}
+
+@keyframes lightningRed {
+    0% {
+        box-shadow: 5px 10px 35px 10px #fb4545;
+    }
+    50% {
+        box-shadow: none;
+    }
+    100% {
+        box-shadow: 5px 10px 35px 10px #fb4545;
+    }
+}
+
+@keyframes lightningGreen {
+    0% {
+        box-shadow: 5px 0 35px 10px #24D024;
+    }
+    50% {
+        box-shadow: none;
+    }
+    100% {
+        box-shadow: 5px 0 35px 10px #24D024;
+    }
+}
+
+@keyframes lightningYellow {
+    0% {
+        box-shadow: 5px 0 35px 10px #fff952;
+    }
+    50% {
+        box-shadow: none;
+    }
+    100% {
+        box-shadow: 5px 0 35px 10px #fff952;
+    }
+}
+
+@keyframes lightningBlue {
+    0% {
+        box-shadow: 5px 0 35px 10px #0A53DE;
+    }
+    50% {
+        box-shadow: none;
+    }
+    100% {
+        box-shadow: 5px 0 35px 10px #0A53DE;
+    }
+}
+
+@keyframes lightningPink {
+    0% {
+        box-shadow: 5px 0 35px 10px #f53896;
+    }
+    50% {
+        box-shadow: none;
+    }
+    100% {
+        box-shadow: 5px 0 35px 10px #f53896;
+    }
+}

@@ -1,0 +1,128 @@
+#page{
+	border: unset !important;
+	padding-bottom: 0px !important;
+	padding-top: 0px !important;
+	padding: 10px;
+	border-radius: 0;
+	transition: 0s;
+}
+body{
+	height: auto;
+	background-color: unset !important;
+}
+#wraper{
+	display: block;
+	height: calc(100vh - 10px);
+}
+#wraper #page{
+	border: unset !important;
+	max-width: unset;
+}
+#embed_flex{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+#artist_info{
+	width: 100%;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+#track_name{
+	text-decoration: none;
+	position: relative;
+}
+#track_name::before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 0.1em;
+	background-color: hotpink;
+	opacity: 0;
+	transition: opacity 300ms, transform 300ms;
+	border-radius: 50px;
+	transform: scale(0);
+	transform-origin: center center;
+}
+#track_name:hover::before{
+	transform: scale(1);
+	opacity: 1;
+}
+#embed_img{
+	display: inline-flex;
+	position: relative;
+    justify-content: center;
+    align-items: center;
+}
+#embed_img > img{
+	height: 160px;
+	margin: auto;
+	display: block;
+	border-radius: 20px;
+	transition: 0.4s;
+}
+#embed_img > i{
+	position: absolute;
+	transform: scale(3);
+	color: white;
+	border-radius: 50%;
+	background-color: rgba(0, 0, 0, 0.5);
+	cursor: pointer;
+}
+#embed_img > i:hover {
+	background-color: rgba(0, 0, 0, 1);
+}
+#play_pause{
+	display: none;
+	opacity: 0;
+	transition: 0.4s;
+}
+#player{
+	margin-top: 20px;
+	width: 100%;
+	height: 60px;
+	opacity: 0;
+	transition: 0.4s;
+	position: relative;
+	overflow: unset;
+}
+#player span{
+	transform: none;
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: 5px;
+}
+#waveform{
+	width: 100%;
+	padding-right: 0;
+}
+
+/* Phone  */
+@media all and (max-width: 500px), all and (max-height: 160px) {
+	#embed_img > img{
+		height: 120px;
+	}
+	#embed_img > i{
+		transform: scale(2);
+	}
+	#embed_img > i::after{
+		transform: translateX(50%) scale(0.5);
+	}
+	#player{
+		margin-top: 10px;
+	}
+	#track_name{
+		font-size: 1.3em;
+	}
+	#artist{
+		font-size: 0.9em;
+	}
+	#player{
+		height: 50px;
+	}
+	#player span{
+		font-size: 0.8em;
+	}
+}

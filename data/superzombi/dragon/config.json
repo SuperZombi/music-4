@@ -1,0 +1,24 @@
+config = {
+	"track_name": "Dragon",
+	"artist": "SuperZombi",
+	"genre": "Dubstep",
+	"main_img": "img.jpg",
+	"allow_download": true,
+	"download_file": "Super Zombi - Dragon.mp3",
+
+	"links": {
+		"spotify": "https://open.spotify.com/track/3wWb1V9jIQLT0LBxNAHsuw",
+		"youtube_music": "https://music.youtube.com/watch?v=TxF7PYZein4",
+		"youtube": "https://youtu.be/zP7SxTkNet0",
+		"apple_music": "https://music.apple.com/album/dragon-radio-edit/1564417680",
+		"deezer": "https://deezer.page.link/UJ1d27K9LqedPeYJ7",
+		"soundcloud": "https://soundcloud.com/super-zombi/dragon",
+		"newgrounds": "https://www.newgrounds.com/audio/listen/1025364"
+	},
+
+	"audio_preview": "Super Zombi - Dragon.mp3",
+	"show_time": true,
+	"animate_time": true,
+	"preview_z": true,
+	"preview_zone": [19.85, 49.71]
+}

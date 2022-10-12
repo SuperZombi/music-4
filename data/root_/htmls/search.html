@@ -1,0 +1,19 @@
+<div class="wrap" onkeyup="check_enter(event);">
+	<div class="search">
+		<input type="text" class="searchTerm" id="search_label" placeholder="${LANG.search_placeholder}">
+		<button type="submit" class="searchButton" title="${LANG.search_but}" onclick="start_search();">
+			<i class="fa fa-search"></i>
+		</button>
+	</div>
+	<div class="radio">
+		<input label="${LANG.track}" type="radio" name="search_type" value="track" checked onclick="changeType()">
+		<input label="${LANG.user}" type="radio" name="search_type" value="user" onclick="changeType()">
+		<input label="${LANG.genre}" type="radio" name="search_type" value="genre" onclick="changeType()">
+	</div>
+</div>
+
+<div id="toTop" title="${LANG.up}">
+	<img onclick="window.scrollTo(0,0)" src="root_/images/return-to-the-top.svg">
+</div>
+
+<div id="search_results"></div>

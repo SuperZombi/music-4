@@ -1,0 +1,24 @@
+config = {
+	"track_name": "Marionette Life",
+	"artist": "SuperZombi",
+	"genre": "Dubstep",
+	"main_img": "img.jpg",
+	"allow_download": true,
+	"download_file": "Super Zombi - Marionette Life.mp3",
+
+	"links": {
+		"spotify": "https://open.spotify.com/track/0ue3sg57vHXVYCQ2BU3F5J",
+		"youtube_music": "https://music.youtube.com/watch?v=eGfrBP6Ex7w",
+		"youtube": "https://youtu.be/O7QivUUh3sw",
+		"apple_music": "https://music.apple.com/us/album/marionette-life/1591445674",
+		"deezer": "https://deezer.page.link/yVFYZmBEjHhs84ZP8",
+		"soundcloud": "https://soundcloud.com/super-zombi/marionette-life",
+		"newgrounds": "https://www.newgrounds.com/audio/listen/1087206"
+	},
+
+	"audio_preview": "Marionette Life.mp3",
+	"show_time": true,
+	"animate_time": true
+	// "preview_z": true,
+	// "preview_zone": [101, 131]
+}

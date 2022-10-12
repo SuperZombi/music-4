@@ -1,0 +1,152 @@
+[
+    {
+        "track": "Alien",
+        "artist": "SuperZombi",
+        "genre": "Dubstep",
+        "image": "img.jpg",
+        "date": "17.07.2020",
+        "path": [
+            "superzombi",
+            "alien"
+        ],
+        "statistics": {
+            "likes": 10,
+            "views": 53
+        }
+    },
+    {
+        "track": "Dragon",
+        "artist": "SuperZombi",
+        "genre": "Dubstep",
+        "image": "img.jpg",
+        "date": "15.05.2021",
+        "path": [
+            "superzombi",
+            "dragon"
+        ],
+        "statistics": {
+            "likes": 2,
+            "views": 21
+        }
+    },
+    {
+        "track": "Marionette Life",
+        "artist": "SuperZombi",
+        "genre": "Dubstep",
+        "image": "img.jpg",
+        "date": "30.10.2021",
+        "path": [
+            "superzombi",
+            "marionette-life"
+        ],
+        "statistics": {
+            "likes": 60,
+            "views": 101
+        }
+    },
+    {
+        "track": "Sadness Rain",
+        "artist": "SuperZombi",
+        "genre": "Lo-Fi",
+        "image": "image.png",
+        "date": "01.12.2021",
+        "path": [
+            "superzombi",
+            "sadness-rain"
+        ],
+        "statistics": {
+            "likes": 101,
+            "views": 334
+        }
+    },
+    {
+        "track": "Chill Out",
+        "artist": "JrSi",
+        "genre": "Trap",
+        "image": "MyLogo.jpg",
+        "date": "30.06.2020",
+        "path": [
+            "jrsi",
+            "chill-out"
+        ],
+        "statistics": {
+            "likes": 5,
+            "views": 60
+        }
+    },
+    {
+        "track": "Dystopia 2015",
+        "artist": "JrSi",
+        "genre": "Trap",
+        "image": "MyLogo.jpg",
+        "date": "04.11.2020",
+        "path": [
+            "jrsi",
+            "dystopia-2015"
+        ],
+        "statistics": {
+            "likes": 5,
+            "views": 60
+        }
+    },
+    {
+        "track": "Merry Christmas",
+        "artist": "JrSi",
+        "genre": "Trap",
+        "image": "MyLogo.png",
+        "date": "09.12.2020",
+        "path": [
+            "jrsi",
+            "merry-christmas"
+        ],
+        "statistics": {
+            "likes": 5,
+            "views": 52
+        }
+    },
+    {
+        "track": "Peep",
+        "artist": "yunsungwook",
+        "genre": "Deep House",
+        "image": "inbound6208302260506907455.jpg",
+        "date": "14.04.2022",
+        "path": [
+            "yunsungwook",
+            "peep"
+        ],
+        "statistics": {
+            "likes": 40,
+            "views": 81
+        }
+    },
+    {
+        "track": "Tyrel Corp.",
+        "artist": "yunsungwook",
+        "genre": "Techno",
+        "image": "blade-runner-tyrell-building-headquarters-b2x16tp59isdn0bs.jpg",
+        "date": "27.05.2022",
+        "path": [
+            "yunsungwook",
+            "tyrel-corp."
+        ],
+        "statistics": {
+            "likes": 10,
+            "views": 111
+        }
+    },
+    {
+        "track": "Viper",
+        "artist": "theo",
+        "genre": "Big Room House",
+        "image": "viper.jpg",
+        "date": "26.02.2020",
+        "path": [
+            "theo",
+            "viper"
+        ],
+        "statistics": {
+            "likes": 150,
+            "views": 203
+        }
+    }
+]

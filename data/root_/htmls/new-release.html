@@ -1,0 +1,182 @@
+<div class="myAccountElement">
+	<a id="myAccount" href="./">
+		<img src="../root_/images/people.svg">
+		<span>${LANG.profile_title}</span>
+	</a>
+</div>
+
+<div id="notifications" class="notifications_top"></div>
+
+<div style="text-align:center;margin-top:15px;margin-bottom:20px;">
+<details id="limitations">
+	<summary class="link_button" style="display:inline-block;cursor:pointer;">
+		${LANG.watch_r}
+	</summary>
+
+	<table id="limits" style="margin-top:15px;margin-bottom:25px;">
+		<tr>
+			<th>${LANG.limitation}</th>
+			<th>${LANG.resolution}</th>
+			<th>${LANG.f_type}</th>
+			<th>${LANG.f_size}</th>
+		</tr>
+		<tr>
+			<td>${LANG.image_file}</td>
+			<td data="image:resolution">⩽1280×1280</td>
+			<td data="image:extensions">png/jpg</td>
+			<td data="image:size">⩽2Mb</td>
+		</tr>
+		<tr>
+			<td>${LANG.audio_file}</td>
+			<td data="audio:bitrate">⩽192kbps</td>
+			<td>mp3</td>
+			<td data="audio:size">⩽10Mb</td>
+		</tr>
+	</table>
+</details>
+</div>
+
+<form onsubmit="sendForm(this);return false;" id="mainForm">
+<table>
+	<tr><td colspan="2"><h2 id="formTitle">${LANG.new_release}</h2>
+		<!-- <div id="beta">${LANG.beta}</div> -->
+	</td></tr>
+	<tr>
+		<td>${LANG.track}:</td>
+		<td><input type="text" id="form_track_name" placeholder="${LANG.track_name}" required></td>
+	</tr>
+	<tr>
+		<td>${LANG.artist}:</td>
+		<td class="logout">
+			<input type="text" id="form_artist" placeholder="${LANG.artist}" readonly required>
+			<span title="${LANG.log_out}">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 489.9 489.9">
+					<g><path d="M468.3,255.8c0.1-0.1,0.1-0.1,0.2-0.2c0.3-0.4,0.6-0.7,0.8-1.1c0.1-0.1,0.1-0.2,0.2-0.3c0.2-0.4,0.5-0.8,0.7-1.2 c0-0.1,0.1-0.2,0.1-0.2c0.2-0.4,0.4-0.8,0.6-1.3c0-0.1,0-0.1,0.1-0.2c0.2-0.4,0.3-0.9,0.5-1.4c0-0.1,0-0.2,0.1-0.2 c0.1-0.5,0.3-0.9,0.3-1.4c0-0.2,0-0.3,0.1-0.5c0.1-0.4,0.1-0.8,0.2-1.2c0.1-0.6,0.1-1.1,0.1-1.7c0-0.6,0-1.1-0.1-1.7 c0-0.4-0.1-0.8-0.2-1.2c0-0.2,0-0.3-0.1-0.5c-0.1-0.5-0.2-0.9-0.3-1.4c0-0.1,0-0.2-0.1-0.2c-0.1-0.5-0.3-0.9-0.5-1.4 c0-0.1,0-0.1-0.1-0.2c-0.2-0.4-0.4-0.9-0.6-1.3c0-0.1-0.1-0.2-0.1-0.2c-0.2-0.4-0.4-0.8-0.7-1.2c-0.1-0.1-0.1-0.2-0.2-0.3 c-0.3-0.4-0.5-0.8-0.8-1.1c-0.1-0.1-0.1-0.1-0.2-0.2c-0.4-0.4-0.7-0.9-1.2-1.3l-98.9-98.8c-6.7-6.7-17.6-6.7-24.3,0 c-6.7,6.7-6.7,17.6,0,24.3l69.6,69.6H136.8c-9.5,0-17.2,7.7-17.2,17.1c0,9.5,7.7,17.2,17.2,17.2h276.8l-69.1,69.1 c-6.7,6.7-6.7,17.6,0,24.3c3.3,3.3,7.7,5,12.1,5s8.8-1.7,12.1-5l98.3-98.3C467.5,256.6,467.9,256.2,468.3,255.8z"/><path d="M110.7,34.3h128c9.5,0,17.2-7.7,17.2-17.1c0-9.5-7.7-17.2-17.2-17.2h-128C59.4,0,17.6,41.8,17.6,93.1v303.7 c0,51.3,41.8,93.1,93.1,93.1h125.9c9.5,0,17.2-7.7,17.2-17.1c0-9.5-7.7-17.2-17.2-17.2H110.7c-32.4,0-58.8-26.4-58.8-58.8V93.1 C52,60.6,78.3,34.3,110.7,34.3z"/></g></svg>
+			</span>
+		</td>
+	</tr>
+	<tr>
+		<td>${LANG.genre}:</td>
+		<td><input type="text" id="form_genre" placeholder="${LANG.genre}" required></td>
+	</tr>
+	<tr>
+		<td>${LANG.image}:</td>
+		<td>
+			<input type="file" id="form_image" accept="image/png, image/jpeg" onchange="checkPhoto(this)" required>
+			<div id="photoLabel" class="checkFile"></div>
+		</td>
+	</tr>
+	<tr>
+		<td>${LANG.audio}:</td>
+		<td>
+			<input type="file" id="form_audio" accept="audio/mp3" onchange="checkAudio(this)" required>
+			<div id="audioLabel" class="checkFile"></div>
+		</td>
+	</tr>
+	<tr>
+		<td>${LANG.release_date}:</td>
+		<td><input id="form_release_date" type="date" required></td>
+	</tr>
+	<tr>
+		<td>${LANG.allow_download}:</td>
+		<td><input id="form_allow_download" type="checkbox" checked></td>
+	</tr>
+
+	<tr style="display:none;" id="hr_for_preview_zone"><td colspan="2" style="padding-left:0;padding-right:0;"> <hr> </td></tr>
+
+	<tr style="display:none;">
+		<td>${LANG.preview_zone}:</td>
+		<td><input id="form_preview_z" type="checkbox" checked></td>
+	</tr>
+
+	<tr style="display:none;">
+		<td colspan="2">
+			<div id="player">
+				<i class="far fa-play-circle" title="${LANG.player_play}" id="play_pause_button" onclick="play(event)"></i>
+				<div id="waveform">
+					<svg id="loading_waveform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 12">
+						<circle cx="6" cy="6" r="6"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.1"/></circle>
+						<circle cx="26" cy="6" r="6"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.2"/></circle>
+						<circle cx="46" cy="6" r="6"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.3"/></circle>
+					</svg>
+				</div>
+				<input type="button" id="min-time-total" value="0" title="${LANG.min}" onclick="setMin()">
+				<input type="number" id="time-current" step="any" value="0" min=0 onchange="change_region()" onkeyup="change_region()">
+				<input type="button" id="max-time-total" value="0" title="${LANG.max}" onclick="setMax()">
+				<input type="number" id="time-total" step="any" value="0" min=0 onchange="change_region()" onkeyup="change_region()">
+			</div>
+		</td>
+	</tr>
+
+	<tr><td colspan="2" style="padding-left:0;padding-right:0;"> <hr> </td></tr>
+	<tr><td colspan="2" style="padding-left:0;padding-right:0;">
+		<details>
+		<summary>${LANG.links}:</summary>
+		
+		<table>
+			<tr>
+				<td><img src="../root_/images/spotify.svg" alt="Spotify"></td>
+				<td>
+					<input id="form_spotify" onkeyup="checkLink(this)" type="text" placeholder="${LANG.optional}">
+					<i class="fa-solid fa-square-arrow-up-right" title="${LANG.open}" onclick="openLink(this)"></i>
+				</td>
+			</tr>
+			<tr>
+				<td><img src="../root_/images/youtube_music.svg" alt="Youtube Music"></td>
+				<td>
+					<input id="form_youtube_music" onkeyup="checkLink(this)" type="text" placeholder="${LANG.optional}">
+					<i class="fa-solid fa-square-arrow-up-right" title="${LANG.open}" onclick="openLink(this)"></i>
+				</td>
+			</tr>
+			<tr>
+				<td><img src="../root_/images/youtube.svg" alt="Youtube"></td>
+				<td>
+					<input id="form_youtube" onkeyup="checkLink(this)" type="text" placeholder="${LANG.optional}">
+					<i class="fa-solid fa-square-arrow-up-right" title="${LANG.open}" onclick="openLink(this)"></i>
+				</td>
+			</tr>
+			<tr>
+				<td><img src="../root_/images/apple_music.svg" alt="Apple Music"></td>
+				<td>
+					<input id="form_apple_music" onkeyup="checkLink(this)" type="text" placeholder="${LANG.optional}">
+					<i class="fa-solid fa-square-arrow-up-right" title="${LANG.open}" onclick="openLink(this)"></i>
+				</td>
+			</tr>
+			<tr>
+				<td><img src="../root_/images/deezer.svg" alt="Deezer"></td>
+				<td>
+					<input id="form_deezer" onkeyup="checkLink(this)" type="text" placeholder="${LANG.optional}">
+					<i class="fa-solid fa-square-arrow-up-right" title="${LANG.open}" onclick="openLink(this)"></i>
+				</td>
+			</tr>
+			<tr>
+				<td><img src="../root_/images/soundcloud.svg" alt="Soundcloud"></td>
+				<td>
+					<input id="form_soundcloud" onkeyup="checkLink(this)" type="text" placeholder="${LANG.optional}">
+					<i class="fa-solid fa-square-arrow-up-right" title="${LANG.open}" onclick="openLink(this)"></i>
+				</td>
+			</tr>
+			<tr>
+				<td><img style="padding: 0 15px;max-width: 75%;" src="../root_/images/newgrounds.svg" alt="Newgrounds"></td>
+				<td>
+					<input id="form_newgrounds" onkeyup="checkLink(this)" type="text" placeholder="${LANG.optional}">
+					<i class="fa-solid fa-square-arrow-up-right" title="${LANG.open}" onclick="openLink(this)"></i>
+				</td>
+			</tr>
+		</table>
+
+		</details>	
+	</td>
+	</tr>
+
+	<tr><td colspan="2" style="position:relative;display:none;">
+		<svg id="loading_waveform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 12">
+			<circle cx="6" cy="6" r="6"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.1"/></circle>
+			<circle cx="26" cy="6" r="6"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.2"/></circle>
+			<circle cx="46" cy="6" r="6"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.3"/></circle>
+		</svg>
+	</td></tr>
+
+	<tr><td colspan="2"><input type="submit"></td></tr>
+</table>
+</form>

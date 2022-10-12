@@ -1,0 +1,238 @@
+body{
+	background: var(--login_back);
+}
+form{
+	text-align: center;
+	padding: 15px;
+}
+
+#forgot_pwd{
+	text-decoration: none;
+	color: orange;
+	font-family: sans-serif;
+	font-style: italic;
+}
+#forgot_pwd:hover{
+	font-style: normal;
+	text-decoration: underline;
+}
+
+/* INPUTS */
+.group *{
+	box-sizing: border-box;
+}
+.group {
+	position: relative;
+	margin: 45px 0;
+	font-family: sans-serif;
+}
+
+.center-wrap{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 10px;
+}
+.center-wrap .group{
+	margin: 30px 0;
+}
+
+.group input, select {
+	background: none;
+	color: var(--contrast-color);
+	font-size: 18px;
+	padding: 10px 10px 10px 5px;
+	display: block;
+	width: 320px;
+	border: none;
+	border-radius: 0;
+	border-bottom: 1px solid var(--contrast-color);
+	outline: none;
+}
+.group input:-webkit-autofill {
+  -webkit-text-fill-color: var(--contrast-color);
+  /*-webkit-box-shadow: none;*/
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-box-shadow: 0 0 0 30px var(--login_back) inset !important;
+}
+.group select option {
+	background: var(--notifications-back);
+	color: var(--contrast-color);
+}
+
+.group input:focus {
+	outline: none;
+}
+.group input:focus ~ label, .group input:not(:placeholder-shown) ~ label,
+.group select:not([data-chosen='']) ~ label,
+.group input:-webkit-autofill ~ label {
+	top: -14px;
+	font-size: 12px;
+	color: #2196f3;
+}
+
+
+.group input:focus ~ .bar:before {
+	transform: scale(1);
+}
+
+.group input[type=password] {
+	letter-spacing: 0.3em;
+}
+
+.group input[required] ~ label:before {
+	content: "* ";
+	color: red;
+	font-weight: bold;
+}
+.group input[recommended] ~ label:before {
+	content: "* ";
+	color: orange;
+	font-weight: bold;
+}
+
+.group label {
+	color: var(--contrast-mini);
+	font-size: 16px;
+	font-weight: normal;
+	position: absolute;
+	pointer-events: none;
+	left: 5px;
+	top: 10px;
+	transition: 300ms ease all;
+}
+
+.toggle{
+	color: var(--contrast-mini);
+	float: right;
+	margin-top: -25px;
+	cursor: pointer;
+}
+
+.bar {
+	position: relative;
+	display: block;
+	width: 320px;
+}
+.bar:before {
+	content: "";
+	height: 2px;
+	width: 100%;
+	bottom: 0;
+	position: absolute;
+	background: #2196f3;
+	transition: 300ms ease all;
+	left: 0%;
+	transform: scale(0);
+	transform-origin: center bottom;
+}
+
+/* CARD */
+.flip-card {
+	perspective: 1000px;
+	transition: transform 0.8s;
+	transform-style: preserve-3d;
+	position: relative;
+}
+
+.flip-card-front{
+	display: block;
+}
+.flip-card-back{
+	display: none;
+}
+
+.flip-card-front, .flip-card-back {
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+}
+.flip-card-back {
+	transform: rotateY(180deg);
+	backface-visibility: hidden;
+}
+
+/* Radio  */
+
+.radio {
+	background: inherit;
+	padding: 6px;
+	border-radius: 5px;
+	display: inline-block;
+}
+
+.radio input {
+	display: inline-block;
+	width: auto;
+	height: 100%;
+	appearance: none;
+	outline: none;
+	cursor: pointer;
+	border-radius: 5px;
+	padding: 4px 12px;
+	background: inherit;
+	color: var(--contrast-mini);
+	font-size: 18pt;
+	font-family: sans-serif;
+	transition: all 100ms linear;
+}
+
+.radio input:checked {
+	background-image: linear-gradient(180deg, #95d891, #74bbad);
+	color: #fff;
+	box-shadow: 0 1px 1px #0000002e;
+	text-shadow: 0 1px 0px #79485f7a;
+}
+
+.radio input:before {
+	content: attr(label);
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+}
+
+
+/* Button */
+.button {
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 15px;
+	border: 5em;
+	cursor: pointer;
+	outline: none;
+	font-size: 18px;
+	font-family: sans-serif;
+	transform: translate(0);
+	background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+	padding: 0.7em 2em;
+	border-radius: 65px;
+	user-select: none;
+	box-shadow: 1px 1px 10px var(--shadow_lite);
+	transition: box-shadow 0.25s, font-size 0.3s ease-out;
+	color: var(--contrast-color);
+}
+.button:after {
+	content: "";
+	border-radius: 65px;
+	position: absolute;
+	margin: 4px;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: -1;
+	transition: 0.1s;
+	background: var(--body-color);
+}
+.button:hover {
+	background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+	box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1) !important;
+}
+.button:active:after {
+	margin: 0px;
+}
+
+#reset-title{
+	font-family: sans-serif;
+}

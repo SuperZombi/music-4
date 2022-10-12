@@ -1,0 +1,26 @@
+.Ocean {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(360deg, #fffeea 0%, #fffeea 35%, #b7e8eb 100%);
+  overflow: hidden;
+}
+.Wave {
+  margin-top: 10px;
+  width: calc(100% * 2);
+  animation-name: swell;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes swell {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}

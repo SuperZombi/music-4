@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Language detector</title>
+</head>
+<body>
+	<h1 id="main" style="font-family: sans-serif;"></h1>
+	<script>
+		var language = window.navigator ? (window.navigator.language || window.navigator.systemLanguage || window.navigator.userLanguage) : "en";
+		language = language.substr(0, 2).toUpperCase();
+		var language2 = window.navigator.language;
+		var languages = window.navigator.languages;
+		document.getElementById("main").innerHTML = language + "<br>" + language2 + "<br>" + languages
+	</script>
+</body>
+</html>

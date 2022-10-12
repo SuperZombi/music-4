@@ -1,0 +1,118 @@
+<div id="notifications"></div>
+
+<form>
+	<div class="radio">
+		<input label="${LANG.login_radio}" type="radio" name="form_action" value="login" checked>
+		<input label="${LANG.signup_radio}" type="radio" name="form_action" value="signup">
+	</div>
+</form>
+
+<div class="flip-card">
+	<div class="flip-card-front">
+		
+		<form name="login" onsubmit="action_();return false">
+			<div class="center-wrap">
+				<div class="group">
+					<input type="text" name="name" placeholder=" " required/>
+					<span class="bar"></span>
+					<label>${LANG.name}</label>
+				</div>
+
+				<div class="group">
+					<input type="password" minlength="4" name="password" placeholder=" " required>
+					<i class="fa fa-eye toggle" title="${LANG.show}" onclick="passwordToggle(this)"></i>
+					<span class="bar"></span>
+					<label>${LANG.password}</label>
+				</div>
+
+				<a href="/support" id="forgot_pwd">${LANG.forgot_pwd}?</a>
+
+			</div>
+			<button type="submit" class="button">${LANG.login_button}</button>
+		</form>
+
+	</div>
+	<div class="flip-card-back">
+
+		<form name="signup" onsubmit="action_();return false">
+			<div class="center-wrap">
+				<div class="group">
+						<input type="text" name="name" placeholder=" " required/>
+						<span class="bar"></span>
+						<label>${LANG.name}</label>
+				</div>
+
+				<div class="group">
+						<input type="email" name="email" placeholder=" " recommended/>
+						<span class="bar"></span>
+						<label>${LANG.email}</label>
+				</div>
+
+				<div class="group">
+						<input type="tel" name="phone" placeholder=" "/>
+						<span class="bar"></span>
+						<label>${LANG.phone}</label>
+				</div>
+
+				<div class="group">
+						<select onchange="this.dataset.chosen = this.value;" data-chosen="" name="gender">
+						  <option value="" selected></option>
+						  <option value="man">${LANG.man}</option>
+						  <option value="woman">${LANG.woman}</option>
+						</select>
+						<label>${LANG.gender}</label>
+				</div>
+
+				<div class="group">
+					<input type="password" minlength="4" name="password" placeholder=" " required/>
+					<i class="fa fa-eye toggle" title="${LANG.show}" onclick="passwordToggle(this)"></i>
+					<span class="bar"></span>
+					<label>${LANG.password}</label>
+				</div>
+
+				<div class="group">
+					<input type="password" minlength="4" name="confirm_password" placeholder=" " required/>
+					<i class="fa fa-eye toggle" title="${LANG.show}" onclick="passwordToggle(this)"></i>
+					<span class="bar"></span>
+					<label>${LANG.repeat_pwd}</label>
+				</div>
+			</div>
+			<button type="submit" class="button">${LANG.signup_button}</button>
+		</form>
+		
+	</div>
+</div>
+
+
+<form name="reset" onsubmit="reset_();return false" style="display:none;">
+	<h1 id="reset-title">${LANG.change_pwd}</h1>
+	<div class="center-wrap">
+		<div class="group">
+			<input type="text" name="user" placeholder=" " required readonly style="pointer-events:none;"/>
+			<span class="bar"></span>
+			<label>${LANG.name}</label>
+		</div>
+
+		<div class="group">
+			<input type="password" minlength="4" name="old_password" placeholder=" " required>
+			<i class="fa fa-eye toggle" title="${LANG.show}" onclick="passwordToggle(this)"></i>
+			<span class="bar"></span>
+			<label>${LANG.old_pwd}</label>
+		</div>
+	
+		<div class="group">
+			<input type="password" minlength="4" name="new_password" placeholder=" " required/>
+			<i class="fa fa-eye toggle" title="${LANG.show}" onclick="passwordToggle(this)"></i>
+			<span class="bar"></span>
+			<label>${LANG.new_pwd}</label>
+		</div>
+
+		<div class="group">
+			<input type="password" minlength="4" name="confirm_new_password" placeholder=" " required/>
+			<i class="fa fa-eye toggle" title="${LANG.show}" onclick="passwordToggle(this)"></i>
+			<span class="bar"></span>
+			<label>${LANG.repeat_new_pwd}</label>
+		</div>
+	</div>
+	<button type="submit" class="button">${LANG.change_pwd}</button>
+</form>

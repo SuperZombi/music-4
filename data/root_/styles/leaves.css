@@ -1,0 +1,84 @@
+#storage {
+position: absolute;
+left: -100%;
+top: -100%;
+}
+
+#leafTemplate .stem {
+fill: currentColor;
+}
+
+.light-red {
+fill: #e57373;
+color: #d93232;
+}
+
+.red {
+fill: #f44336;
+color: #d2190b;
+}
+
+.dark-red {
+fill: #d32f2f;
+color: #962020;
+}
+
+.light-orange {
+fill: #ffb74d;
+color: #ff9801;
+}
+
+.orange {
+fill: #ff9800;
+color: #b36a00;
+}
+
+.dark-orange {
+fill: #f57c00;
+color: #a95500;
+}
+
+.light-yellow {
+fill: #fff176;
+color: #ffe92a;
+}
+
+.yellow {
+fill: #ffeb3b;
+color: #eed500;
+}
+
+.dark-yellow {
+fill: #fbc02d;
+color: #d79b04;
+}
+
+.light-green {
+fill: #81c784;
+color: #4dae52;
+}
+
+.green {
+fill: #4caf50;
+color: #357a38;
+}
+
+.dark-green {
+fill: #388e3c;
+color: #225725;
+}
+
+.light-purple {
+fill: #ba68c8;
+color: #973da7;
+}
+
+.purple {
+fill: #9c27b0;
+color: #641971;
+}
+
+.dark-purple {
+fill: #7b1fa2;
+color: #4a1362;
+}

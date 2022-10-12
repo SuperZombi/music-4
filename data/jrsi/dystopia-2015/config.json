@@ -1,0 +1,14 @@
+config = {
+    "track_name": "Dystopia 2015",
+    "artist": "JrSi",
+    "genre": "Trap",
+    "main_img": "MyLogo.jpg",
+    "allow_download": true,
+    "download_file": "JrSi - Dystopia 2015 {mInus}.mp3",
+    "audio_preview": "JrSi - Dystopia 2015 {mInus}.mp3",
+    "show_time": true,
+    "animate_time": true,
+    "links": {
+        "soundcloud": "https://soundcloud.com/jr_00_si/jrsi-dystopia-2015-minus"
+    }
+}

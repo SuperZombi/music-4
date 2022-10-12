@@ -1,0 +1,148 @@
+<div id="notifications"></div>
+
+<div id="back">
+	<div id="background"></div>
+</div>
+<div id="wraper">
+
+<div id="page">
+	<img id="main_img" src="${config.main_img}">
+	<div id="track_name" title="${LANG.track}">${config.track_name}</div></br>
+	<a id="artist" href="../" title="${LANG.author}">${config.artist}</a>
+	<hr>
+	<div id="statistic">
+		<div class="likes statistic_el">
+			<div class="like_wrapper" id="like_button" title="${LANG.like_it}">
+				<div class="like_wrapper_pulse" onclick="like_this()">
+					<div class="like like_back">
+						<svg viewBox="0 0 100 100">
+							<path d="M 90 34.613 C 90 33.142 89.849 31.675 89.549 30.235 C 87.528 20.511 78.914 13.203 68.59 13.203 C 64.16 13.203 60.045 14.549 56.63 16.853 C 53.9 18.702 50.022 24.036 50 24.019 C 50.013 24.058 46.1 18.702 43.37 16.853 C 39.838 14.468 35.672 13.196 31.41 13.203 C 21.086 13.203 12.472 20.511 10.451 30.235 C 10.151 31.675 10 33.142 10 34.613 C 10 34.941 10.022 35.264 10.037 35.588 C 10.035 35.747 10.025 35.903 10.025 36.062 C 10.025 58.179 49.905 86.797 50 86.797 C 50.095 86.797 89.975 58.179 89.975 36.063 C 89.975 35.904 89.965 35.747 89.963 35.589 C 89.978 35.264 90 34.941 90 34.613 Z"></path>
+						</svg>
+					</div>
+					<div class="like like_front">
+						<svg viewBox="0 0 100 100">
+							<path d="M 90 34.613 C 90 33.142 89.849 31.675 89.549 30.235 C 87.528 20.511 78.914 13.203 68.59 13.203 C 64.16 13.203 60.045 14.549 56.63 16.853 C 53.9 18.702 50.022 24.036 50 24.019 C 50.013 24.058 46.1 18.702 43.37 16.853 C 39.838 14.468 35.672 13.196 31.41 13.203 C 21.086 13.203 12.472 20.511 10.451 30.235 C 10.151 31.675 10 33.142 10 34.613 C 10 34.941 10.022 35.264 10.037 35.588 C 10.035 35.747 10.025 35.903 10.025 36.062 C 10.025 58.179 49.905 86.797 50 86.797 C 50.095 86.797 89.975 58.179 89.975 36.063 C 89.975 35.904 89.965 35.747 89.963 35.589 C 89.978 35.264 90 34.941 90 34.613 Z"></path>
+						</svg>
+					</div>
+				</div>
+			</div>
+			<span class="statistic_count">
+				<div id="likes_count">0</div>
+			</span>
+		</div>
+
+		<div class="views statistic_el">
+			<span id="views_icon" title="${LANG.views}"><img src="../../root_/images/eye.svg"></span>
+			<span class="statistic_count">
+				<div id="views_count">0</div>
+			</span>
+		</div>
+	</div>
+
+	<hr id="hr_">
+	<div id="links_area">
+		<div id="player">
+			<i class="far fa-play-circle" title="${LANG.player_play}" id="play_pause_button" onclick="play(event)"></i>
+			<div id="waveform">
+				<svg id="loading_waveform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 12">
+					<circle cx="6" cy="6" r="6"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.1"/></circle>
+					<circle cx="26" cy="6" r="6"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.2"/></circle>
+					<circle cx="46" cy="6" r="6"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.3"/></circle>
+				</svg>
+			</div>
+			<span id="time-current">0:00</span>
+			<span id="time-total">0:00</span>
+		</div>
+
+		<hr style="display:none">
+		
+	</div>
+</div>
+
+</div>
+
+<div id="share_menu">
+	<h1>${LANG.share}</h1>
+
+	<img src="../../root_/images/close.svg" id="close_share_menu" title="${LANG.close}">
+
+	<div class="share-element">
+		<span>${location.host+location.pathname.replaceAll("/", "/<wbr>")}</span>
+		<button onclick="copy_link(this)" class="ripple_but" title="${LANG.copy}">🔗</button>
+	</div>
+
+	<div class="share-element social_network">
+		<button onclick="show_embed()" class="social_network ripple_but" title="${LANG.embed}">
+			<img src="../../root_/images/share/embed.svg">
+		</button>
+		<button onclick="open_website('telegram')" class="social_network ripple_but" title="Telegram">
+			<img src="../../root_/images/share/telegram.svg">
+		</button>
+		<button onclick="open_website('viber')" class="social_network ripple_but" title="Viber">
+			<img src="../../root_/images/share/viber.svg">
+		</button>
+		<button onclick="open_website('vk')" class="social_network ripple_but" title="VKontakte">
+			<img src="../../root_/images/share/vk.svg">
+		</button>
+		<button onclick="open_website('facebook')" class="social_network ripple_but" title="Facebook">
+			<img src="../../root_/images/share/facebook.svg">
+		</button>
+		<button onclick="open_website('whatsapp')" class="social_network ripple_but" title="WhatsApp">
+			<img src="../../root_/images/share/whatsapp.svg">
+		</button>
+		<button onclick="open_website('twitter')" class="social_network ripple_but" title="Twitter">
+			<img src="../../root_/images/share/twitter.svg">
+		</button>
+	</div>
+
+	<div id="embed_menu">
+		<fieldset>
+			<legend>
+				<h1>${LANG.embed}</h1>
+				<img src="../../root_/images/close.svg" title="${LANG.close}" height="40px" 
+					style="margin-left:10px;cursor:pointer" onclick="closeEmbed()">
+			</legend>
+
+		<div>
+			<span>${LANG.lang}:</span>
+			<span class="radio">
+				<input label="${LANG.auto}" type="radio" name="lang" value="auto" checked onclick="changeEmbed()">
+				<input label="English" type="radio" name="lang" value="en" onclick="changeEmbed()">
+				<input label="Русский" type="radio" name="lang" value="ru" onclick="changeEmbed()">
+				<input label="Українська" type="radio" name="lang" value="uk" onclick="changeEmbed()">
+			</span>
+		</div>
+		<div>
+			<span>${LANG.theme}:</span>
+			<span class="radio">
+				<input label="${LANG.auto}" type="radio" name="theme" value="auto" checked onclick="changeEmbed()">
+				<input label="${LANG.light}" type="radio" name="theme" value="light" onclick="changeEmbed()">
+				<input label="${LANG.dark}" type="radio" name="theme" value="dark" onclick="changeEmbed()">
+			</span>
+		</div>
+		<div>
+			<span>${LANG.corners_rounding}:</span>
+			<span class="radio">
+				<input label="${LANG.yes}" type="radio" name="round" value="true" checked onclick="changeEmbed()">
+				<input label="${LANG.no}" type="radio" name="round" value="false" onclick="changeEmbed()">
+			</span>
+		</div>
+
+		<div>
+			<span>${LANG.size}:</span>
+			<span class="radio">
+				<input label="${LANG.small}" type="radio" name="size" value="small" checked onclick="changeEmbed(true)">
+				<input label="${LANG.big}" type="radio" name="size" value="big" onclick="changeEmbed(true)">
+			</span>
+		</div>
+
+		<div class="share-element" style="width:unset;justify-content:center;overflow-wrap:anywhere;">
+			<span id="embed_url" style="cursor:pointer;" onclick="copyEmbed()" class="ripple_but" title="${LANG.copy}"></span>
+		</div>
+
+		<iframe id="embed_frame" src="" width="100%" height="150px" style="border: none;background: grey;resize: horizontal;transition: 0.5s;"></iframe>
+
+		</fieldset>
+
+	</div>
+</div>

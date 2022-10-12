@@ -1,0 +1,11 @@
+config = {
+    "track_name": "Tyrel Corp.",
+    "artist": "yunsungwook",
+    "genre": "Techno",
+    "main_img": "blade-runner-tyrell-building-headquarters-b2x16tp59isdn0bs.jpg",
+    "allow_download": true,
+    "download_file": "Tyrel Corporation.mp3",
+    "audio_preview": "Tyrel Corporation.mp3",
+    "show_time": true,
+    "animate_time": true
+}

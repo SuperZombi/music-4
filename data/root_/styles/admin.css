@@ -1,0 +1,95 @@
+.back{
+	fill: white;
+	height: 46px;
+	display: block;
+	transform: rotate(90deg) scale(0.8, 1);
+	cursor: pointer;
+	margin-top: 6px;
+	margin-left: 5px;
+	transition: 0.3s;
+	filter: drop-shadow(0 0 2px black);
+}
+.back:hover{
+	transform: rotate(135deg) scale(1, 1);
+	fill: lightgreen;
+}
+
+#search_menu{
+	display: none;
+	border: 1px solid;
+}
+#console_wrapper{
+	position: fixed;
+	left: 0;
+	bottom:0;
+	width: 100%;
+	display: flex;
+	max-height: 40%;
+}
+#enter{
+	display: flex;
+	align-items: center;
+	background: #182E60;
+	font-size: 24pt;
+	padding: 0 5px 0 5px;
+	cursor: pointer;
+	transition: color 0.2s, padding 0.2s, background 0.3s;
+	user-select: none;
+	color: white;
+}
+#enter:hover{
+	padding: 0 8px 0 8px;
+	color: #00FF00;
+}
+#enter:active{
+	background: #214086;
+}
+#console{
+	overflow-y: auto;
+	word-break: break-word;
+	width: 100%;
+	background: #1c2333;
+	min-height: 100px;
+	font-family: monospace;
+	color: white;
+	text-align: left;
+	font-size: 14pt;
+}
+#console code{
+	background: #7c7c7c;
+	border-radius: 6px;
+	padding: 0 3px;
+}
+#console > .custom_command{
+	color: yellow;
+}
+.clickable_element{
+	text-decoration: underline;
+	cursor: pointer;
+	margin-right: 10px;
+	transition: 0.25s;
+}
+.select_list{
+	word-wrap: break-word;
+}
+.clickable_element:hover{
+	color: orange;
+}
+.clickable_element.selected{
+	color: hotpink;
+}
+.consolePositioner{
+	animation: blinking 0.6s infinite;
+	user-select: none;
+}
+@keyframes blinking{
+	0%{
+		opacity: 0
+	}
+	50%{
+		opacity: 1;
+	}
+	100%{
+		opacity: 0
+	}
+}

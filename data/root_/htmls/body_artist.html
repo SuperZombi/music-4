@@ -1,0 +1,33 @@
+<div class="artist_image_wrapper">
+	<img id="artist_image" src="">
+</div>
+<h1 class="category_title" align="center">
+	<span title="Premium">
+		<img id="crown" src="/root_/images/crown.svg" style="display:none;">
+	</span>
+	<span id="artist_name"></span>
+	<span title="${LANG.official}">
+		<svg id="official_checkmark" style="display:none;" onmouseenter="checkmark_hovered(this)" class="checkmark checkmark__animation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+		<circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+	</span>
+</h1>
+
+<div style="text-align:center">
+	<ul class="tabs">
+		<li class="active" data="main">${LANG.overview_tab}</li>
+		<li data="all-tracks">${LANG.all_tab}</li>
+		<li data="about">${LANG.about_tab}</li>
+	</ul>
+</div>
+
+<div id="wraper">
+<div id="main_page" style="transition:0.35s">
+
+</div>
+
+<div id="about" style="transition:0.35s;display:none;opacity:0">
+	<table></table>
+</div>
+
+<img id="toTop" title="${LANG.up}" onclick="window.scrollTo(0,0)" src="../root_/images/return-to-the-top.svg">
+</div>

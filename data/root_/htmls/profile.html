@@ -1,0 +1,330 @@
+<div id="notifications"></div>
+
+<div id="menu">
+	<div class="menu-element active" data="dashboard" title="${LANG.dashboard}">
+		<span class="menu-icon">🏠</span>
+		<span class="menu-text">${LANG.dashboard}</span>
+	</div>
+
+	<div class="menu-element" data="tracks" title="${LANG.my_tracks}">
+		<span class="menu-icon">🎵</span>
+		<span class="menu-text">${LANG.my_tracks}</span>
+	</div>
+
+	<div class="menu-element" data="statistics" title="${LANG.statistics}">
+		<span class="menu-icon">📈</span>
+		<span class="menu-text">${LANG.statistics}</span>
+	</div>
+
+	<div class="menu-element" data="premium" title="Premium">
+		<span class="menu-icon">👑</span>
+		<span class="menu-text">Premium</span>
+	</div>
+
+	<a class="menu-element" href="/admin" target="_blank" title="${LANG.admin_console}" id="console-icon" style="display:none">
+		<span class="menu-icon"><img src="../root_/images/terminal.svg"></span>
+		<span class="menu-text">${LANG.admin_console}</span>
+	</a>
+
+	<div class="menu-element" data="settings" title="${LANG.settings}">
+		<span class="menu-icon">⚙</span>
+		<span class="menu-text">${LANG.settings}</span>
+	</div>
+
+	<div class="menu-element hide_on_phone collapse_but_wraper" onclick="collapse()" title="${LANG.collapse}">
+		<span class="menu-icon" id="collapse_but"><</span>
+		<span class="menu-text">${LANG.collapse}</span>
+	</div>
+</div>
+
+<div id="page-content">
+
+	<div id="toTop" title="${LANG.up}">
+		<img onclick="scrollToTop()" src="../root_/images/return-to-the-top.svg">
+	</div>
+
+	<div class="tab-content active" data="dashboard">
+
+		<h1 id="dont-redirected" style="text-align:center;font-family:sans-serif;display:none;">
+			<a href="login" style="color:blue">${LANG.login_radio}/${LANG.signup_radio}</a>
+		</h1>
+
+		<div style="text-align:center;">
+			<div class="artist_image_wrapper" title="${LANG.change_photo}">
+				<img id="artist_image" src="../root_/images/people.svg">
+				<img src="../root_/images/camera.svg" class="popup_image_camera"
+					onclick="selectFile()">
+			</div>
+		</div>
+
+		<div class="logout">
+			<h1 class="category_title" id="user-name"></h1>
+
+			<span id="logout-icon" style="display:none;" title="${LANG.log_out}">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 489.9 489.9"><g>
+					<path d="M468.3,255.8c0.1-0.1,0.1-0.1,0.2-0.2c0.3-0.4,0.6-0.7,0.8-1.1c0.1-0.1,0.1-0.2,0.2-0.3c0.2-0.4,0.5-0.8,0.7-1.2 c0-0.1,0.1-0.2,0.1-0.2c0.2-0.4,0.4-0.8,0.6-1.3c0-0.1,0-0.1,0.1-0.2c0.2-0.4,0.3-0.9,0.5-1.4c0-0.1,0-0.2,0.1-0.2 c0.1-0.5,0.3-0.9,0.3-1.4c0-0.2,0-0.3,0.1-0.5c0.1-0.4,0.1-0.8,0.2-1.2c0.1-0.6,0.1-1.1,0.1-1.7c0-0.6,0-1.1-0.1-1.7 c0-0.4-0.1-0.8-0.2-1.2c0-0.2,0-0.3-0.1-0.5c-0.1-0.5-0.2-0.9-0.3-1.4c0-0.1,0-0.2-0.1-0.2c-0.1-0.5-0.3-0.9-0.5-1.4 c0-0.1,0-0.1-0.1-0.2c-0.2-0.4-0.4-0.9-0.6-1.3c0-0.1-0.1-0.2-0.1-0.2c-0.2-0.4-0.4-0.8-0.7-1.2c-0.1-0.1-0.1-0.2-0.2-0.3 c-0.3-0.4-0.5-0.8-0.8-1.1c-0.1-0.1-0.1-0.1-0.2-0.2c-0.4-0.4-0.7-0.9-1.2-1.3l-98.9-98.8c-6.7-6.7-17.6-6.7-24.3,0 c-6.7,6.7-6.7,17.6,0,24.3l69.6,69.6H136.8c-9.5,0-17.2,7.7-17.2,17.1c0,9.5,7.7,17.2,17.2,17.2h276.8l-69.1,69.1 c-6.7,6.7-6.7,17.6,0,24.3c3.3,3.3,7.7,5,12.1,5s8.8-1.7,12.1-5l98.3-98.3C467.5,256.6,467.9,256.2,468.3,255.8z"/>
+					<path d="M110.7,34.3h128c9.5,0,17.2-7.7,17.2-17.1c0-9.5-7.7-17.2-17.2-17.2h-128C59.4,0,17.6,41.8,17.6,93.1v303.7 c0,51.3,41.8,93.1,93.1,93.1h125.9c9.5,0,17.2-7.7,17.2-17.1c0-9.5-7.7-17.2-17.2-17.2H110.7c-32.4,0-58.8-26.4-58.8-58.8V93.1 C52,60.6,78.3,34.3,110.7,34.3z"/></g>
+				</svg>
+			</span>
+		</div>
+
+		<div style="text-align:center">
+			<a href="new-release" class="expanding-link" id="new-release"><img src="../root_/images/publish.svg">${LANG.post}</a>
+			<a href="favorites" class="expanding-link"><img src="../root_/images/bookmark.svg">${LANG.favorites_title}</a>
+		</div>
+
+		<div id="premium_timer" style="display:none">👑Премиум до: <code>20.02.2002</code></div>
+
+	</div>
+
+	<div class="tab-content" data="settings">
+
+		<div id="settings_area">
+			<span id="settings">
+				<h1>⚙️${LANG.settings}</h1>
+			</span>
+			<hr style="margin-top: 0;">
+
+			<details>
+				<summary>🎨${LANG.appearance}</summary>
+				<div class="content">
+
+				<div class="settings_element">
+					<span>${LANG.lang}:</span>
+					<span class="radio">
+						<input label="${LANG.auto}" type="radio" name="lang" value="auto" checked onclick="changeSettings(this)">
+						<input label="English" type="radio" name="lang" value="en" onclick="changeSettings(this)">
+						<input label="Русский" type="radio" name="lang" value="ru" onclick="changeSettings(this)">
+						<input label="Українська" type="radio" name="lang" value="uk" onclick="changeSettings(this)">
+					</span>
+				</div>
+				<div class="settings_element">
+					<span>${LANG.theme}:</span>
+					<span class="radio">
+						<input label="${LANG.auto}" type="radio" name="theme" value="auto" checked onclick="changeSettings(this)">
+						<input label="${LANG.light}" type="radio" name="theme" value="light" onclick="changeSettings(this)">
+						<input label="${LANG.dark}" type="radio" name="theme" value="dark" onclick="changeSettings(this)">
+					</span>
+				</div>
+				<div class="settings_element">
+					<span>${LANG.hard_anim}:</span><span style="cursor: help;" title="${LANG.hard_anim_prompt}">❓</span>
+					<span class="radio">
+						<input label="${LANG.disable}" type="radio" name="hard-anim" value="false" checked onclick="changeSettings(this)">
+						<input label="${LANG.enable}" type="radio" name="hard-anim" value="true" onclick="changeSettings(this)">
+					</span>
+				</div>
+
+				</div>
+			</details>
+			<hr>
+
+			<details>
+				<summary>👤${LANG.profile_title}</summary>
+				<div class="content">
+
+				<div class="settings_element center-wrap ignore-divide">
+					<button class="button-15" onclick="confrim_delete_avatar()">${LANG.delete_avatar}</button>
+				</div>
+
+				<div class="settings_element center-wrap ignore-divide">
+					<button class="button-15 red" onclick="reset_password()" style="margin-bottom: 10px;">${LANG.change_pwd}</button>
+				</div>
+
+				<div id="profile-settings" style="display:none;">
+					<div class="settings_element center-wrap ignore-divide-background">
+						<div class="group">
+							<input type="email" name="email" placeholder=" "/>
+							<span class="bar"></span>
+							<label>${LANG.email}</label>
+						</div>
+						<div class="switcher">
+							<input id="toggle_email-off" class="toggle toggle-left" name="toggle_email" value="false" type="radio" checked>
+							<label for="toggle_email-off" class="btn" title="${LANG.private}">🔒</label>
+							<input id="toggle_email-on" class="toggle toggle-right" name="toggle_email" value="true" type="radio">
+							<label for="toggle_email-on" class="btn"><img src="../root_/images/eye.svg" title="${LANG.public}"></label>
+						</div>
+					</div>
+
+					<div class="settings_element center-wrap ignore-divide-background">
+						<div class="group">
+							<input type="tel" name="phone" placeholder=" "/>
+							<span class="bar"></span>
+							<label>${LANG.phone}</label>
+						</div>
+						<div class="switcher">
+							<input id="toggle_phone-off" class="toggle toggle-left" name="toggle_phone" value="false" type="radio" checked>
+							<label for="toggle_phone-off" class="btn" title="${LANG.private}">🔒</label>
+							<input id="toggle_phone-on" class="toggle toggle-right" name="toggle_phone" value="true" type="radio">
+							<label for="toggle_phone-on" class="btn" title="${LANG.public}"><img src="../root_/images/eye.svg"></label>
+						</div>
+					</div>
+
+					<div class="settings_element center-wrap ignore-divide-background">
+						<div class="group">
+							<select onchange="this.dataset.chosen = this.value;" data-chosen="" name="gender">
+								<option value="" selected></option>
+								<option value="man">${LANG.man}</option>
+								<option value="woman">${LANG.woman}</option>
+							</select>
+							<label>${LANG.gender}</label>
+						</div>
+						<div class="switcher">
+							<input id="toggle_gender-off" class="toggle toggle-left" name="toggle_gender" value="false" type="radio" checked>
+							<label for="toggle_gender-off" class="btn" title="${LANG.private}">🔒</label>
+							<input id="toggle_gender-on" class="toggle toggle-right" name="toggle_gender" value="true" type="radio">
+							<label for="toggle_gender-on" class="btn" title="${LANG.public}"><img src="../root_/images/eye.svg"></label>
+						</div>
+					</div>
+
+					<div class="settings_element center-wrap ignore-divide" style="justify-content:space-evenly;">
+						<p style="font-size:18px;">${LANG.favorites_title}:<span style="cursor: help;" title="${LANG.favorites_prompt}">❓</span></p>
+						
+						<div class="switcher">
+							<input id="toggle_favorites-off" class="toggle toggle-left" name="toggle_favorites" value="false" type="radio" checked>
+							<label for="toggle_favorites-off" class="btn" title="${LANG.private}">🔒</label>
+							<input id="toggle_favorites-on" class="toggle toggle-right" name="toggle_favorites" value="true" type="radio">
+							<label for="toggle_favorites-on" class="btn" title="${LANG.public}"><img src="../root_/images/eye.svg"></label>
+						</div>
+					</div>
+				</div>
+
+				</div>
+				</details>
+			<hr>
+
+			<details>
+					<summary>📱${LANG.social_media}</summary>
+					<div class="content">
+						<div onclick="add_social()" class="add_social" title="${LANG.add}">+</div>
+						<div id="social"></div>
+					</div>
+				</details>
+			<hr>
+
+			<details>
+					<summary>💡${LANG.other}</summary>
+					<div class="content">
+
+					<div class="settings_element">
+						<span>${LANG.secure_links}:</span><span style="cursor: help;" title="${LANG.secure_links_desc}">❓</span>
+						<span class="radio">
+							<input label="${LANG.disable}" type="radio" name="secure-links" value="false" onclick="changeSettings(this)">
+							<input label="${LANG.enable}" type="radio" name="secure-links" value="true" checked onclick="changeSettings(this)">
+						</span>
+					</div>
+
+					<div class="settings_element">
+						<span>${LANG.resize_images}:</span><span style="cursor: help;" title="${LANG.resize_images_prompt}">❓</span>
+						<span class="radio">
+							<input label="${LANG.disable}" type="radio" name="resize-images" value="false" checked onclick="changeSettings(this)">
+							<input label="${LANG.enable}" type="radio" name="resize-images" value="true" onclick="changeSettings(this)">
+						</span>
+					</div>
+
+					<div class="settings_element">
+						<span>${LANG.sort_method}:</span>
+						<span class="radio">
+							<input label="${LANG.by_date}" type="radio" name="sort_method" value="date" checked onclick="changeSettings(this)">
+							<input label="${LANG.by_popularity}" type="radio" name="sort_method" value="popular" onclick="changeSettings(this)">
+						</span>
+					</div>
+
+					</div>
+				</details>
+			<hr>
+
+			<div id="save_button" class="settings_element center-wrap ignore-divide">
+				<button class="button" onclick="saveSettings();">${LANG.save}</button>
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="tab-content" data="tracks">
+
+		<div style="text-align:center;margin-top:6px;">
+			<span>${LANG.sort_method}:</span>
+			<span class="radio">
+				<input label="${LANG.by_date}" type="radio" name="my_tracks_sort_method" checked value="date" onchange="changeSortMethod('my_tracks')">
+				<input label="${LANG.by_popularity}" type="radio" name="my_tracks_sort_method" value="popular" onchange="changeSortMethod('my_tracks')">
+			</span>
+		</div>
+		<hr>
+
+		<div id="card_previewer">
+			<span title="${LANG.edit}"><img onclick="edit()" src="../root_/images/edit.svg" draggable="false"/></span>
+			<span title="${LANG.share}"><img onclick="share()" src="../root_/images/share.svg" draggable="false"/></span>
+			<span title="${LANG.delete}" class="title-to-left"><img onclick="confirm_delete()" src="../root_/images/delete.svg" draggable="false"/></span>
+			<span title="${LANG.open}" class="title-to-left"><img onclick="open_()" src="../root_/images/open.svg" draggable="false"/></span>
+			<span title="${LANG.close}" class="title-to-left"><img class="close" onclick="hide()" src="../root_/images/close2.svg" draggable="false"/></span>
+		</div>
+
+		<div id="card_previewer_name">
+			<div id="card_previewer_name_txt"></div>
+		</div>
+
+		<div id="main_page"></div>
+
+		<div id="extra_space"></div>
+
+	</div>
+
+	<div class="tab-content" data="premium">
+		<table id="limits" style="margin-top:20px;min-width:50%;">
+			<tr>
+				<th></th>
+				<th>Standard</th>
+				<th>Premium</th>
+			</tr>
+			<tr>
+				<td rowspan="3">${LANG.image_file}</td>
+				<td>⩽1280×1280</td>
+				<td>⩽1920×1920</td>
+			</tr>
+			<tr>
+				<td>⩽2MB</td>
+				<td>⩽5MB</td>
+			</tr>
+			<tr>
+				<td>jpg/png</td>
+				<td>gif</td>
+			</tr>
+
+			<tr>
+				<td rowspan="2">${LANG.audio_file}</td>
+				<td>⩽192kbps</td>
+				<td>⩽320kbps</td>
+			</tr>
+			<tr>
+				<td>⩽10MB</td>
+				<td>⩽16MB</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="tab-content" data="statistics">
+
+		<div style="text-align:center;margin-top:6px;">
+			<span>${LANG.sort_method}:</span>
+			<span class="radio">
+				<input label="${LANG.by_date}" type="radio" name="stat_sort_method" value="date" onchange="changeSortMethod('statistics')">
+				<input label="${LANG.by_popularity}" type="radio" name="stat_sort_method" value="popular" checked onchange="changeSortMethod('statistics')">
+				<input label="${LANG.views}" type="radio" name="stat_sort_method" value="views" onchange="changeSortMethod('statistics')">
+				<input label="${LANG.likes}" type="radio" name="stat_sort_method" value="likes" onchange="changeSortMethod('statistics')">
+			</span>
+		</div>
+		<hr>
+
+		<div id="statistics_area">
+			<div class='track' style="font-weight: bold; padding-top: 12px; padding-bottom: 12px;">
+				<span class="track_info" style="justify-content:center;">${LANG.content}</span>
+				<span class="likes_and_views">
+					<span>${LANG.views}</span>
+					<span>${LANG.likes}</span>
+				</span>
+			</div>
+		</div>
+	</div>
+
+</div>

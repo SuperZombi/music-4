@@ -1,0 +1,53 @@
+<div id="wraper" onclick="focusConsole(event)">
+<div id="main_page">
+	<a href="/account" title="Back">
+		<svg class="back" viewBox="0 0 284.929 284.929"><path d="M282.082,76.511l-14.274-14.273c-1.902-1.906-4.093-2.856-6.57-2.856c-2.471,0-4.661,0.95-6.563,2.856L142.466,174.441 L30.262,62.241c-1.903-1.906-4.093-2.856-6.567-2.856c-2.475,0-4.665,0.95-6.567,2.856L2.856,76.515C0.95,78.417,0,80.607,0,83.082 c0,2.473,0.953,4.663,2.856,6.565l133.043,133.046c1.902,1.903,4.093,2.854,6.567,2.854s4.661-0.951,6.562-2.854L282.082,89.647 c1.902-1.903,2.847-4.093,2.847-6.565C284.929,80.607,283.984,78.417,282.082,76.511z"></path></svg>
+	</a>
+
+	<div id="admin_console" style="display: none">
+		<h3>Get All:</h3>
+
+		<span class="radio">
+			<input label="Users" type="radio" name="get_all_users" checked onclick="doFastCommand(this)">
+		</span>
+
+		<span class="radio">
+			<input label="Admins" type="radio" name="get_all_admins" checked onclick="doFastCommand(this)">
+		</span>
+
+		<br>
+
+		<span class="radio">
+			<input label="Tracks" type="radio" name="get_all_tracks" checked onclick="doFastCommand(this)">
+		</span>
+
+		<span class="radio">
+			<input label="Genres" type="radio" name="get_all_genres" checked onclick="doFastCommand(this)">
+		</span>
+
+		<br>
+		<div class="radio">
+			<input label="Search" type="radio" name="show_search" onclick="doFastCommand(this)">
+		</div>
+		<div class="radio">
+			<input label="Clear Console" type="radio" name="clear_console" checked style="background: red;" onclick="clearConsole()">
+		</div>
+
+		<div id="search_menu">
+			<div class="radio">
+				<input label="User" type="radio" name="search_type" value="user">
+				<input label="Email" type="radio" name="search_type" value="email">
+				<input label="Track" type="radio" name="search_type" value="track">
+				<input label="Genre" type="radio" name="search_type" value="genre">
+				<input type="text" name="search_value" style="cursor:auto">
+				<input label="Search" type="radio" name="search" checked onclick="doFastCommand(this)">
+			</div>
+		</div>
+
+		<div id="console_wrapper">
+			<div id="console"><a class="admin">admin></a></div>
+			<div id="enter" onclick="exec_console_command()">⮨</div>
+		</div>
+	</div>
+</div>
+</div>

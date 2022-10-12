@@ -1,0 +1,127 @@
+#beta{
+	background: darkred;
+	color: white;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 100%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	transform: translate(40%, 70%) rotate(35deg);
+}
+form{
+	display: flex;
+	justify-content: center;
+	margin: 1.5%;
+}
+#mainForm table{
+	font-family: sans-serif;
+	text-align: center;
+	font-size: 16pt;
+	border: 3px solid #f69a73;
+	border-radius: 30px;
+	box-shadow: 3px 4px 10px #d87d56;
+	position: relative;
+	overflow: hidden;
+}
+#mainForm table table{
+	border: none;
+	padding: 0;
+	border-radius: 0;
+	box-shadow: none;
+	display: flex;
+	justify-content: center;
+}
+table td{
+	padding: 12px 10px;
+}
+#mainForm table > td{
+	max-width: 50vw;
+}
+table hr{
+	border-color: #f69a73 !important;
+	background-color: #f69a73 !important;
+	height: 2px;
+}
+table input[type="text"]{
+	font-size: 16pt;
+	text-align: center;
+	border-radius: 50px;
+}
+#mainForm table > input[type="text"]{
+	width: 99%;
+}
+table input[type="submit"]{
+	font-size: 16pt;
+	text-align: center;
+	cursor: pointer;
+	border-radius: 50px;
+	padding: 5px 30px;
+	margin-bottom: 5px;
+}
+table input[type="checkbox"]{
+	transform: scale(1.5);
+}
+.checkFile{
+	font-size: initial;
+}
+table summary{
+	cursor: pointer;
+}
+table table img{
+	height: 40px;
+	background: rgb(175, 175, 175, 0.5);
+	border-radius: 25px;
+	padding: 0 20px;
+	vertical-align: middle;
+}
+table table i{
+	cursor: pointer;
+	vertical-align: middle;
+}
+table table input[type="text"] {
+	font-size: 14pt;
+}
+
+
+.logout{
+	display: flex;
+	align-items: center;
+}
+.logout svg{
+	margin-left: 6px;
+	height: 28px;
+	cursor: pointer;
+	transition: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.logout svg:hover{
+	fill: red;
+}
+
+
+#player{
+	height: unset;
+}
+#time-current, #time-total, #max-time-total, #min-time-total{
+	font-size : initial;
+	width: 60px;
+	background: transparent;
+    border: 1px solid;
+    border-radius: 8px;
+	padding-left: 5px;
+}
+#max-time-total{float: right;}
+#min-time-total{float: left;}
+#max-time-total, #min-time-total{
+	color: #00c200;
+	border: 1px solid green;
+	width: unset;
+	padding-left: 10px;
+	padding-right: 10px;
+	cursor: pointer;
+	transition: 0.35s;
+}
+#max-time-total:hover, #min-time-total:hover{
+	padding-left: 15px;
+	padding-right: 15px;
+}

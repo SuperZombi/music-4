@@ -1,0 +1,19 @@
+config = {
+    "track_name": "Viper",
+    "artist": "theo",
+    "genre": "Big Room House",
+    "main_img": "viper.jpg",
+    "allow_download": true,
+    "download_file": "4A - Fm - Viper (feat. Felipe V.) - T. Tuori.mp3",
+    "audio_preview": "4A - Fm - Viper (feat. Felipe V.) - T. Tuori.mp3",
+    "show_time": true,
+    "animate_time": true,
+    "date": "26.02.2020",
+    "preview_z": false,
+    "links": {
+        "spotify": "https://open.spotify.com/track/0pHjxlU9wFXtckxgJ0cSeL?si=534db550aea54f9e",
+        "youtube_music": "https://music.youtube.com/watch?v=3kUeCSoxfL0",
+        "youtube": "https://youtu.be/3kUeCSoxfL0",
+        "soundcloud": "https://soundcloud.com/ttuori/viper-feat-felipe-v"
+    }
+}

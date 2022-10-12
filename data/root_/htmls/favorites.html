@@ -1,0 +1,38 @@
+<div id="notifications"></div>
+
+<div class="myAccountElement">
+	<a id="myAccount" href="./">
+		<img src="../root_/images/people.svg">
+		<span>${LANG.profile_title}</span>
+	</a>
+</div>
+
+<h1 id="favorites_title">${LANG.favorites_title}
+	<hr>
+</h1>
+
+
+<div id="card_previewer">
+	<span title="${LANG.share}"><img onclick="share()" src="../root_/images/share.svg" draggable="false"/></span>
+	<span title="${LANG.remove_from_favorites_title}"><img onclick="confirm_delete()" src="../root_/images/delete.svg" draggable="false"/></span>
+	<span title="${LANG.open}" class="title-to-left"><img onclick="open_()" src="../root_/images/open.svg" draggable="false"/></span>
+	<span title="${LANG.close}" class="title-to-left"><img class="close" onclick="hide()" src="../root_/images/close2.svg" draggable="false"/></span>
+</div>
+
+<div id="card_previewer_name">
+	<div id="card_previewer_name_txt"></div>
+	<div id="card_previewer_user_txt"></div>
+</div>
+
+<div id="wraper">
+<div id="main_page">
+	<div id="empty"></div>
+</div>
+
+<div id="extra_space"></div>
+
+<div id="toTop" title="${LANG.up}">
+	<img onclick="window.scrollTo(0,0)" src="../root_/images/return-to-the-top.svg">
+</div>
+
+</div>

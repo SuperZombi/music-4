@@ -1,0 +1,28 @@
+#support{
+	font-family: 'Ubuntu Mono', monospace;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+#email{
+	margin-top: 50px;
+	font-size: 14pt;
+	transition: 0.3s;
+	text-align: center;
+	font-family: sans-serif;
+}
+.anim_email{
+	animation: blinking 1.5s infinite;
+}
+@keyframes blinking{
+	0%{
+		opacity: 1;
+	}
+	50%{
+		opacity: 0.6;
+	}
+	100%{
+		opacity: 1;
+	}
+}

@@ -1,0 +1,24 @@
+config = {
+	"track_name": "Sadness Rain",
+	"artist": "SuperZombi",
+	"genre": "Lo-Fi",
+	"main_img": "image.png",
+	"allow_download": true,
+	"download_file": "Super Zombi - Sadness Rain.mp3",
+
+	"links": {
+		"spotify": "https://open.spotify.com/track/4mvX2wdawZWie0Q7zUFg6b",
+		"youtube_music": "https://music.youtube.com/watch?v=B66bbnhz1TU",
+		"youtube": "https://youtu.be/FxbbPp3j-uo",
+		"apple_music": "https://music.apple.com/us/album/sadness-rain/1601409996",
+		"deezer": "https://deezer.page.link/bdAABnu4EyaZREhC6",
+		"soundcloud": "https://soundcloud.com/super-zombi/sadness-rain",
+		"newgrounds": "https://www.newgrounds.com/audio/listen/1093155"
+	},
+
+	"audio_preview": "Super Zombi - Sadness Rain.mp3",
+	"show_time": true,
+	"animate_time": true,
+	"preview_z": true,
+	"preview_zone": [15.25, 62]
+}
