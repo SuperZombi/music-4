@@ -56,7 +56,7 @@ def render(path):
 			if path[-1] != "/":
 				return redirect("/" + path + "/")
 			track_id = tracks.find(path=list(parts))
-			if track_id:
+			if track_id != None:
 				stat_check_html(os.path.join(path, "index.html"))
 				track = tracks.get(track_id)
 				return htmlTemplates.track_index(track["artist"], track["track"], track["image"])
