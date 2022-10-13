@@ -209,7 +209,6 @@ function easter_egg() {
 		document.getElementById("header").style.overflow = ""
 		*/
 
-		/*
 		// Leaves
 		document.getElementById("leaves_area").style.opacity = ""
 		document.getElementById("leaves_area").style.position = ""
@@ -219,7 +218,6 @@ function easter_egg() {
 		
 		window.addEventListener('resize', () => document.getElementById("leaves_area").getElementsByTagName("svg")[0].setAttribute("viewBox", 
 			`0 0 ${document.getElementById("leaves_area").offsetWidth} ${document.getElementById("leaves_area").offsetHeight}`));
-		*/
 	}
 
 	easter_egg_counter += 1
@@ -261,7 +259,6 @@ function easter_egg() {
 		document.getElementById("header").style.overflow = "unset"
 		*/
 
-		/*
 		// Leaves
 		document.getElementById("leaves_area").style.opacity = 0.85
 		document.getElementById("leaves_area").style.position = "fixed"
@@ -272,7 +269,6 @@ function easter_egg() {
 
 		window.addEventListener('resize', () => document.getElementById("leaves_area").getElementsByTagName("svg")[0].setAttribute("viewBox", 
 			`0 0 ${document.body.offsetWidth} ${document.body.offsetHeight}`));
-		*/
 	}
 }
 

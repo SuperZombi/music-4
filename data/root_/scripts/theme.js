@@ -1,55 +1,55 @@
 if (JSON.parse(localStorage.getItem('hard-anim'))){
 	/* Leaves */
-	// (function leaves_(){
-	//   if (typeof leaves_area !== 'undefined'){
-	// 	var lea = document.createElement("link")
-	// 	lea.rel = "stylesheet"
-	// 	lea.setAttribute("href", "/root_/styles/leaves.css");
-	// 	document.head.appendChild(lea)
-	// 	var scr = document.createElement("script")
-	// 	scr.setAttribute("src", "/root_/scripts/leaves.js");
-	// 	document.head.appendChild(scr)   
-	//   }
-	//   else{
-	//     setTimeout(function(){leaves_()}, 500)
-	//   }
-	// })()
+	(function leaves_(){
+	  if (typeof leaves_area !== 'undefined'){
+		var lea = document.createElement("link")
+		lea.rel = "stylesheet"
+		lea.setAttribute("href", "/root_/styles/leaves.css");
+		document.head.appendChild(lea)
+		var scr = document.createElement("script")
+		scr.setAttribute("src", "/root_/scripts/leaves.js");
+		document.head.appendChild(scr)   
+	  }
+	  else{
+	    setTimeout(function(){leaves_()}, 500)
+	  }
+	})()
 	/**/
 
 	/* Water */
-	(function water(){
-		if (typeof leaves_area !== 'undefined'){
-			var lea = document.createElement("link")
-			lea.rel = "stylesheet"
-			lea.setAttribute("href", "/root_/styles/water.css");
-			document.head.appendChild(lea)
-			document.getElementById("leaves_area").innerHTML = `
-				<div class="Ocean">
-					<svg class="Wave" viewBox="0 0 12960 1120">
-						<defs>
-							<linearGradient id="gradient"> 
-								<stop offset="0%" stop-color="#4FC3F7">
-									<animate attributeName="stop-color" values="#008DCC; #4FC3F7; #008DCC" dur="8s" repeatCount="indefinite"></animate>
-								</stop>
-								<stop offset="100%" stop-color="#008DCC">
-									<animate attributeName="stop-color" values="#008DCC; #4FC3F7; #008DCC" dur="8s" repeatCount="indefinite"></animate>
-								</stop>
-							</linearGradient>
-						</defs>
-						<path fill="url(#gradient)" d="M9720,160C8100,160,8100,0,6480,0S4860,160,3240,160,1620,0,0,0V1120H12960V0C11340,0,11340,160,9720,160Z">
-							<animate dur="6s" repeatCount="indefinite" attributeName="d" values="
-								M9720,160C8100,160,8100,0,6480,0S4860,160,3240,160,1620,0,0,0V1120H12960V0C11340,0,11340,160,9720,160Z;
-								M9720,0C8100,0,8100,160,6480,160S4860,0,3240,0,1620,160,0,160v800H12960V160C11340,160,11340,0,9720,0Z;
-								M9720,160C8100,160,8100,0,6480,0S4860,160,3240,160,1620,0,0,0V1120H12960V0C11340,0,11340,160,9720,160Z"/>
-						</path>
-					</svg> 
-				</div>
-			`
-		}
-		else{
-			setTimeout(function(){water()}, 500)
-		}
-	})()
+	// (function water(){
+	// 	if (typeof leaves_area !== 'undefined'){
+	// 		var lea = document.createElement("link")
+	// 		lea.rel = "stylesheet"
+	// 		lea.setAttribute("href", "/root_/styles/water.css");
+	// 		document.head.appendChild(lea)
+	// 		document.getElementById("leaves_area").innerHTML = `
+	// 			<div class="Ocean">
+	// 				<svg class="Wave" viewBox="0 0 12960 1120">
+	// 					<defs>
+	// 						<linearGradient id="gradient"> 
+	// 							<stop offset="0%" stop-color="#4FC3F7">
+	// 								<animate attributeName="stop-color" values="#008DCC; #4FC3F7; #008DCC" dur="8s" repeatCount="indefinite"></animate>
+	// 							</stop>
+	// 							<stop offset="100%" stop-color="#008DCC">
+	// 								<animate attributeName="stop-color" values="#008DCC; #4FC3F7; #008DCC" dur="8s" repeatCount="indefinite"></animate>
+	// 							</stop>
+	// 						</linearGradient>
+	// 					</defs>
+	// 					<path fill="url(#gradient)" d="M9720,160C8100,160,8100,0,6480,0S4860,160,3240,160,1620,0,0,0V1120H12960V0C11340,0,11340,160,9720,160Z">
+	// 						<animate dur="6s" repeatCount="indefinite" attributeName="d" values="
+	// 							M9720,160C8100,160,8100,0,6480,0S4860,160,3240,160,1620,0,0,0V1120H12960V0C11340,0,11340,160,9720,160Z;
+	// 							M9720,0C8100,0,8100,160,6480,160S4860,0,3240,0,1620,160,0,160v800H12960V160C11340,160,11340,0,9720,0Z;
+	// 							M9720,160C8100,160,8100,0,6480,0S4860,160,3240,160,1620,0,0,0V1120H12960V0C11340,0,11340,160,9720,160Z"/>
+	// 					</path>
+	// 				</svg> 
+	// 			</div>
+	// 		`
+	// 	}
+	// 	else{
+	// 		setTimeout(function(){water()}, 500)
+	// 	}
+	// })()
 	/**/
 
 

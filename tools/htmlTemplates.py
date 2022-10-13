@@ -36,9 +36,9 @@ def track_index(artist, track, image):
 		<script src="../../root_/htmls/body.html"></script>
 		<script src="../../root_/htmls/footer.html"></script>
 	`, `
+		<script src="../../root_/scripts/theme.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/2.0.4/wavesurfer.min.js" required></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/2.0.4/plugin/wavesurfer.regions.min.js" required></script>
-		<script src="../../root_/scripts/theme.js"></script>
 		<script src="../../root_/scripts/ripple.js"></script>
 		<script src="../../root_/scripts/main.js"></script>
 	`)'></script>
