@@ -1,7 +1,29 @@
 <div id="wraper">
 <div id="main_page">
 
-	<div id="ads" title="Героям Слава!">Слава Україні!</div>
+	<div class="slider" data-slider="itc-slider" data-loop="true" data-autoplay="true" data-interval="5000" style="margin: auto; margin-top: 10px;">
+      <div class="slider__container">
+        <div class="slider__wrapper">
+          <div class="slider__items">
+            <div class="slider__item">
+              <div id="ads" title="Героям Слава!">Слава Україні!</div>
+            </div>
+            <div class="slider__item">
+              <iframe src="/ad_s?lang=${document.documentElement.getAttribute('lang')}" style="border: none; width: 100%;"></iframe>
+            </div>
+            <div class="slider__item">
+              <iframe src="/ad_s?lang=${document.documentElement.getAttribute('lang')}" style="border: none; width: 100%;"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ol class="slider__indicators" style="height: 10px;">
+          <li data-slide-to="0"></li>
+          <li data-slide-to="1"></li>
+          <li data-slide-to="2"></li>
+        </ol>
+    </div>
 
 </div>
 

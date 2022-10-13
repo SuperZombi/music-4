@@ -22,6 +22,8 @@ async function main(){
 		overflowed()
 	})
 
+	ItcSlider.createInstances();
+
 
 	// getAllGenres().forEach(async function(genre){
 	// 	await addNewCategory(genre, sortByDate(getAllTracksByGenre(genre)))

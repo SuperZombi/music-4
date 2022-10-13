@@ -133,3 +133,31 @@ def reset_password(link, lang='en'):
 		</div>
 	'''
 	return html
+
+def ads(img, text, link, description="", button=""):
+	return f'''
+	<!DOCTYPE html><html><head>
+	<title>Zombi Music - ADS</title>
+	<meta name="viewport" content="width=device-width"><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="shortcut icon" href="../root_/images/logo2.png" type="image/png">
+	<!-- og:zone -->
+	<meta property="og:title" content="Ads">
+	<meta property="og:site_name" content="zombi.music">
+	<script src="../root_/scripts/App.js" defer onload='loadApp(`
+		<link rel="stylesheet" href="../root_/styles/fontawesome/css/all.min.css">
+		<link rel="stylesheet" href="../root_/styles/main.css">
+		<link rel="stylesheet" href="../root_/styles/not_ad_s.css">
+	`, ``, ``)'></script>
+	</head><body>
+	<a id="mainBlock" href="{link}" target="_blank">
+		<div id="mainImg" style="background-image: url('ad_s/{img}')"></div>
+		<div id="mainText">
+			<div>
+				<div>{text}</div>
+				{f"<div id='description'>{description}</div>" if description else ""}
+				{f"<button>{button}</button>" if button else ""}
+			</div>
+		</div>
+	</a>
+	</body></html>
+	'''

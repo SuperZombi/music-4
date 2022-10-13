@@ -1,5 +1,6 @@
 #ads{
 	font-size: 80pt;
+	line-height: 80pt;
 	background: linear-gradient(180deg, rgba(75,44,255,1) 55%, rgba(250,255,0,1) 45%);
 	background-clip: text;
 	-webkit-background-clip: text;
@@ -46,6 +47,10 @@
 	}
 }
 
+.slider{
+	width: 75vw;
+}
+
 @media all and (max-width: 500px) {
 	#ads{
 		font-size: 40pt;
@@ -54,4 +59,14 @@
 	.search_wrapper{
 		margin-right: 10px;
 	}
+	.slider{
+		width: 100vw;
+	}
+}
+
+.dark .slider__indicators li{
+  background-color: rgb(255 255 255 / 50%);
+}
+.dark .slider__indicators li.active{
+  background-color: rgb(255 255 255 / 90%);
 }

@@ -20,6 +20,7 @@ from tools.serverErrors import Errors
 from tools.BrootForceProtection import BrootForceProtection
 import tools.htmlTemplates as htmlTemplates
 from textwrap import dedent
+import random
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 CORS(app)
@@ -156,6 +157,32 @@ def stat_check_html(file):
 		if Path(file).parts[0] != "root_":
 			try: stat_check(file)
 			except: None
+
+
+@app.route("/ad_s")
+def ads():
+	f = []
+	for (dirpath, dirnames, filenames) in os.walk(os.path.join("data", "ad_s")):
+		f.extend(filenames)
+		break
+
+	rand_file = os.path.join("data", "ad_s", random.choice(f))
+	with open(rand_file, "r", encoding="utf-8") as file:
+		data = json.loads(file.read())
+	with open(rand_file, "w", encoding="utf-8") as file:
+		if "views" in data.keys():
+			data["views"] += 1
+		else: data["views"] = 1
+		file.write(json.dumps(data, indent=4, ensure_ascii=False))
+
+	ads_lang = "en"
+	if 'lang' in request.args:
+		if request.args["lang"].lower() in data["text"].keys():
+			ads_lang = request.args["lang"].lower()
+
+	desc = data["description"][ads_lang] if data.get("description") else ""
+	but = data["button"][ads_lang] if data.get("button") else ""
+	return htmlTemplates.ads(data['image'], data["text"][ads_lang], data["link"], desc, but)
 
 
 

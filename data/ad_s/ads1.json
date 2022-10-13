@@ -1,0 +1,19 @@
+{
+    "image": "images/hgfbdsxa.png",
+    "text": {
+        "en": "Your ad could be here",
+        "ru": "Здесь может быть ваша реклама",
+        "uk": "Тут може бути ваша реклама"
+    },
+    "link": "/support",
+    "description": {
+        "en": "Place your advertisement here",
+        "ru": "Разместите здесь свою рекламу",
+        "uk": "Розмістіть свою рекламу тут"
+    },
+    "button": {
+        "en": "Open",
+        "ru": "Открыть",
+        "uk": "Відкрити"
+    }
+}

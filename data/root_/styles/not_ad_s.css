@@ -1,0 +1,68 @@
+body{
+	overflow: hidden;
+}
+#mainBlock{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	color: white;
+}
+#mainImg{
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	transform-origin: center center;
+	transition: 0.5s;
+}
+#mainBlock:hover #mainImg{
+	transform: scale(1.5);
+	filter: brightness(0.8) blur(3px);
+}
+#mainText{
+	font-size: 14pt;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: auto;
+	max-height: calc(14pt + 12px + 12px);
+	transition: max-height 0.4s ease-in-out;
+}
+#mainText > div{
+	margin: 0;
+	backdrop-filter: opacity(0.5);
+	filter: drop-shadow(1px 1px 1px black) drop-shadow(2px 2px 4px black);
+	padding: 12px 10px;
+	height: 100%;
+	transition: 0.35s;
+	position: relative;
+}
+#mainText button{
+	position: absolute;
+	right: 0;
+	bottom: 50%;
+	transform: translate(500%, 50%);
+	transition: 0.4s ease;
+	cursor: pointer;
+}
+#mainText #description{
+	position: absolute;
+	margin-top: 6px;
+	font-size: 10pt;
+	transform: translateY(500%);
+	transition: 0.35s ease-out;
+}
+#mainBlock:hover #mainText{
+	max-height: 50%;
+}
+#mainBlock:hover #description{
+	transform: translateY(0);
+	position: relative;
+}
+#mainBlock:hover #mainText button{
+	transform: translate(-10px, 50%);
+}
+#mainImg{
+	width: 100%;
+	height: 100%;
+}
