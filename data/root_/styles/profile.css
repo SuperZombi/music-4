@@ -904,6 +904,9 @@ details[open] > summary:before {
 		height: 90vh;
 		width: 100vw;
 	}
+	.extra_space_mobile{
+		height: 50px;
+	}
 }
 
 @media (pointer: coarse), (hover: none) {
