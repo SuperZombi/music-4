@@ -5,8 +5,10 @@ from pathlib import Path
 from datetime import datetime
 from dateutil import parser as dataparse
 from flask import Flask, request, jsonify, send_from_directory, send_file, abort, redirect, Response
+import requests
 from flask_cors import CORS
 import json
+from user_agents import parse as ua_parse
 import filetype
 from PIL import Image, ImageSequence
 from io import BytesIO
@@ -25,6 +27,8 @@ app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 CORS(app)
 
+HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36'}
+
 limits = {'image': {'size': 2097152, 'resolution': 1280, 'extensions': ['.jpg', '.png', '.jpeg']},
 		  'audio': {'size': 10485760, 'bitrate': 192}}
 premium_limits = {'image': {'size': 8388608, 'resolution': 1920, 'extensions': ['.jpg', '.png', '.gif', '.jpeg']},
@@ -33,8 +37,11 @@ premium_limits = {'image': {'size': 8388608, 'resolution': 1920, 'extensions': [
 @app.route("/status")
 def status():
 	ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+	ua = ua_parse(request.headers.get('User-Agent'))
+	ua_device = ua.is_pc and "PC" or ua.device.family
+	ua_os = ("%s %s" % (ua.os.family, ua.os.version_string)).strip()
 	return jsonify({'online': True, 'time': int(time.time()),
-					'ip': ip})
+					'ip': ip, "device": ua_device, "os": ua_os})
 
 @app.route("/")
 def index():
@@ -185,7 +192,6 @@ def ads():
 	return htmlTemplates.ads(data['image'], data["text"][ads_lang], data["link"], desc, but)
 
 
-
 tracks = DataBase("database/tracks.bd")
 users = DataBase("database/users.bd", unique="user")
 
@@ -292,6 +298,46 @@ def edit_user(user, data):
 	users.save()
 
 
+
+def get_ip_info_location(ip):
+	response = requests.get(f'https://ipapi.co/{ip}/json/', headers = HEADERS).json()
+	location_data = {
+		"city": response.get("city"),
+		"region": response.get("region"),
+		"country": response.get("country_name")
+	}
+	return dict(filter(lambda x:x[1], location_data.items() ))
+
+@app.route("/api/logins", methods=["POST"])
+def logins():
+	ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+	x = BrootForceProtection(request.json['name'], request.json['password'], ip, fast_login)()
+	if x['successfully']:
+		user = dict(**users.get(request.json['name']))
+		logins = dict(user.get("logins", {}))
+		for key in logins.keys():
+			logins[key] = dict(**logins[key], **get_ip_info_location(key))
+		if ip in logins.keys():
+			logins[ip]["current"] = True
+		logins = sorted(logins.items(), key=lambda x: x[1]['time'], reverse=True)
+		return jsonify({'successfully': True, "logins": logins})
+	return jsonify(x)
+
+@app.route("/api/delete_login", methods=["POST"])
+def delete_login():
+	ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+	x = BrootForceProtection(request.json['name'], request.json['password'], ip, fast_login)()
+	if x['successfully']:
+		user = users.get(request.json['name'])
+		if "logins" in user.keys():
+			if request.json['ip'] in user["logins"].keys():
+				del user["logins"][request.json['ip']]
+				users.save()
+				return jsonify({'successfully': True})
+		return jsonify({'successfully': False})
+	return jsonify(x)
+
+
 @app.route("/api/name_available", methods=["POST"])
 def name_available():
 	if "/" in request.json['name'] or "\\" in request.json['name']:
@@ -336,6 +382,18 @@ def fast_login(user, password):
 	if data:
 		if data['password'] == password:
 			data['last_online'] = int(time.time())
+			info = dict(data.get("logins", {}))
+			ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+			if not ip in info.keys():
+				ua = ua_parse(request.headers.get('User-Agent'))
+				ua_device = ua.is_pc and "PC" or ua.device.family
+				ua_os = ("%s %s" % (ua.os.family, ua.os.version_string)).strip()
+				if ua.is_mobile: type_ = "smartphone"
+				elif ua.is_pc: type_ = "pc"
+				else: type_ = "other"
+				info[ip] = {"device": ua_device, "os": ua_os, "type": type_}
+			info[ip]["time"] = int(time.time())
+			data["logins"] = info
 			users.save()
 			return True
 	return False
@@ -814,6 +872,8 @@ def get_user_profile():
 			temp = dict(user)
 			del temp['password']
 			del temp['registration_time']
+			if 'logins' in temp.keys():
+				del temp['logins']
 			return jsonify({'successfully': True, 'data': temp})
 		else:
 			return jsonify({'successfully': False, 'reason': Errors.user_dont_exist.name})

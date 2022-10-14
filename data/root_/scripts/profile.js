@@ -40,7 +40,7 @@ function get_decode_error(code){
 	else{
 		let answer = JSON.parse(xhr.response)
 		if (!answer.successfully){ return code }
-		else{ return answer.value }			
+		else{ return answer.value }
 	}
 }
 
@@ -1078,5 +1078,45 @@ function checkSocialIcon(event){
 	}
 	else{
 		image.src = "https://www.google.com/s2/favicons?domain=https://example.com/"
+	}
+}
+
+
+var popup_element;
+function open_logins(){
+	if (popup_element){
+		let temp = document.body.children
+		Object.keys(temp).forEach(e=>{
+			temp[e].style.filter = ""
+			temp[e].style.pointerEvents = ""
+		})
+		popup_element.style.transform = "translate(-50%, -50%) scale(0)"
+		setTimeout(_=>{
+			popup_element.remove()
+			popup_element = undefined
+		}, 500)
+	}
+	else{
+		let temp = document.body.children
+		Object.keys(temp).forEach(e=>{
+			temp[e].style.filter = "blur(10px)"
+			temp[e].style.pointerEvents = "none"
+		})
+		popup_element = document.createElement("div")
+		popup_element.id = "popup_element"
+		popup_element.style.transform = "translate(-50%, -50%) scale(0)"
+		let img = document.createElement("img")
+		img.src = "/root_/images/close.svg"
+		img.id = "close_share_menu"
+		img.title = LANG.close
+		img.onclick = open_logins
+		popup_element.appendChild(img)
+		let iframe = document.createElement("iframe")
+		iframe.src = "/account/logins"
+		popup_element.appendChild(iframe)
+		document.body.appendChild(popup_element)
+		setTimeout(_=>{
+			popup_element.style.transform = "translate(-50%, -50%) scale(1)"
+		}, 1)
 	}
 }

@@ -1,0 +1,112 @@
+h1{
+	text-align: center;
+}
+#mainDiv{
+	text-align: center;
+	margin-top: 15px;
+}
+#mainTable{
+	overflow: auto;
+	max-width: 100vw;
+	display: inline-block;
+}
+
+.device:first-child {
+	border-top-right-radius: 20px;
+	border-top-left-radius: 20px;
+}
+.device:last-child {
+	border-bottom-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+}
+
+.device{
+	padding: 10px;
+	transition: 0.3s;
+	background: #e4e4e4;
+	cursor: pointer;
+}
+.device > .parent{
+	display: flex;
+	align-items: center;
+    width: 100%;
+}
+.device > .parent > *{
+	display: table-cell;
+	padding: 10px;
+	flex: 1 1;
+}
+.device > .options{
+	display: flex;
+	justify-content: flex-end;
+}
+.device > .options > button{
+	background-color: #F01616;
+	border: 1px solid #F01616;
+	border-radius: 8px;
+	color: #FFFFFF;
+	font-family: "Segoe UI",Roboto,Ubuntu,sans-serif;
+	font-size: 12pt;
+	line-height: 12pt;
+	padding: 6px 16px;
+	transition: background 100ms ease-in-out, padding 160ms ease;
+	cursor: pointer;
+}
+.device > .options > button:hover {
+	background-color: #E40A0A;
+	border-color: #E40A0A;
+	padding: 6px 24px;
+}
+.device > .options > button:active {
+	background-color: #CB0000;
+	border-color: #CB0000;
+}
+
+.device:nth-child(2n) {
+	background: #f0f0f0;
+}
+
+.dark .device{
+	background: rgb(0, 0, 0, 0.4);
+}
+.dark .device:nth-child(2n) {
+	background: rgb(0, 0, 0, 0.3);
+}
+
+.device.current{
+	background: lightgreen;
+}
+.dark .device.current{
+	background: darkgreen;
+}
+
+.device:hover{
+	background: lightgrey;
+}
+.dark .device:hover{
+	background: rgb(50, 50, 50, 0.5);
+}
+.device:hover.current{
+	background: rgb(100, 255, 100);
+}
+.dark .device:hover.current{
+	background: green;
+}
+
+.device svg{
+	border: 2px solid;
+	border-radius: 50px;
+	height: 80px;
+}
+.dark svg{
+	fill: white;
+}
+
+@media all and (max-width: 500px) {
+	#mainTable{
+		font-size: 11pt;
+	}
+	.device svg{
+		height: 50px;
+	}
+}

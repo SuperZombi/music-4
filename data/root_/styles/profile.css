@@ -1,6 +1,9 @@
 html{
 	overflow-y: hidden;
 }
+#header{
+	transition: 0.5s;
+}
 #premium_timer{
 	position: absolute;
 	bottom: 10px;
@@ -12,10 +15,10 @@ html{
 	color: yellow;
 	filter: drop-shadow(0 0 1px black);
 	text-shadow: 
-    1px 1px 1px black, 
-    0 1px 1px black, 
-    -1px 0 1px black, 
-    0 -1px 1px black
+	1px 1px 1px black, 
+	0 1px 1px black, 
+	-1px 0 1px black, 
+	0 -1px 1px black
 }
 .menu_but_wraper{
 	cursor: pointer;
@@ -511,6 +514,28 @@ html{
 	box-shadow: rgba(253, 131, 131, 0.5) 0 0 0 3px;
 }
 
+.button-18 {
+	background-color: #0A66C2;
+	border-radius: 100px;
+	border: 0;
+	color: #ffffff;
+	cursor: pointer;
+	font-family: "Segoe UI", Roboto, UbuntuArial, sans-serif;
+	font-size: 18px;
+	padding: 5px 30px;
+	transition: all 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, padding 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+}
+
+.button-18:hover { 
+	padding: 5px 50px;
+	background-color: #16437E;
+}
+.button-18:active {
+	background: #05316B;
+	color: rgb(255, 255, 255, .8);
+}
+
+
 hr{
 	margin-bottom: revert;
 }
@@ -778,6 +803,43 @@ details[open] > summary:before {
 }
 
 
+#popup_element{
+	height: 90vh;
+	width: 50vw;
+	background: var(--body-color);
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 100;
+	transition: 0.5s;
+	border-radius: 25px;
+	overflow: hidden;
+	filter: drop-shadow(2px 2px 4px black);
+}
+#popup_element > iframe{
+	height: 100%;
+	width: 100%;
+	border: none;
+}
+#close_share_menu{
+	height: 45px;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	cursor: pointer;
+	transition: 0.3s;
+	z-index: 5;
+	border-radius: 50px;
+	backdrop-filter: contrast(0.5);
+}
+#close_share_menu:hover{
+	transform: rotate(-90deg);
+}
+.dark #close_share_menu{
+	backdrop-filter: brightness(0.5);
+}
+
 
 @media all and (min-width: 500px) {
 	.hide_on_desktop{ display: none !important; }
@@ -835,6 +897,11 @@ details[open] > summary:before {
 	}
 	.category{
 		width: calc(100% - 5px) !important;
+	}
+	#popup_element{
+		height: 100vh;
+		width: 100vw;
+		border-radius: 0;
 	}
 }
 
