@@ -501,6 +501,7 @@ html{
 .red.button-15{
 	background-image: linear-gradient(#FF0000, #C90000);
 	border: 1px solid #CC0000;
+	color: #FFFFFF;
 }
 .red.button-15:hover {
 	background-image: linear-gradient(#FF2B2B, #CD1414);
