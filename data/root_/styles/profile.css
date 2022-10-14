@@ -822,6 +822,7 @@ details[open] > summary:before {
 	height: 100%;
 	width: 100%;
 	border: none;
+	margin-top: 10px;
 }
 #close_share_menu{
 	height: 45px;
@@ -900,9 +901,8 @@ details[open] > summary:before {
 		width: calc(100% - 5px) !important;
 	}
 	#popup_element{
-		height: 100vh;
+		height: 90vh;
 		width: 100vw;
-		border-radius: 0;
 	}
 }
 
