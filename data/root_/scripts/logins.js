@@ -95,6 +95,7 @@ function addDevice(info, ip){
 		}
 		else{
 			document.getElementById("mainTable").querySelectorAll(".options").forEach(function(e){e.remove()})
+			window.navigator.vibrate(50);
 
 			let tr = document.createElement("div")
 			tr.className = "options"
