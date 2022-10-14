@@ -384,14 +384,15 @@ def fast_login(user, password):
 			data['last_online'] = int(time.time())
 			info = dict(data.get("logins", {}))
 			ip = request.headers.get('X-Forwarded-For', request.remote_addr)
-			if not ip in info.keys():
-				ua = ua_parse(request.headers.get('User-Agent'))
-				ua_device = ua.is_pc and "PC" or ua.device.family
-				ua_os = ("%s %s" % (ua.os.family, ua.os.version_string)).strip()
-				if ua.is_mobile: type_ = "smartphone"
-				elif ua.is_pc: type_ = "pc"
-				else: type_ = "other"
-				info[ip] = {"device": ua_device, "os": ua_os, "type": type_}
+
+			ua = ua_parse(request.headers.get('User-Agent'))
+			ua_device = ua.is_pc and "PC" or ua.device.family
+			ua_os = ("%s %s" % (ua.os.family, ua.os.version_string)).strip()
+			if ua.is_mobile: type_ = "smartphone"
+			elif ua.is_pc: type_ = "pc"
+			else: type_ = "other"
+			info[ip] = {"device": ua_device, "os": ua_os, "type": type_}
+
 			info[ip]["time"] = int(time.time())
 			data["logins"] = info
 			users.save()
