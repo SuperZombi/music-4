@@ -8,6 +8,7 @@ h1{
 #mainTable{
 	overflow: auto;
 	max-width: 100vw;
+	min-width: 70%;
 	display: inline-block;
 }
 
