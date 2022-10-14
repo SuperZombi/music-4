@@ -370,7 +370,7 @@ div.ripple {
 	transition: 0.5s;
 }
 
-@media all and (max-height: 500px) {
+@media all and (max-width: 500px) {
 	#page{
 		max-width: 100vw;
 	}
