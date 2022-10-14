@@ -23,6 +23,7 @@ async function main(){
 	})
 
 	ItcSlider.createInstances();
+	initAds()
 
 
 	// getAllGenres().forEach(async function(genre){
@@ -35,6 +36,13 @@ async function main(){
 
 	// await addNewCategory(LANG.all, sortByDate("all"))
 	footer_anim()
+}
+
+
+function initAds(){
+	document.querySelectorAll(".not_ad_s").forEach(function(e){
+		e.src = `/ad_s?lang=${document.documentElement.getAttribute('lang')}`
+	})
 }
 
 

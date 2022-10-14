@@ -1,0 +1,14 @@
+{
+    "image": "images/premium.jpg",
+    "text": {
+        "en": "Buy Premium",
+        "ru": "Купите Премиум",
+        "uk": "Купуйте Преміум"
+    },
+    "link": "/account/#premium",
+    "description": {
+        "en": "Get benefits with a Premium purchase",
+        "ru": "Получите преимущества с покупкой Premium",
+        "uk": "Отримайте переваги з покупкою Premium"
+    }
+}
