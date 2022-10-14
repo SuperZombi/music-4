@@ -584,6 +584,7 @@ function delete_(){
 	}
 }
 function confrim_delete_avatar(){
+	window.navigator.vibrate(50);
 	notice.clearAll()
 	notice.Error(`${LANG.delete_avatar_confirm}`, false, [[LANG.yes, delete_avatar], LANG.no])
 }
@@ -1049,6 +1050,7 @@ function delete_social(event){
 	close.classList.add("fa-add")
 	close.onclick = (e) => { return_social(e) }
 	close.title = LANG.return_back
+	window.navigator.vibrate(50);
 }
 
 function return_social(event){
