@@ -804,15 +804,23 @@ details[open] > summary:before {
 }
 
 
+.modal{
+	position: fixed;
+	z-index: 100;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: 0.5s;
+}
+
 #popup_element{
 	height: 90vh;
 	width: 50vw;
 	background: var(--body-color);
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	z-index: 100;
 	transition: 0.5s;
 	border-radius: 25px;
 	overflow: hidden;
