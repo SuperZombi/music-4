@@ -1084,41 +1084,41 @@ function checkSocialIcon(event){
 }
 
 
-var popup_element;
+
 function open_logins(){
-	if (popup_element){
-		let temp = document.body.children
-		Object.keys(temp).forEach(e=>{
-			temp[e].style.filter = ""
-			temp[e].style.pointerEvents = ""
-		})
-		popup_element.style.transform = "translate(-50%, -50%) scale(0)"
+	function close_modal(element){
+		let child = element.children[0];
+		child.style.transform = "scale(0)"
+		element.style.backdropFilter = ""
 		setTimeout(_=>{
-			popup_element.remove()
-			popup_element = undefined
+			element.remove()
 		}, 500)
 	}
-	else{
-		let temp = document.body.children
-		Object.keys(temp).forEach(e=>{
-			temp[e].style.filter = "blur(10px)"
-			temp[e].style.pointerEvents = "none"
-		})
-		popup_element = document.createElement("div")
-		popup_element.id = "popup_element"
-		popup_element.style.transform = "translate(-50%, -50%) scale(0)"
-		let img = document.createElement("img")
-		img.src = "/root_/images/close.svg"
-		img.id = "close_share_menu"
-		img.title = LANG.close
-		img.onclick = open_logins
-		popup_element.appendChild(img)
-		let iframe = document.createElement("iframe")
-		iframe.src = "/account/logins"
-		popup_element.appendChild(iframe)
-		document.body.appendChild(popup_element)
-		setTimeout(_=>{
-			popup_element.style.transform = "translate(-50%, -50%) scale(1)"
-		}, 1)
+	let modal = document.createElement("div")
+	modal.className = "modal"
+	modal.style.backdropFilter = ""
+	modal.onclick = e=>{
+		if (e.target == modal){
+			close_modal(modal)
+		}
 	}
+
+	let popup_element = document.createElement("div")
+	popup_element.id = "popup_element"
+	popup_element.style.transform = "scale(0)"
+	let img = document.createElement("img")
+	img.src = "/root_/images/close.svg"
+	img.id = "close_share_menu"
+	img.title = LANG.close
+	img.onclick = _=>{close_modal(modal)}
+	popup_element.appendChild(img)
+	let iframe = document.createElement("iframe")
+	iframe.src = "/account/logins"
+	popup_element.appendChild(iframe)
+	modal.appendChild(popup_element)
+	document.body.appendChild(modal)
+	setTimeout(_=>{
+		popup_element.style.transform = "scale(1)"
+		modal.style.backdropFilter = "blur(8px)"
+	}, 1)
 }
