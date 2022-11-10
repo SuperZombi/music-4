@@ -174,6 +174,7 @@ async function submain() {
 			document.querySelector(`input[name=stat_sort_method][value=${local_storage["sort_method"]}]`).checked = true;
 		}
 		loadStatistics();
+		load_graph();
 	})
 	tabController.onFirstTimeOpen("tracks", _=>{
 		if (local_storage["sort_method"]){
@@ -892,6 +893,7 @@ function changeSortMethod(what){
 	else if (what == "my_tracks"){
 		loadTracks()
 	}
+	load_graph(false)
 }
 async function loadStatistics(){
 	let sort_method = document.querySelector("input[name=stat_sort_method]:checked").value
@@ -935,6 +937,92 @@ async function loadStatistics(){
 			div.appendChild(track)
 		})	
 	}
+}
+
+
+var tracks = [];
+async function load_graph(first_load=true){
+	let graph;
+	if (first_load){
+		tracks = await get_tracks("date");
+		if (tracks){
+			graph = document.createElement("div");
+			graph.className = "graph";
+			graph.id = "statistic_graph";
+			document.querySelector("#statistic_graph_parrent").appendChild(graph)
+		}
+	} else { graph = document.querySelector("#statistic_graph") }
+
+	function get_relative_position(parrent, relative_el, event){
+		let clientX = event.clientX || event.touches[0].clientX;
+		let clientY = event.clientY || event.touches[0].clientY;
+		let rect = parrent.getBoundingClientRect();
+		let child = relative_el.children[0];
+		let x = clientX - rect.left + parrent.scrollLeft - child.offsetWidth/2;
+		x = Math.max(parrent.scrollLeft, x)
+		x = Math.min(x, parrent.scrollLeft + parrent.offsetWidth - child.offsetWidth)
+		x = Math.round(x)
+		var y = Math.round(clientY - rect.top - child.offsetHeight);
+		return {x, y};
+	}
+	function setPosition(graph, el, e){
+		let target_ = el.querySelector(".popup");
+		if (target_){
+			let { x, y } = get_relative_position(graph, el, e);
+			target_.style.top = y - 5 + "px";
+			target_.style.left = x + "px";
+		}
+	}
+	function get_key(el, key){
+		const keys = {
+			"views": el.statistics.views,
+			"likes": el.statistics.likes
+		}
+		return keys[key]
+	}
+	function get_key_lang(el, key){
+		const keys = {
+			"views": LANG.views,
+			"likes": LANG.likes
+		}
+		return keys[key]
+	}
+	let sort_method = document.querySelector("input[name=stat_sort_method]:checked").value;
+	let max_value = Math.max(...tracks.map(e => {
+		let temp = get_key(e, sort_method) ? get_key(e, sort_method) : e.popular;
+		return temp;
+	}));
+	graph.innerHTML = ""
+	tracks.reduceRight((_, e)=>{
+		let div = document.createElement("div");
+		div.className = "element";
+		let displaying = get_key(e, sort_method) ? get_key(e, sort_method) : e.popular;
+		let height = Math.round(displaying * 100 / max_value);
+		div.innerHTML = `
+			<a class="info" href="/${e.path.join("/")}" target="_blank"><img src="/${e.path.join("/")}/${e.image}?size=small"></a>
+			<div class="rectangle ${first_load ? "" : "normal"}" style="max-height: ${height}%">
+				<div class="popup">
+					${e.track}</br>
+					<code>${e.date}</code>
+					${get_key(e, sort_method) ?
+						"</br>" + get_key_lang(e, sort_method) + ": <code>" + get_key(e, sort_method) + "</code>"
+					: ""}
+				</div>
+			</div>
+		`
+		graph.appendChild(div)
+	}, null)
+	graph.scrollLeft = graph.scrollWidth;
+	setTimeout(_=>{
+		graph.querySelectorAll(".element .rectangle").forEach(el=>{
+			if (first_load){
+				el.classList.add("normal")
+			}
+			el.onmouseover = e=>{setPosition(graph, el, e)}
+			el.onmousemove = e=>{setPosition(graph, el, e)}
+			el.ontouchstart = e=>{setPosition(graph, el, e)}
+		})
+	}, 100)
 }
 
 function open_menu(){
