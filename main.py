@@ -17,6 +17,7 @@ import warnings
 warnings.filterwarnings('ignore')
 from fuzzywuzzy import fuzz
 # import re
+import copy
 from tools.DataBase import DataBase
 from tools.serverErrors import Errors
 from tools.BrootForceProtection import BrootForceProtection
@@ -213,9 +214,12 @@ def my_rating(likes, views):
 
 def sort_tracks(tracks, by):
 	if by == "date":
-		tracks = sorted(tracks, key=lambda x: dataparse.parse(x["date"], dayfirst=True) , reverse=True)
+		temp = copy.deepcopy(tracks)
+		for i in temp:
+			i['popular'] = my_rating(i["statistics"]["likes"], i["statistics"]["views"])
+		tracks = sorted(temp, key=lambda x: dataparse.parse(x["date"], dayfirst=True) , reverse=True)
 	elif by == "popular":
-		tracks = sorted(tracks, key=lambda x: my_rating(x["statistics"]["likes"], x["statistics"]["views"]) , reverse=True)
+		tracks = sorted(tracks, key=lambda x: my_rating(x["statistics"]["likes"], x["statistics"]["views"]), reverse=True)
 	elif by == "likes" or by == "views":
 		tracks = sorted(tracks, key=lambda x: x["statistics"][by], reverse=True)
 	return tracks
