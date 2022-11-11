@@ -35,8 +35,8 @@
 	width: 100%;
 	left: 0;
 	background-color: var(--account_menu);
-	position: fixed;
-	z-index: 4;
+	position: absolute;
+	z-index: 12;
 	bottom: 0;
 	transition: 0.4s;
 }
@@ -71,8 +71,8 @@
 	width: 100%;
 	left: 0;
 	background-color: var(--account_menu);
-	position: fixed;
-	z-index: 3;
+	position: absolute;
+	z-index: 11;
 	bottom: 80px;
 	transition: 0.5s;
 	filter: drop-shadow(0 -1px 5px var(--contrast-color));
@@ -158,17 +158,21 @@
 
 
 #page-content{
-	display: inline-block;
+	display: inline-flex;
 	width: 81%;
 	height: calc(100vh - 70px);
-	overflow-y: auto;
+	overflow-y: hidden;
 	transition: 0.5s;
 	position: relative;
 	scroll-behavior: smooth;
+	flex-direction: column;
 }
 
 .tab-content{
 	display: none;
+	height: 100%;
+	overflow-y: auto;
+	scroll-behavior: smooth;
 }
 .tab-content.active{
 	display: block;
@@ -1031,6 +1035,12 @@ details[open] > summary:before {
 	#popup_element{
 		height: 90vh;
 		width: 100vw;
+	}
+	#card_previewer{
+		position: fixed;
+	}
+	#card_previewer_name{
+		position: fixed;
 	}
 	#card_previewer > span > * {
 		height: 45px;
