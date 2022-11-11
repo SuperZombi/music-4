@@ -865,6 +865,7 @@ details[open] > summary:before {
 }
 .dark .graph{
 	background: rgb(50, 50, 70, 0.3);
+	user-select: none;
 }
 .graph .element{
 	display: flex;
