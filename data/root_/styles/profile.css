@@ -855,7 +855,7 @@ details[open] > summary:before {
 	height: 35vh;
 }
 .graph{
-	background: lightgrey;
+	background: #f2f2f2;
 	max-width: 96vw;
 	height: 100%;
 	white-space: nowrap;
@@ -864,6 +864,9 @@ details[open] > summary:before {
 	padding: 0 5px;
 	display: flex;
 	position: relative;
+}
+.dark .graph{
+	background: rgb(50, 50, 60, 0.5);
 }
 .graph .element{
 	display: flex;
@@ -874,9 +877,12 @@ details[open] > summary:before {
 	flex-shrink: 0;
 	margin: 0 5px;
 	transition: 0.5s;
-	border: 2px dashed rgb(100, 100, 100, 0.3);
+	border: 2px dashed rgb(150, 150, 150, 0.5);
 	border-radius: 13px 13px 0 0;
 	margin-top: 5px;
+}
+.dark .graph .element{
+	border-color: rgb(100, 100, 100, 0.5);
 }
 .graph .element .info{
 	width: 100%;
@@ -910,6 +916,9 @@ details[open] > summary:before {
 	margin: auto;
 	margin-bottom: 0;
 }
+.dark .graph .element .rectangle{
+	background: #0070ff;
+}
 .graph .element .rectangle.normal{
 	height: calc(100% - 50px - 15px);
 }
@@ -930,6 +939,7 @@ details[open] > summary:before {
 	pointer-events: none;
 	line-height: 1.3rem;
 	border-radius: 12px;
+	filter: drop-shadow(0 0 1px rgb(0, 0, 0, 0.3));
 }
 .graph .element .rectangle:hover .popup{
 	opacity: 1;
