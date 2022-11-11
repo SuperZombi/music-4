@@ -6,8 +6,8 @@ function tabSwitherController(){
 		this.eventHandler[tab] = func
 	}
 	this.openedTab = function(tab){
-		let element = (tab == "settings") ? "settings_area" : "page-content"
-		main_content = document.getElementById(element)
+		let element = (tab == "settings") ? "#settings_area" : ".tab-content.active";
+		main_content = document.querySelector(element)
 		main_content.onscroll = function(){showScrollTop()}
 		showScrollTop()
 
