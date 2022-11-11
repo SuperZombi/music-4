@@ -952,6 +952,11 @@ async function load_graph(first_load=true){
 			document.querySelector("#statistic_graph_parrent").appendChild(graph)
 		}
 	} else { graph = document.querySelector("#statistic_graph") }
+	
+	if (!tracks || tracks.length == 0){
+		document.querySelector("#statistic_graph_parrent").style.display = "none";
+		return
+	}
 
 	function get_relative_position(parrent, relative_el, event){
 		let clientX = event.clientX || event.touches[0].clientX;
