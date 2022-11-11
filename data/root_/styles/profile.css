@@ -907,7 +907,7 @@ details[open] > summary:before {
 }
 .graph .element .rectangle{
 	background: blue;
-	transition: 0.5s cubic-bezier(0.4, 0, 1, 1);
+	transition: all 0.5s cubic-bezier(0.4, 0, 1, 1), background 0.3s;
 	height: 0;
 	width: 100%;
 	max-height: 0;
@@ -915,9 +915,16 @@ details[open] > summary:before {
 	border-radius: 25px 25px 0 0;
 	margin: auto;
 	margin-bottom: 0;
+	cursor: pointer;
+}
+.graph .element .rectangle:hover{
+	background: #0095ff;
 }
 .dark .graph .element .rectangle{
 	background: #0070ff;
+}
+.dark .graph .element .rectangle:hover{
+	background: #00bbff;
 }
 .graph .element .rectangle.normal{
 	height: calc(100% - 50px - 15px);
@@ -939,7 +946,7 @@ details[open] > summary:before {
 	pointer-events: none;
 	line-height: 1.3rem;
 	border-radius: 12px;
-	filter: drop-shadow(0 0 1px rgb(0, 0, 0, 0.3));
+	filter: drop-shadow(0 0 1px rgb(0, 0, 0, 0.5));
 }
 .graph .element .rectangle:hover .popup{
 	opacity: 1;
