@@ -958,14 +958,14 @@ async function load_graph(first_load=true){
 		return
 	}
 
-	function get_relative_position(parrent, relative_el, event){
+	function get_relative_position(parrent, relative_el, event, important=false){
 		let clientX = event.clientX || event.touches[0].clientX;
 		let clientY = (event.clientY) || (event.touches[0].clientY);
 
 		let parrent_rect = relative_el.getBoundingClientRect()
 		let horizontal_include = parrent_rect.x < clientX && clientX < parrent_rect.x + relative_el.offsetWidth;
 		let vertical_include = parrent_rect.y < clientY && clientY < parrent_rect.y + relative_el.offsetHeight;
-		if (!horizontal_include || !vertical_include){return}
+		if (!horizontal_include || !vertical_include){if (!important){return}}
 
 		let rect = parrent.getBoundingClientRect();
 		let child = relative_el.children[0];
@@ -976,14 +976,22 @@ async function load_graph(first_load=true){
 		var y = Math.round(clientY - rect.top - child.offsetHeight);
 		return {x, y};
 	}
+	var device_type_global = false;
 	function setPosition(graph, el, e){
+		let device_type = e.type.includes("touch") ? "touch" : "mouse";
+		if (!device_type_global){device_type_global = device_type;}
+		if (device_type_global != device_type){
+			setTimeout(_=>{device_type_global=false}, 500)
+			return
+		}
 		let diff = 5;
-		if (e.type.includes("touch")){
+		if (device_type == "touch"){
 			diff = 35;
 		}
 		let target_ = el.querySelector(".popup");
 		if (target_){
-			let answer = get_relative_position(graph, el, e);
+			let important = (target_.style.top == 0 && target_.style.left == 0);
+			let answer = get_relative_position(graph, el, e, important);
 			if (answer){
 				target_.style.top = answer.y - diff + "px";
 				target_.style.left = answer.x + "px";
@@ -1040,8 +1048,8 @@ async function load_graph(first_load=true){
 				el.onmousemove = e=>{setPosition(graph, el, e)}
 			}
 			el.ontouch = e=>{setPosition(graph, el, e)}
-			el.ontouchmove = e=>{setPosition(graph, el, e)}
 			el.ontouchstart = e=>{setPosition(graph, el, e)}
+			el.ontouchmove = e=>{setPosition(graph, el, e)}
 		})
 	}, 100)
 }
