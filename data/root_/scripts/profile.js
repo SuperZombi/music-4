@@ -984,9 +984,9 @@ async function load_graph(first_load=true){
 			setTimeout(_=>{device_type_global=false}, 500)
 			return
 		}
-		let diff = 5;
+		let diff = 10;
 		if (device_type == "touch"){
-			diff = 35;
+			diff = 40;
 		}
 		let target_ = el.querySelector(".popup");
 		if (target_){
