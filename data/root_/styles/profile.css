@@ -952,7 +952,20 @@ details[open] > summary:before {
 	pointer-events: none;
 	line-height: 1.3rem;
 	border-radius: 12px;
-	filter: drop-shadow(0 0 1px rgb(0, 0, 0, 0.5));
+	filter: drop-shadow(0 0 2px rgb(0, 0, 0, 0.75));
+}
+.graph .element .popup:after{
+	width: 0;
+	height: 0;
+	content: '';
+	display: block;
+	position: absolute;
+	left: 50%;
+	bottom: -6px;
+	transform: translateX(-50%);
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 10px solid #00C0FF;
 }
 .graph .element .rectangle:hover .popup{
 	opacity: 1;
