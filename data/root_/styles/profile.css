@@ -866,7 +866,7 @@ details[open] > summary:before {
 	position: relative;
 }
 .dark .graph{
-	background: rgb(50, 50, 60, 0.5);
+	background: rgb(50, 50, 70, 0.3);
 }
 .graph .element{
 	display: flex;
