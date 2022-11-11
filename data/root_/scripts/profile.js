@@ -958,7 +958,7 @@ async function load_graph(first_load=true){
 		return
 	}
 
-	function get_relative_position(parrent, relative_el, event, important=false){
+	function get_relative_position(parrent, relative_el, event, difference_y=0, important=false){
 		let clientX = event.clientX || event.touches[0].clientX;
 		let clientY = (event.clientY) || (event.touches[0].clientY);
 
@@ -968,12 +968,16 @@ async function load_graph(first_load=true){
 		if (!horizontal_include || !vertical_include){if (!important){return}}
 
 		let rect = parrent.getBoundingClientRect();
-		let child = relative_el.children[0];
+		let child = relative_el.querySelector(".popup");
 		let x = clientX - rect.left + parrent.scrollLeft - child.offsetWidth/2;
-		x = Math.max(parrent.scrollLeft, x)
-		x = Math.min(x, parrent.scrollLeft + parrent.offsetWidth - child.offsetWidth)
-		x = Math.round(x)
-		var y = Math.round(clientY - rect.top - child.offsetHeight);
+		x = Math.max(parrent.scrollLeft, x);
+		x = Math.min(x, parrent.scrollLeft + parrent.offsetWidth - child.offsetWidth);
+		x = Math.round(x);
+
+		let y = clientY - rect.top - child.offsetHeight;
+		y = Math.max(y, difference_y);
+		y = Math.round(y);
+
 		return {x, y};
 	}
 	var device_type_global = false;
@@ -986,12 +990,12 @@ async function load_graph(first_load=true){
 		}
 		let diff = 10;
 		if (device_type == "touch"){
-			diff = 40;
+			diff = 35;
 		}
 		let target_ = el.querySelector(".popup");
 		if (target_){
 			let important = (target_.style.top == 0 && target_.style.left == 0);
-			let answer = get_relative_position(graph, el, e, important);
+			let answer = get_relative_position(graph, el, e, diff, important);
 			if (answer){
 				target_.style.top = answer.y - diff + "px";
 				target_.style.left = answer.x + "px";
@@ -1025,13 +1029,15 @@ async function load_graph(first_load=true){
 		let height = Math.round(displaying * 100 / max_value);
 		div.innerHTML = `
 			<a class="info" href="/${e.path.join("/")}" target="_blank"><img src="/${e.path.join("/")}/${e.image}?size=small"></a>
-			<div class="rectangle ${first_load ? "" : "normal"}" style="max-height: ${Math.max(0.5, height)}%">
-				<div class="popup">
-					${e.track}</br>
-					<code>${e.date}</code>
-					${get_key(e, sort_method) ?
-						"</br>" + get_key_lang(e, sort_method) + ": <code>" + get_key(e, sort_method) + "</code>"
-					: ""}
+			<dev class="rectangle_area">
+				<div class="rectangle ${first_load ? "" : "normal"}" style="max-height: ${Math.max(0.5, height)}%">
+					<div class="popup">
+						${e.track}</br>
+						<code>${e.date}</code>
+						${get_key(e, sort_method) ?
+							"</br>" + get_key_lang(e, sort_method) + ": <code>" + get_key(e, sort_method) + "</code>"
+						: ""}
+					</div>
 				</div>
 			</div>
 		`
@@ -1039,9 +1045,9 @@ async function load_graph(first_load=true){
 	}, null)
 	graph.scrollLeft = graph.scrollWidth;
 	setTimeout(_=>{
-		graph.querySelectorAll(".element .rectangle").forEach(el=>{
+		graph.querySelectorAll(".element .rectangle_area").forEach(el=>{
 			if (first_load){
-				el.classList.add("normal")
+				el.querySelector(".rectangle").classList.add("normal")
 			}
 			el.onmouseover = e=>{
 				setPosition(graph, el, e)
