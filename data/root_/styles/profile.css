@@ -912,6 +912,11 @@ details[open] > summary:before {
 	transform: scale(1.2);
 	filter: brightness(1.2);
 }
+.graph .element .rectangle_area{
+	width: 100%;
+	height: calc(100% - 50px - 10px);
+	display: flex;
+}
 .graph .element .rectangle{
 	background: blue;
 	transition: all 0.5s cubic-bezier(0.4, 0, 1, 1), background 0.3s;
@@ -946,7 +951,7 @@ details[open] > summary:before {
 	font-size: 12pt;
 	text-align: center;
 	background: #00C0FF;
-	transition: opacity 0.3s;
+	transition: opacity 0.3s, visibility 0.1s;
 	top: 0;
 	left: 0;
 	z-index: 10;
@@ -968,7 +973,7 @@ details[open] > summary:before {
 	border-right: 10px solid transparent;
 	border-top: 10px solid #00C0FF;
 }
-.graph .element .rectangle:hover .popup{
+.graph .element .rectangle_area:hover .popup{
 	opacity: 1;
 	visibility: visible;
 }
