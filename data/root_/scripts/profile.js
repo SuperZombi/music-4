@@ -960,7 +960,13 @@ async function load_graph(first_load=true){
 
 	function get_relative_position(parrent, relative_el, event){
 		let clientX = event.clientX || event.touches[0].clientX;
-		let clientY = event.clientY || event.touches[0].clientY;
+		let clientY = (event.clientY) || (event.touches[0].clientY);
+
+		let parrent_rect = relative_el.getBoundingClientRect()
+		let horizontal_include = parrent_rect.x < clientX && clientX < parrent_rect.x + relative_el.offsetWidth;
+		let vertical_include = parrent_rect.y < clientY && clientY < parrent_rect.y + relative_el.offsetHeight;
+		if (!horizontal_include || !vertical_include){return}
+
 		let rect = parrent.getBoundingClientRect();
 		let child = relative_el.children[0];
 		let x = clientX - rect.left + parrent.scrollLeft - child.offsetWidth/2;
@@ -971,11 +977,17 @@ async function load_graph(first_load=true){
 		return {x, y};
 	}
 	function setPosition(graph, el, e){
+		let diff = 5;
+		if (e.type.includes("touch")){
+			diff = 35;
+		}
 		let target_ = el.querySelector(".popup");
 		if (target_){
-			let { x, y } = get_relative_position(graph, el, e);
-			target_.style.top = y - 5 + "px";
-			target_.style.left = x + "px";
+			let answer = get_relative_position(graph, el, e);
+			if (answer){
+				target_.style.top = answer.y - diff + "px";
+				target_.style.left = answer.x + "px";
+			}
 		}
 	}
 	function get_key(el, key){
@@ -1005,7 +1017,7 @@ async function load_graph(first_load=true){
 		let height = Math.round(displaying * 100 / max_value);
 		div.innerHTML = `
 			<a class="info" href="/${e.path.join("/")}" target="_blank"><img src="/${e.path.join("/")}/${e.image}?size=small"></a>
-			<div class="rectangle ${first_load ? "" : "normal"}" style="max-height: ${height}%">
+			<div class="rectangle ${first_load ? "" : "normal"}" style="max-height: ${Math.max(0.5, height)}%">
 				<div class="popup">
 					${e.track}</br>
 					<code>${e.date}</code>
@@ -1023,8 +1035,12 @@ async function load_graph(first_load=true){
 			if (first_load){
 				el.classList.add("normal")
 			}
-			el.onmouseover = e=>{setPosition(graph, el, e)}
-			el.onmousemove = e=>{setPosition(graph, el, e)}
+			el.onmouseover = e=>{
+				setPosition(graph, el, e)
+				el.onmousemove = e=>{setPosition(graph, el, e)}
+			}
+			el.ontouch = e=>{setPosition(graph, el, e)}
+			el.ontouchmove = e=>{setPosition(graph, el, e)}
 			el.ontouchstart = e=>{setPosition(graph, el, e)}
 		})
 	}, 100)
