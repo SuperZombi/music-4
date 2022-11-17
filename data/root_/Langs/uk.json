@@ -1,4 +1,7 @@
 {
+	"__root__": {
+		"inherit": "ru"
+	},
 	"main": "Zombi Music",
 	"nothing": "Тут, поки що, нічого немає",
 	"dark": "Темна тема",
@@ -80,6 +83,10 @@
 	"secure_links_desc": "Підтверджувати перехід на сторонні сайти",
 	"premium_until": "Преміум до:",
 	"unlimited": "Безліміт",
+	"banned": "Ваш акаунт забанено.",
+	"banned_until": "Акаунт забанено на:",
+	"banned_until_days": "д",
+	"banned_until_hours": "год",
 	"account_logins": "Входи в акаунт",
 
 	"menu": "Меню",

@@ -857,8 +857,12 @@ def get_profile_info():
 		path = "/" + request.json['user'].lower().replace(" ", "-")
 		answer = {'path': path}
 		
-		if 'role' in user.keys() and user['role'] == 'admin':
-			answer['is_admin'] = True
+		if 'role' in user.keys():
+			answer['role'] = user['role']
+			if user['role'] == 'admin':
+				answer['is_admin'] = True
+			if user['role'] == 'banned' and "banned_until" in user.keys():
+				answer['banned'] = user["banned_until"]
 
 		if 'advantages' in user.keys() and 'premium' in user['advantages'].keys():
 			answer['premium'] = user['advantages']['premium']
@@ -1102,10 +1106,11 @@ def is_admin():
 							user['role'] = "banned"
 							if isinstance(request.json['new_value'], int):
 								user['banned_until'] = request.json['new_value']
+							else:
+								if 'banned_until' in user.keys():
+									del user['banned_until']
 						else:
 							user['role'] = request.json['new_value']
-							if 'banned_until' in user.keys():
-								del user['banned_until']
 						users.save()
 						return jsonify({'successfully': True, 'user': request.json['user_to_change'], 'role': user['role']})
 					elif request.json['command'] == "change_advantages":

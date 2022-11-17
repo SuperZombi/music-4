@@ -80,6 +80,10 @@
 	"secure_links_desc": "Confirm the transition to third-party sites",
 	"premium_until": "Premium until:",
 	"unlimited": "Unlimit",
+	"banned": "Your account is banned.",
+	"banned_until": "Account banned for:",
+	"banned_until_days": "day(s)",
+	"banned_until_hours": "hours(s)",
 	"account_logins": "Account logins",
 
 	"menu": "Menu",

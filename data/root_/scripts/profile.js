@@ -215,6 +215,26 @@ function getProfileInfo(){
 					document.getElementById("premium_timer").innerHTML += ` <code>${answer['premium']}</code>`
 				}
 			}
+			if (answer["role"] == "banned"){
+				document.getElementById("premium_timer").style.display = ""
+				if (answer["banned"]){
+					document.getElementById("premium_timer").innerHTML = "🚫" + LANG.banned_until;
+					var date = new Date(answer["banned"] * 1000);
+					var cur_date = new Date();
+					var diff = (date - cur_date) / 1000;
+					let info_string = "";
+					if (diff < 86_400){
+						info_string += Math.ceil(diff / 3600) + LANG.banned_until_hours;
+					}
+					else{
+						info_string += Math.ceil(diff / 86_400) + LANG.banned_until_days;
+					}
+					document.getElementById("premium_timer").innerHTML += ` <code>${info_string}</code>`
+				}
+				else{
+					document.getElementById("premium_timer").innerHTML = "🚫" + LANG.banned;
+				}
+			}
 		}
 	}
 }
