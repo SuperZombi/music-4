@@ -165,20 +165,25 @@ function loadProfileImage(){
 async function submain() {
 	getProfileInfo();
 	loadProfileImage();
+	initSelect();
 	
 	tabController.onFirstTimeOpen("settings", _=>{
 		loadSettings();
 	})
 	tabController.onFirstTimeOpen("statistics", _=>{
 		if (local_storage["sort_method"]){
-			document.querySelector(`input[name=stat_sort_method][value=${local_storage["sort_method"]}]`).checked = true;
+			let input = document.querySelector('input[name=stat_sort_method]')
+			input.value = local_storage["sort_method"];
+			input.dispatchEvent(new Event('initialized'));
 		}
 		loadStatistics();
 		load_graph();
 	})
 	tabController.onFirstTimeOpen("tracks", _=>{
 		if (local_storage["sort_method"]){
-			document.querySelector(`input[name=my_tracks_sort_method][value=${local_storage["sort_method"]}]`).checked = true;
+			let input = document.querySelector('input[name=my_tracks_sort_method]')
+			input.value = local_storage["sort_method"];
+			input.dispatchEvent(new Event('initialized'));
 		}
 		loadTracks();
 	})
@@ -258,7 +263,7 @@ async function get_tracks(sort_method='default'){
 var tracksLoaded = false;
 async function loadTracks(){
 	document.getElementById("main_page").innerHTML = loader();
-	let sort_method = document.querySelector("input[name=my_tracks_sort_method]:checked").value
+	let sort_method = document.querySelector("input[name=my_tracks_sort_method]").value
 	let tracks = await get_tracks(sort_method);
 	if (tracks){
 		if (tracks.length == 0){
@@ -631,6 +636,10 @@ function loadSettings() {
 				try{input.checked = true;}catch{}
 			}
 			else{
+				if (inputs[0].classList.contains("select__input")){
+					inputs[0].value = local_storage[e];
+					inputs[0].dispatchEvent(new Event('initialized'));
+				}
 				try{
 					inputs[0].checked = JSON.parse(local_storage[e]);
 				}catch{}
@@ -901,14 +910,14 @@ function format_number(num){
 function changeSortMethod(what){
 	if (what == "statistics"){
 		loadStatistics()
+		load_graph(false)
 	}
 	else if (what == "my_tracks"){
 		loadTracks()
 	}
-	load_graph(false)
 }
 async function loadStatistics(){
-	let sort_method = document.querySelector("input[name=stat_sort_method]:checked").value
+	let sort_method = document.querySelector("input[name=stat_sort_method]").value
 	document.getElementById("statistics_area").innerHTML = loader();
 	let tracks = await get_tracks(sort_method);
 	if (tracks){
@@ -1028,7 +1037,7 @@ async function load_graph(first_load=true){
 		}
 		return keys[key]
 	}
-	let sort_method = document.querySelector("input[name=stat_sort_method]:checked").value;
+	let sort_method = document.querySelector("input[name=stat_sort_method]").value;
 	let max_value = Math.max(...tracks.map(e => {
 		let temp = get_key(e, sort_method) ? get_key(e, sort_method) : e.popular;
 		return temp;
@@ -1218,6 +1227,36 @@ function checkSocialIcon(event){
 	}
 }
 
+
+function initSelect(){
+	document.querySelectorAll(".select").forEach(e=>{
+		let input = e.querySelector(".select__input");
+		e.onclick = _=>{
+			e.classList.toggle("open")
+			e.querySelectorAll(".select__list li").forEach(li=>{
+				li.onclick = _=>{
+					e.querySelectorAll(".select__list li").forEach(li_other=>li_other.classList.remove("selected"))
+					input.value = li.getAttribute('value')
+					input.dispatchEvent(new Event('change'));
+				}
+			})
+		}
+		function changeInput(){
+			let target = e.querySelector(`.select__list li[value=${input.value}]`)
+			target.classList.add("selected")
+			e.querySelector(".select__head").innerHTML = target.innerHTML
+		}
+		input.addEventListener("initialized", changeInput)
+		input.addEventListener("change", changeInput)
+	})
+	document.body.addEventListener("click", event=>{
+		document.querySelectorAll(".select.open").forEach(element=>{
+			if (!event.path.includes(element)){
+				element.classList.remove("open")
+			}
+		})
+	})
+}
 
 
 function open_logins(){

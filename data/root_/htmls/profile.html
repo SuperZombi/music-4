@@ -73,7 +73,7 @@
 			<a href="favorites" class="expanding-link"><img src="../root_/images/bookmark.svg">${LANG.favorites_title}</a>
 		</div>
 
-		<div id="premium_timer" style="display:none">👑Премиум до: <code>20.02.2002</code></div>
+		<div id="premium_timer" style="display:none"></div>
 
 	</div>
 
@@ -92,19 +92,31 @@
 				<div class="settings-table">
 					<div class="settings_element">
 						<span>${LANG.lang}:</span>
-						<span class="radio">
-							<input label="${LANG.auto}" type="radio" name="lang" value="auto" checked onclick="changeSettings(this)">
-							<input label="English" type="radio" name="lang" value="en" onclick="changeSettings(this)">
-							<input label="Русский" type="radio" name="lang" value="ru" onclick="changeSettings(this)">
-							<input label="Українська" type="radio" name="lang" value="uk" onclick="changeSettings(this)">
+						<span>
+							<div class="select">
+								<input class="select__input" type="hidden" name="lang" onchange="changeSettings(this)">
+								<div class="select__head">${LANG.select}</div>
+								<ul class="select__list">
+									<li class="select__item" value="auto">${LANG.auto}</li>
+									<li class="select__item" value="en">English</li>
+									<li class="select__item" value="ru">Русский</li>
+									<li class="select__item" value="uk">Українська</li>
+								</ul>
+							</div>
 						</span>
 					</div>
 					<div class="settings_element">
 						<span>${LANG.theme}:</span>
-						<span class="radio">
-							<input label="${LANG.auto}" type="radio" name="theme" value="auto" checked onclick="changeSettings(this)">
-							<input label="${LANG.light}" type="radio" name="theme" value="light" onclick="changeSettings(this)">
-							<input label="${LANG.dark}" type="radio" name="theme" value="dark" onclick="changeSettings(this)">
+						<span>
+							<div class="select">
+								<input class="select__input" type="hidden" name="theme" onchange="changeSettings(this)">
+								<div class="select__head">${LANG.select}</div>
+								<ul class="select__list">
+									<li class="select__item" value="auto">${LANG.auto}</li>
+									<li class="select__item" value="light">${LANG.light}</li>
+									<li class="select__item" value="dark">${LANG.dark}</li>
+								</ul>
+							</div>
 						</span>
 					</div>
 					<div class="settings_element">
@@ -227,9 +239,15 @@
 
 						<div class="settings_element">
 							<span>${LANG.sort_method}:</span>
-							<span class="radio">
-								<input label="${LANG.by_date}" type="radio" name="sort_method" value="date" checked onclick="changeSettings(this)">
-								<input label="${LANG.by_popularity}" type="radio" name="sort_method" value="popular" onclick="changeSettings(this)">
+							<span>
+								<div class="select">
+									<input class="select__input" type="hidden" name="sort_method" onchange="changeSettings(this)">
+									<div class="select__head">${LANG.select}</div>
+									<ul class="select__list">
+										<li class="select__item" value="date">${LANG.by_date}</li>
+										<li class="select__item" value="popular">${LANG.by_popularity}</li>
+									</ul>
+								</div>
 							</span>
 						</div>
 
@@ -249,14 +267,20 @@
 
 	<div class="tab-content" data="tracks">
 
-		<div style="text-align:center;font-size:18px;">
-			<span style="margin-top:10px;display:inline-block;">${LANG.sort_method}:</span>
-			<span class="radio">
-				<input label="${LANG.by_date}" type="radio" name="my_tracks_sort_method" checked value="date" onchange="changeSortMethod('my_tracks')">
-				<input label="${LANG.by_popularity}" type="radio" name="my_tracks_sort_method" value="popular" onchange="changeSortMethod('my_tracks')">
+		<div style="text-align:center;font-size:18px;position:relative;padding: 6px 0;">
+			<span style="margin-top:8px;margin-bottom:8px;margin-right:10px;display:inline-block;">${LANG.sort_method}:</span>
+			<span>
+				<div class="select" style="display:inline-block;">
+					<input class="select__input" type="hidden" name="my_tracks_sort_method" onchange="changeSortMethod('my_tracks')">
+					<div class="select__head" style="background:var(--settings-back)">${LANG.select}</div>
+					<ul class="select__list">
+						<li class="select__item" value="date">${LANG.by_date}</li>
+						<li class="select__item" value="popular">${LANG.by_popularity}</li>
+					</ul>
+				</div>
 			</span>
 		</div>
-		<hr>
+		<hr style="margin-top:0">
 
 		<div id="card_previewer">
 			<span title="${LANG.edit}"><img onclick="edit()" src="../root_/images/edit.svg" draggable="false"/></span>
@@ -311,17 +335,23 @@
 
 	<div class="tab-content" data="statistics">
 
-		<div style="text-align:center;margin-top:6px;">
-			<span style="margin-top:4px;font-size:18px;display:inline-block;">${LANG.sort_method}:</span>
-			<span class="radio">
-				<input label="${LANG.by_date}" type="radio" name="stat_sort_method" value="date" onchange="changeSortMethod('statistics')">
-				<input label="${LANG.by_popularity}" type="radio" name="stat_sort_method" value="popular" checked onchange="changeSortMethod('statistics')">
-				<input label="${LANG.views}" type="radio" name="stat_sort_method" value="views" onchange="changeSortMethod('statistics')">
-				<input label="${LANG.likes}" type="radio" name="stat_sort_method" value="likes" onchange="changeSortMethod('statistics')">
+		<div style="text-align:center;position:relative;padding: 6px 0;">
+			<span style="margin-top:8px;margin-bottom:8px;margin-right:10px;font-size:18px;display:inline-block;">${LANG.sort_method}:</span>
+			<span>
+				<div class="select" style="display:inline-block">
+					<input class="select__input" type="hidden" name="stat_sort_method" onchange="changeSortMethod('statistics')">
+					<div class="select__head" style="background:var(--settings-back)">${LANG.select}</div>
+					<ul class="select__list">
+						<li class="select__item" value="date">${LANG.by_date}</li>
+						<li class="select__item" value="popular">${LANG.by_popularity}</li>
+						<li class="select__item" value="views">${LANG.views}</li>
+						<li class="select__item" value="likes">${LANG.likes}</li>
+					</ul>
+				</div>
 			</span>
 		</div>
 		
-		<div id="statistic_graph_parrent"><hr></div>
+		<div id="statistic_graph_parrent"><hr style="margin-top:0"></div>
 		<hr>
 
 		<div id="statistics_area">

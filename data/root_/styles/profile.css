@@ -298,6 +298,7 @@
 	margin-bottom: 10px;
 	border-radius: 10px;
 	padding: 5px;
+	position: relative;
 }
 .settings_element:first-child{
 	margin-top: unset;
@@ -350,6 +351,20 @@
 .form-switch{
 	display: flex;
 }
+select.form-control{
+	background: unset;
+	color: unset;
+	border: unset;
+	width: unset;
+	background-image: var(--button-gradient-green);
+	position: relative;
+}
+select.form-control > option{
+	
+}
+select.form-control > option[selected]{
+	background-image: var(--button-gradient-green);
+}
 
 #settings{
 	background: var(--login_back);
@@ -361,6 +376,7 @@
 	overflow-y: auto;
 	max-height: calc(100vh - 130px);
 	scroll-behavior: smooth;
+	height: 100%;
 }
 #save_button{
 	position: absolute;
@@ -465,6 +481,101 @@
 	left: 0%;
 	transform: scale(0);
 	transform-origin: center bottom;
+}
+
+
+/* SELECT */
+.select {
+	position: relative;
+	display: block;
+	width: 100%;
+	user-select: none;
+	max-width: 16vw;
+}
+.select__head {
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.65);
+	border-radius: 10px;
+	padding: 12px 15px;
+	font-size: 16px;
+	line-height: 16px;
+	min-height: 16px;
+	color: var(--contrast-mini-not-active);
+	cursor: pointer;
+	text-align: left;
+}
+.select__head::after {
+	width: 15px;
+	height: 9px;
+	background: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 6' fill='grey' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.50495 5.78413L0.205241 1.25827C-0.0684138 0.970375 -0.0684138 0.503596 0.205241 0.215836C0.478652 -0.0719461 0.922098 -0.071946 1.19549 0.215837L5.00007 4.22052L8.80452 0.215953C9.07805 -0.0718292 9.52145 -0.0718292 9.79486 0.215953C10.0684 0.503736 10.0684 0.970492 9.79486 1.25839L5.49508 5.78425C5.35831 5.92814 5.17925 6 5.00009 6C4.82085 6 4.64165 5.928 4.50495 5.78413Z'/%3E%3C/svg%3E%0A") no-repeat center / cover;
+	position: absolute;
+	right: 15px;
+	bottom: 50%;
+	transform: translateY(50%);
+	content: '';
+	display: block;
+	transition: .2s ease-in;
+}
+.select__input[value] + .select__head{
+	color: var(--contrast-mini-active);
+}
+.select.open .select__head::after {
+	transform: translateY(50%) rotate(180deg);
+}
+.select__list {
+	visibility: hidden;
+	opacity: 0;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	background: var(--button-gradient);
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.75);
+	border-radius: 12px;
+	max-height: 205px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	z-index: 100;
+	margin: 0;
+	padding: 0;
+	color: var(--contrast-color);
+	transition: 0.15s ease-out;
+	text-align: left;
+	pointer-events: none;
+}
+.select.open .select__list {
+	visibility: visible;
+	opacity: 1;
+	transition: 0.2s ease-out;
+	pointer-events: auto;
+}
+.select__list .select__item:first-child {
+	border-top: none;
+}
+.select__list .select__item {
+	position: relative;
+	border-top: 1px solid rgba(224, 229, 231, 0.5);
+	padding: 10px 15px;
+	cursor: pointer;
+	list-style-type: none;
+	transition: 0.2s;
+}
+.select__list .select__item.selected{
+	background-image: var(--button-gradient-green);
+}
+.select__list .select__item:hover {
+	background-color: rgba(200, 200, 200, 0.5);
+}
+@media all and (max-width: 500px) {
+	.select{
+		max-width: 96vw;
+	}
+	.settings_element .select{
+		max-width: unset;
+		position: unset;
+	}
+	.select__list .select__item {
+		padding: 15px 15px;
+	}
 }
 
 
@@ -1104,6 +1215,9 @@ details[open] > summary:before {
 	}
 	.settings-table > .settings_element > *:first-child, .settings-table > .settings_element > *:last-child {
 		text-align: center;
+	}
+	.form-switch{
+		margin: auto;
 	}
 }
 

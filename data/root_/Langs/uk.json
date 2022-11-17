@@ -91,6 +91,8 @@
 	"admin_console": "Консоль",
 	"content": "Контент",
 
+	"select": "Оберіть",
+
 	// Artist
 	"overview_tab": "Огляд",
 	"all_tab": "Всі Треки",

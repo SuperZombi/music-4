@@ -91,6 +91,8 @@
 	"admin_console": "Admin Console",
 	"content": "Content",
 
+	"select": "Select",
+
 	// Artist
 	"overview_tab": "Overview",
 	"all_tab": "All Tracks",

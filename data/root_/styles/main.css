@@ -14,6 +14,8 @@
 	--page_head-color: #E2E2E2;
 	--contrast-color: black;
 	--contrast-mini: grey;
+	--contrast-mini-not-active: rgba(0, 0, 0, 0.4);
+	--contrast-mini-active: rgba(80, 80, 80);
 	--loading-wave: grey;
 	--share-element: #F7F7F7;
 	--share-element-inside: #E5E5E4;
@@ -52,6 +54,8 @@
 	--contrast-color: white;
 	--loading-wave: white;
 	--contrast-mini: lightgrey;
+	--contrast-mini-not-active: rgba(200, 200, 200, 0.5);
+	--contrast-mini-active: rgba(240, 240, 240);
 	--share-element: #080808;
 	--share-element-inside: #1A1A1B;
 	--notifications-back: rgba(0, 0, 0, 0.7);
