@@ -626,8 +626,15 @@ function loadSettings() {
 	Object.keys(local_storage).forEach(function(e){
 		if (available_settings.includes(e)){
 			let inputs = document.querySelectorAll(`.settings_element input[name=${e}]`)
-			let input = Array.from(inputs).filter(i=>i.value==local_storage[e])[0]
-			try{input.checked = true;}catch{}
+			if (inputs.length > 1){
+				let input = Array.from(inputs).filter(i=>i.value==local_storage[e])[0]
+				try{input.checked = true;}catch{}
+			}
+			else{
+				try{
+					inputs[0].checked = JSON.parse(local_storage[e]);
+				}catch{}
+			}
 		}
 	})
 
@@ -709,11 +716,16 @@ function loadSettings() {
 	}))
 }
 function changeSettings(e){
-	if (e.value == "auto"){
-		localStorage.removeItem(e.name);
+	if (e.type == "checkbox"){
+		localStorage.setItem(e.name, e.checked);
 	}
 	else{
-		localStorage.setItem(e.name, e.value);
+		if (e.value == "auto"){
+			localStorage.removeItem(e.name);
+		}
+		else{
+			localStorage.setItem(e.name, e.value);
+		}
 	}
 }
 function saveSettings(){

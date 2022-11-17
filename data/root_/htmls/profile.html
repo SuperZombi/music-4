@@ -89,29 +89,30 @@
 				<summary>🎨${LANG.appearance}</summary>
 				<div class="content">
 
-				<div class="settings_element">
-					<span>${LANG.lang}:</span>
-					<span class="radio">
-						<input label="${LANG.auto}" type="radio" name="lang" value="auto" checked onclick="changeSettings(this)">
-						<input label="English" type="radio" name="lang" value="en" onclick="changeSettings(this)">
-						<input label="Русский" type="radio" name="lang" value="ru" onclick="changeSettings(this)">
-						<input label="Українська" type="radio" name="lang" value="uk" onclick="changeSettings(this)">
-					</span>
-				</div>
-				<div class="settings_element">
-					<span>${LANG.theme}:</span>
-					<span class="radio">
-						<input label="${LANG.auto}" type="radio" name="theme" value="auto" checked onclick="changeSettings(this)">
-						<input label="${LANG.light}" type="radio" name="theme" value="light" onclick="changeSettings(this)">
-						<input label="${LANG.dark}" type="radio" name="theme" value="dark" onclick="changeSettings(this)">
-					</span>
-				</div>
-				<div class="settings_element">
-					<span>${LANG.hard_anim}:</span><span style="cursor: help;" title="${LANG.hard_anim_prompt}">❓</span>
-					<span class="radio">
-						<input label="${LANG.disable}" type="radio" name="hard-anim" value="false" checked onclick="changeSettings(this)">
-						<input label="${LANG.enable}" type="radio" name="hard-anim" value="true" onclick="changeSettings(this)">
-					</span>
+				<div class="settings-table">
+					<div class="settings_element">
+						<span>${LANG.lang}:</span>
+						<span class="radio">
+							<input label="${LANG.auto}" type="radio" name="lang" value="auto" checked onclick="changeSettings(this)">
+							<input label="English" type="radio" name="lang" value="en" onclick="changeSettings(this)">
+							<input label="Русский" type="radio" name="lang" value="ru" onclick="changeSettings(this)">
+							<input label="Українська" type="radio" name="lang" value="uk" onclick="changeSettings(this)">
+						</span>
+					</div>
+					<div class="settings_element">
+						<span>${LANG.theme}:</span>
+						<span class="radio">
+							<input label="${LANG.auto}" type="radio" name="theme" value="auto" checked onclick="changeSettings(this)">
+							<input label="${LANG.light}" type="radio" name="theme" value="light" onclick="changeSettings(this)">
+							<input label="${LANG.dark}" type="radio" name="theme" value="dark" onclick="changeSettings(this)">
+						</span>
+					</div>
+					<div class="settings_element">
+						<span>${LANG.hard_anim}:<span style="cursor: help;" title="${LANG.hard_anim_prompt}">❓</span></span>
+						<span>
+							<input class="form-switch" type="checkbox" name="hard-anim" onclick="changeSettings(this)">
+						</span>
+					</div>
 				</div>
 
 				</div>
@@ -209,28 +210,29 @@
 					<summary>💡${LANG.other}</summary>
 					<div class="content">
 
-					<div class="settings_element">
-						<span>${LANG.secure_links}:</span><span style="cursor: help;" title="${LANG.secure_links_desc}">❓</span>
-						<span class="radio">
-							<input label="${LANG.disable}" type="radio" name="secure-links" value="false" onclick="changeSettings(this)">
-							<input label="${LANG.enable}" type="radio" name="secure-links" value="true" checked onclick="changeSettings(this)">
-						</span>
-					</div>
+					<div class="settings-table">
+						<div class="settings_element">
+							<span>${LANG.secure_links}:<span style="cursor: help;" title="${LANG.secure_links_desc}">❓</span></span>
+							<span>
+								<input class="form-switch" type="checkbox" name="secure-links" onclick="changeSettings(this)" checked>
+							</span>
+						</div>
 
-					<div class="settings_element">
-						<span>${LANG.resize_images}:</span><span style="cursor: help;" title="${LANG.resize_images_prompt}">❓</span>
-						<span class="radio">
-							<input label="${LANG.disable}" type="radio" name="resize-images" value="false" checked onclick="changeSettings(this)">
-							<input label="${LANG.enable}" type="radio" name="resize-images" value="true" onclick="changeSettings(this)">
-						</span>
-					</div>
+						<div class="settings_element">
+							<span>${LANG.resize_images}:<span style="cursor: help;" title="${LANG.resize_images_prompt}">❓</span></span>
+							<span>
+								<input class="form-switch" type="checkbox" name="resize-images" onclick="changeSettings(this)">
+							</span>
+						</div>
 
-					<div class="settings_element">
-						<span>${LANG.sort_method}:</span>
-						<span class="radio">
-							<input label="${LANG.by_date}" type="radio" name="sort_method" value="date" checked onclick="changeSettings(this)">
-							<input label="${LANG.by_popularity}" type="radio" name="sort_method" value="popular" onclick="changeSettings(this)">
-						</span>
+						<div class="settings_element">
+							<span>${LANG.sort_method}:</span>
+							<span class="radio">
+								<input label="${LANG.by_date}" type="radio" name="sort_method" value="date" checked onclick="changeSettings(this)">
+								<input label="${LANG.by_popularity}" type="radio" name="sort_method" value="popular" onclick="changeSettings(this)">
+							</span>
+						</div>
+
 					</div>
 
 					</div>

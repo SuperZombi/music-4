@@ -279,7 +279,17 @@
 	margin-top: 5px;
 }
 .radio {
-	background: unset;
+	background: unset !important;
+	padding: unset;
+}
+.radio input {
+	margin: 3px 3px;
+}
+.radio input:first-child {
+	margin-top: 0;
+}
+.radio input:last-child {
+	margin-bottom: 0;
 }
 .settings_element{
 	font-size: 16px;
@@ -287,8 +297,7 @@
 	margin-top: 10px;
 	margin-bottom: 10px;
 	border-radius: 10px;
-	padding-top: 5px;
-	padding-bottom: 5px;
+	padding: 5px;
 }
 .settings_element:first-child{
 	margin-top: unset;
@@ -308,6 +317,38 @@
 	border-radius: unset;
 	padding-top: unset;
 	padding-bottom: unset;	
+}
+
+.settings-table{
+	display: table;
+	width: 100%;
+	border-spacing: 0 10px;
+	table-layout: fixed;
+}
+.settings-table > .settings_element{
+	display: table-row;
+}
+.settings-table > .settings_element > *{
+	display: table-cell;
+	padding: 10px;
+	border-radius: unset;
+	vertical-align: middle;
+}
+
+.settings-table > .settings_element > *:first-child {
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	text-align: right;
+}
+.settings-table > .settings_element > *:last-child {
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	text-align: left;
+}
+
+
+.form-switch{
+	display: flex;
 }
 
 #settings{
@@ -330,6 +371,7 @@
 	background: var(--header-color);
 	opacity: 0.9;
 	transition: 0.2s;
+	box-sizing: border-box;
 }
 #save_button:hover{
 	opacity: 1;
@@ -1059,6 +1101,9 @@ details[open] > summary:before {
 	}
 	#card_previewer > span > * {
 		height: 45px;
+	}
+	.settings-table > .settings_element > *:first-child, .settings-table > .settings_element > *:last-child {
+		text-align: center;
 	}
 }
 
