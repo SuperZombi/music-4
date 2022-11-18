@@ -103,6 +103,7 @@
 	overflow: hidden;
 	transition: 0.5s;
 	position: relative;
+	border-radius: 0 12px 12px 0;
 }
 #menu > .menu-element{
 	display: flex;
@@ -115,11 +116,15 @@
 	border-radius: 15px;
 	margin: 2px 5px;
 }
+#menu.collapsed{
+	border-radius: 0 8px 8px 0;
+}
 #menu.collapsed > .menu-element{
+	border-radius: 12px;
 	margin: 2px 0;
 }
 #menu > .menu-element:first-child{
-	margin-top: 5px;
+	margin-top: 4px;
 }
 #menu > a.menu-element{
 	cursor: alias;
@@ -1181,6 +1186,10 @@ details[open] > summary:before {
 	#menu > .menu-element{
 		padding: 20px;
 		margin: 2px 5px;
+		border-radius: 18px;
+	}
+	#menu > .menu-element:first-child {
+		margin-top: 6px;
 	}
 	.hide_on_phone{ display: none !important; }
 
