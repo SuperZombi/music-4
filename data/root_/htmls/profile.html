@@ -1,34 +1,37 @@
 <div id="notifications"></div>
 
-<div id="menu">
-	<div class="menu-element active" data="dashboard" title="${LANG.dashboard}">
-		<span class="menu-icon">🏠</span>
-		<span class="menu-text">${LANG.dashboard}</span>
-	</div>
+<div id="page-wrapper">
+<div id="menu" class="widthing">
+	<div class="menu-main">
+		<div class="menu-element active" data="dashboard" title="${LANG.dashboard}">
+			<span class="menu-icon">🏠</span>
+			<span class="menu-text">${LANG.dashboard}</span>
+		</div>
 
-	<div class="menu-element" data="tracks" title="${LANG.my_tracks}">
-		<span class="menu-icon">🎵</span>
-		<span class="menu-text">${LANG.my_tracks}</span>
-	</div>
+		<div class="menu-element" data="tracks" title="${LANG.my_tracks}">
+			<span class="menu-icon">🎵</span>
+			<span class="menu-text">${LANG.my_tracks}</span>
+		</div>
 
-	<div class="menu-element" data="statistics" title="${LANG.statistics}">
-		<span class="menu-icon">📈</span>
-		<span class="menu-text">${LANG.statistics}</span>
-	</div>
+		<div class="menu-element" data="statistics" title="${LANG.statistics}">
+			<span class="menu-icon">📈</span>
+			<span class="menu-text">${LANG.statistics}</span>
+		</div>
 
-	<div class="menu-element" data="premium" title="Premium">
-		<span class="menu-icon">👑</span>
-		<span class="menu-text">Premium</span>
-	</div>
+		<div class="menu-element" data="premium" title="Premium">
+			<span class="menu-icon">👑</span>
+			<span class="menu-text">Premium</span>
+		</div>
 
-	<a class="menu-element" href="/admin" target="_blank" title="${LANG.admin_console}" id="console-icon" style="display:none">
-		<span class="menu-icon"><img src="../root_/images/terminal.svg"></span>
-		<span class="menu-text">${LANG.admin_console}</span>
-	</a>
+		<a class="menu-element" href="/admin" target="_blank" title="${LANG.admin_console}" id="console-icon" style="display:none">
+			<span class="menu-icon"><img src="../root_/images/terminal.svg"></span>
+			<span class="menu-text">${LANG.admin_console}</span>
+		</a>
 
-	<div class="menu-element" data="settings" title="${LANG.settings}">
-		<span class="menu-icon">⚙</span>
-		<span class="menu-text">${LANG.settings}</span>
+		<div class="menu-element" data="settings" title="${LANG.settings}">
+			<span class="menu-icon">⚙</span>
+			<span class="menu-text">${LANG.settings}</span>
+		</div>
 	</div>
 
 	<div class="menu-element hide_on_phone collapse_but_wraper" onclick="collapse()" title="${LANG.collapse}">
@@ -365,4 +368,5 @@
 		</div>
 	</div>
 
+</div>
 </div>

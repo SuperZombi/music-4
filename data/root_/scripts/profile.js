@@ -1115,20 +1115,32 @@ function open_menu(){
 function collapse(){
 	let menu = document.getElementById("menu");
 	let button = document.getElementById('collapse_but')
+	let button_title = menu.querySelector('.collapse_but_wraper')
 	menu.classList.toggle("collapsed")
 	if (menu.classList.contains("collapsed")){
 		button.style.transform = "rotateY(180deg)"
-		button.title = LANG.expand
+		button_title.title = LANG.expand
+		menu.classList.remove("widthing")
 	}
 	else{
 		button.style.transform = ""
-		button.title = LANG.collapse
+		button_title.title = LANG.collapse
 	}
+	menu.addEventListener("transitionend", _=>{
+		setTimeout(_=>{
+		if (menu.classList.contains("collapsed")){
+			menu.classList.remove("widthing")
+		}
+		else{
+			menu.classList.add("widthing")
+		}
+		}, 100)
+	})
 }
 
 function changeTab(target){
-	let currentTab = document.querySelector("#menu > .menu-element.active");
-	let targetTab = document.querySelector(`#menu > .menu-element[data=${target}]`);
+	let currentTab = document.querySelector("#menu .menu-element.active");
+	let targetTab = document.querySelector(`#menu .menu-element[data=${target}]`);
 	if (currentTab != targetTab){
 		document.title = `${LANG.profile_title} - ${targetTab.title}`
 		currentTab.classList.remove("active")
@@ -1147,7 +1159,7 @@ function changeTab(target){
 }
 
 function initTabs(){
-	let tabs = document.querySelectorAll("#menu > .menu-element[data]");
+	let tabs = document.querySelectorAll("#menu .menu-element[data]");
 	tabs.forEach(tab=>{
 		tab.onclick = e => {
 			changeTab(tab.getAttribute("data"))

@@ -90,22 +90,35 @@
 	width: 100%;
 }
 
-
+#page-wrapper{
+	display: flex;
+}
 #menu{
 	background: var(--menu-el);
 	font-size: 14pt;
 	font-family: Arial, Ubuntu, sans-serif;
-	width: 19%;
+	width: 100%;
+	max-width: 19%;
 	height: calc(100vh - 70px);
 	vertical-align: top;
-	display: inline-block;
 	white-space: nowrap;
 	overflow: hidden;
-	transition: 0.5s;
+	transition: 0.4s;
 	position: relative;
 	border-radius: 0 12px 12px 0;
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: space-between;
+	overflow-y: auto;
 }
-#menu > .menu-element{
+#menu.widthing{
+	min-width: fit-content;
+}
+#menu::-webkit-scrollbar
+{
+	width: 5px;
+}
+#menu .menu-element{
 	display: flex;
 	padding: 10px;
 	cursor: pointer;
@@ -119,23 +132,23 @@
 #menu.collapsed{
 	border-radius: 0 8px 8px 0;
 }
-#menu.collapsed > .menu-element{
+#menu.collapsed .menu-element{
 	border-radius: 12px;
 	margin: 2px 0;
 }
-#menu > .menu-element:first-child{
+#menu .menu-element:first-child{
 	margin-top: 4px;
 }
-#menu > a.menu-element{
+#menu a.menu-element{
 	cursor: alias;
 }
-#menu > .menu-element:hover{
+#menu .menu-element:hover{
 	background: var(--menu-el-hover);
 }
-#menu > .active{
+#menu .active{
 	background: var(--menu-el-active);
 }
-#menu > .menu-element.active:hover{
+#menu .menu-element.active:hover{
 	background: var(--menu-el-hover_and_active);
 }
 
@@ -162,19 +175,14 @@
 
 #menu.collapsed{
 	width: 40px;
-}
-
-.collapse_but_wraper{
-	position: absolute;
-	bottom: 2px;
-	left: 0;
-	right: 0;
+	max-width: 40px;
+	transition: 0.5s;
 }
 
 
 #page-content{
 	display: inline-flex;
-	width: 81%;
+	width: 100%;
 	height: calc(100vh - 70px);
 	overflow-y: hidden;
 	transition: 0.5s;
@@ -1151,6 +1159,12 @@ details[open] > summary:before {
 	.hide_on_desktop{ display: none !important; }
 }
 
+@media all and (max-height: 500px) {
+	#statistic_graph_parrent{
+		height: 60vh;
+	}
+}
+
 @media all and (max-width: 500px) {
 	details#settings {
 		max-width: 98%;
@@ -1168,6 +1182,7 @@ details[open] > summary:before {
 	}
 	#menu{
 		width: 100% !important;
+		max-width: 100% !important;
 		position: fixed;
 		height: 100vh;
 		z-index: 100;
@@ -1183,12 +1198,12 @@ details[open] > summary:before {
 		border-radius: 0 0 0 0;
 	}
 	#page-content{ width: 100% !important; }
-	#menu > .menu-element{
+	#menu .menu-element{
 		padding: 20px;
 		margin: 2px 5px;
 		border-radius: 18px;
 	}
-	#menu > .menu-element:first-child {
+	#menu .menu-element:first-child {
 		margin-top: 6px;
 	}
 	.hide_on_phone{ display: none !important; }

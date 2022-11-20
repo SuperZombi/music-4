@@ -923,6 +923,7 @@ hr{
 		font-size: 12pt;
 		font-family: sans-serif;
 		transition-delay: 1s;
+		border-radius: 5px;
 	}
 
 	.artist_image_wrapper::after{
@@ -955,6 +956,19 @@ hr{
 	#menu_but::after{
 		top: unset;
 		bottom: 0;
+	}
+	.fa-eye::after{
+		transform: unset !important;
+		right: -16px !important;
+	}
+	#menu.collapsed .menu-element::after{
+		position: fixed;
+		top: unset;
+		right: unset;
+		display: block;
+	}
+	#menu .menu-element::after, #menu.menu_active .menu-element::after{
+		display: none;
 	}
 }
 
