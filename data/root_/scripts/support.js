@@ -8,12 +8,16 @@ function darking_images(){
 			try_dark(tmp_2[e])
 		})
 	}
+	let mcnt = document.querySelector("#myAccount img")
+	if (mcnt){
+		let filename = mcnt.src.replace(/^.*[\\\/]/, '')
+		if (filename == "people.svg" || filename == "people_dark.svg"){
+			try_dark(mcnt)
+		}
+	}
 }
 
 function main(){
 	document.title = `Zombi Music - ${LANG.support_title}`
 	darking_images()
-	if (document.getElementById('myAccount').getElementsByTagName('img')[0].src.split('.').pop() == "svg"){
-		try_dark(document.getElementById('myAccount').getElementsByTagName('img')[0])
-	}
 }
