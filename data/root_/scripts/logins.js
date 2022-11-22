@@ -59,7 +59,7 @@ function init(){
 	document.body.appendChild(h1)
 	let div = document.createElement("div")
 	div.id = "mainDiv"
-	let table = document.createElement("div")
+	let table = document.createElement("table")
 	table.id = "mainTable"
 	div.appendChild(table)
 	document.body.appendChild(div)
@@ -78,18 +78,17 @@ function addDevice(info, ip){
 	}
 	let div = document.createElement("div")
 	div.className = "device"
-	div.innerHTML = `
-		<div class="parent">
-			<span>${info["icon"]}</span>
-			<span style="text-align: center;">${addSub(info["device"])}</span>
-			${info["location"] ? `<span>${addSub(info["location"])}</span>` : '<span></span>'}
-			<span>${addSub(info["time"])}</span>
-		</div>
+	let tr = document.createElement("tr")
+	tr.innerHTML = `
+		<td>${info["icon"]}</td>
+		<td>${addSub(info["device"])}</td>
+		<td>${info["location"] ? `${addSub(info["location"])}` : ''}</td>
+		<td>${addSub(info["time"])}</td>
 	`
 	if (info["current"]){
 		div.classList.add("current")
 	}
-	div.onclick=_=>{
+	tr.onclick=_=>{
 		if (div.querySelector(".options")){
 			div.querySelector(".options").remove()
 		}
@@ -97,8 +96,10 @@ function addDevice(info, ip){
 			document.getElementById("mainTable").querySelectorAll(".options").forEach(function(e){e.remove()})
 			window.navigator.vibrate(50);
 
-			let tr = document.createElement("div")
-			tr.className = "options"
+			let tr_opt = document.createElement("tr")
+			tr_opt.className = "options"
+			td = document.createElement("td")
+			td.colSpan = 4;
 			let button = document.createElement("button")
 			button.innerHTML = LANG["delete"]
 			button.onclick=_=>{
@@ -115,9 +116,11 @@ function addDevice(info, ip){
 					}
 				});
 			}
-			tr.appendChild(button)
-			div.appendChild(tr)
+			td.appendChild(button)
+			tr_opt.appendChild(td)
+			div.appendChild(tr_opt)
 		}
 	}
+	div.appendChild(tr)
 	document.getElementById("mainTable").appendChild(div)
 }
