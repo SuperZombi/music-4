@@ -62,11 +62,14 @@
 	.slider{
 		width: 100vw;
 	}
+	.slider__indicators li{
+		height: 6px !important;
+	}
 }
 
 .dark .slider__indicators li{
-  background-color: rgb(255 255 255 / 50%);
+	background-color: rgb(255 255 255 / 50%);
 }
 .dark .slider__indicators li.active{
-  background-color: rgb(255 255 255 / 90%);
+	background-color: rgb(255 255 255 / 90%);
 }
