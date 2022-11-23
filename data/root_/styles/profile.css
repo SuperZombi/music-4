@@ -1,9 +1,14 @@
 #header{
 	transition: 0.5s;
 }
+.flexing{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+}
 #premium_timer{
-	position: absolute;
-	bottom: 10px;
+	padding-bottom: 10px;
 	font-size: 14pt;
 	width: 100%;
 	text-align: center;
@@ -1189,9 +1194,6 @@ details[open] > summary:before {
 		top: 125%;
 		transition: 0.65s;
 		border-radius: 20px 20px 0 0;
-	}
-	#premium_timer{
-		position: fixed;
 	}
 	#menu.menu_active{
 		top: 70px;
