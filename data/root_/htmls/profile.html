@@ -41,47 +41,47 @@
 </div>
 
 <div id="page-content">
-
 	<div id="toTop" title="${LANG.up}">
 		<img onclick="scrollToTop()" src="../root_/images/return-to-the-top.svg">
 	</div>
 
 	<div class="tab-content active" data="dashboard">
+		<div class="flexing">
+			<div>
+				<h1 id="dont-redirected" style="text-align:center;font-family:sans-serif;display:none;">
+					<a href="login" style="color:blue">${LANG.login_radio}/${LANG.signup_radio}</a>
+				</h1>
 
-		<h1 id="dont-redirected" style="text-align:center;font-family:sans-serif;display:none;">
-			<a href="login" style="color:blue">${LANG.login_radio}/${LANG.signup_radio}</a>
-		</h1>
+				<div style="text-align:center;">
+					<div class="artist_image_wrapper" title="${LANG.change_photo}">
+						<img id="artist_image" src="../root_/images/people.svg">
+						<img src="../root_/images/camera.svg" class="popup_image_camera"
+							onclick="selectFile()">
+					</div>
+				</div>
 
-		<div style="text-align:center;">
-			<div class="artist_image_wrapper" title="${LANG.change_photo}">
-				<img id="artist_image" src="../root_/images/people.svg">
-				<img src="../root_/images/camera.svg" class="popup_image_camera"
-					onclick="selectFile()">
+				<div class="logout">
+					<h1 class="category_title" id="user-name"></h1>
+
+					<span id="logout-icon" style="display:none;" title="${LANG.log_out}">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 489.9 489.9"><g>
+							<path d="M468.3,255.8c0.1-0.1,0.1-0.1,0.2-0.2c0.3-0.4,0.6-0.7,0.8-1.1c0.1-0.1,0.1-0.2,0.2-0.3c0.2-0.4,0.5-0.8,0.7-1.2 c0-0.1,0.1-0.2,0.1-0.2c0.2-0.4,0.4-0.8,0.6-1.3c0-0.1,0-0.1,0.1-0.2c0.2-0.4,0.3-0.9,0.5-1.4c0-0.1,0-0.2,0.1-0.2 c0.1-0.5,0.3-0.9,0.3-1.4c0-0.2,0-0.3,0.1-0.5c0.1-0.4,0.1-0.8,0.2-1.2c0.1-0.6,0.1-1.1,0.1-1.7c0-0.6,0-1.1-0.1-1.7 c0-0.4-0.1-0.8-0.2-1.2c0-0.2,0-0.3-0.1-0.5c-0.1-0.5-0.2-0.9-0.3-1.4c0-0.1,0-0.2-0.1-0.2c-0.1-0.5-0.3-0.9-0.5-1.4 c0-0.1,0-0.1-0.1-0.2c-0.2-0.4-0.4-0.9-0.6-1.3c0-0.1-0.1-0.2-0.1-0.2c-0.2-0.4-0.4-0.8-0.7-1.2c-0.1-0.1-0.1-0.2-0.2-0.3 c-0.3-0.4-0.5-0.8-0.8-1.1c-0.1-0.1-0.1-0.1-0.2-0.2c-0.4-0.4-0.7-0.9-1.2-1.3l-98.9-98.8c-6.7-6.7-17.6-6.7-24.3,0 c-6.7,6.7-6.7,17.6,0,24.3l69.6,69.6H136.8c-9.5,0-17.2,7.7-17.2,17.1c0,9.5,7.7,17.2,17.2,17.2h276.8l-69.1,69.1 c-6.7,6.7-6.7,17.6,0,24.3c3.3,3.3,7.7,5,12.1,5s8.8-1.7,12.1-5l98.3-98.3C467.5,256.6,467.9,256.2,468.3,255.8z"/>
+							<path d="M110.7,34.3h128c9.5,0,17.2-7.7,17.2-17.1c0-9.5-7.7-17.2-17.2-17.2h-128C59.4,0,17.6,41.8,17.6,93.1v303.7 c0,51.3,41.8,93.1,93.1,93.1h125.9c9.5,0,17.2-7.7,17.2-17.1c0-9.5-7.7-17.2-17.2-17.2H110.7c-32.4,0-58.8-26.4-58.8-58.8V93.1 C52,60.6,78.3,34.3,110.7,34.3z"/></g>
+						</svg>
+					</span>
+				</div>
+
+				<div style="text-align:center">
+					<a href="new-release" class="expanding-link" id="new-release"><img src="../root_/images/publish.svg">${LANG.post}</a>
+					<a href="favorites" class="expanding-link"><img src="../root_/images/bookmark.svg">${LANG.favorites_title}</a>
+				</div>
 			</div>
+
+			<div id="premium_timer" style="display:none"></div>
 		</div>
-
-		<div class="logout">
-			<h1 class="category_title" id="user-name"></h1>
-
-			<span id="logout-icon" style="display:none;" title="${LANG.log_out}">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 489.9 489.9"><g>
-					<path d="M468.3,255.8c0.1-0.1,0.1-0.1,0.2-0.2c0.3-0.4,0.6-0.7,0.8-1.1c0.1-0.1,0.1-0.2,0.2-0.3c0.2-0.4,0.5-0.8,0.7-1.2 c0-0.1,0.1-0.2,0.1-0.2c0.2-0.4,0.4-0.8,0.6-1.3c0-0.1,0-0.1,0.1-0.2c0.2-0.4,0.3-0.9,0.5-1.4c0-0.1,0-0.2,0.1-0.2 c0.1-0.5,0.3-0.9,0.3-1.4c0-0.2,0-0.3,0.1-0.5c0.1-0.4,0.1-0.8,0.2-1.2c0.1-0.6,0.1-1.1,0.1-1.7c0-0.6,0-1.1-0.1-1.7 c0-0.4-0.1-0.8-0.2-1.2c0-0.2,0-0.3-0.1-0.5c-0.1-0.5-0.2-0.9-0.3-1.4c0-0.1,0-0.2-0.1-0.2c-0.1-0.5-0.3-0.9-0.5-1.4 c0-0.1,0-0.1-0.1-0.2c-0.2-0.4-0.4-0.9-0.6-1.3c0-0.1-0.1-0.2-0.1-0.2c-0.2-0.4-0.4-0.8-0.7-1.2c-0.1-0.1-0.1-0.2-0.2-0.3 c-0.3-0.4-0.5-0.8-0.8-1.1c-0.1-0.1-0.1-0.1-0.2-0.2c-0.4-0.4-0.7-0.9-1.2-1.3l-98.9-98.8c-6.7-6.7-17.6-6.7-24.3,0 c-6.7,6.7-6.7,17.6,0,24.3l69.6,69.6H136.8c-9.5,0-17.2,7.7-17.2,17.1c0,9.5,7.7,17.2,17.2,17.2h276.8l-69.1,69.1 c-6.7,6.7-6.7,17.6,0,24.3c3.3,3.3,7.7,5,12.1,5s8.8-1.7,12.1-5l98.3-98.3C467.5,256.6,467.9,256.2,468.3,255.8z"/>
-					<path d="M110.7,34.3h128c9.5,0,17.2-7.7,17.2-17.1c0-9.5-7.7-17.2-17.2-17.2h-128C59.4,0,17.6,41.8,17.6,93.1v303.7 c0,51.3,41.8,93.1,93.1,93.1h125.9c9.5,0,17.2-7.7,17.2-17.1c0-9.5-7.7-17.2-17.2-17.2H110.7c-32.4,0-58.8-26.4-58.8-58.8V93.1 C52,60.6,78.3,34.3,110.7,34.3z"/></g>
-				</svg>
-			</span>
-		</div>
-
-		<div style="text-align:center">
-			<a href="new-release" class="expanding-link" id="new-release"><img src="../root_/images/publish.svg">${LANG.post}</a>
-			<a href="favorites" class="expanding-link"><img src="../root_/images/bookmark.svg">${LANG.favorites_title}</a>
-		</div>
-
-		<div id="premium_timer" style="display:none"></div>
-
 	</div>
 
 	<div class="tab-content" data="settings">
-
 		<div id="settings_area">
 			<span id="settings">
 				<h1>⚙️${LANG.settings}</h1>
