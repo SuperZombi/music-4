@@ -190,85 +190,91 @@ function build_links(){
 easter_egg_counter = 0
 var easter_egg_timer;
 function easter_egg() {
-	if (easter_egg_timer) {
-		clearTimeout(easter_egg_timer);
-	}
-	easter_egg_timer = setTimeout(function(){
-		easter_egg_counter = 0
-		document.getElementById("main_img").style.borderRadius = "20px"
-		if (document.getElementById("easter_egg")){
-			document.getElementById("easter_egg").remove()
+	if (JSON.parse(localStorage.getItem('hard-anim'))){
+		let currentMonth = new Date().getMonth() + 1;
+		if (easter_egg_timer) {
+			clearTimeout(easter_egg_timer);
 		}
-	}, 2000);
-	if (easter_egg_counter == 0){
-		/*
-		// Snowflakes
-		document.getElementById("leaves_area").getElementsByTagName("snowfall")[0].style.height = "inherit"
-		document.getElementById("leaves_area").style.opacity = ""
-		document.getElementById("leaves_area").style.position = ""
-		document.getElementById("header").style.overflow = ""
-		*/
-
-		// Leaves
-		document.getElementById("leaves_area").style.opacity = ""
-		document.getElementById("leaves_area").style.position = ""
-		document.getElementById("header").style.overflow = ""
-		document.getElementById("leaves_area").getElementsByTagName("svg")[0].setAttribute("viewBox", 
-			`0 0 ${document.getElementById("leaves_area").offsetWidth} ${document.getElementById("leaves_area").offsetHeight}`)
-		
-		window.addEventListener('resize', () => document.getElementById("leaves_area").getElementsByTagName("svg")[0].setAttribute("viewBox", 
-			`0 0 ${document.getElementById("leaves_area").offsetWidth} ${document.getElementById("leaves_area").offsetHeight}`));
-	}
-
-	easter_egg_counter += 1
-	document.getElementById("main_img").style.transition = "0.5s"
-	document.getElementById("main_img").style.cursor = "pointer"
-	document.getElementById("main_img").title = LANG.easter_egg
-
-	if (easter_egg_counter == 5){
-		if (!document.getElementById("easter_egg")){
-			new_div = document.createElement("div")
-			new_div.id = "easter_egg"
-			new_div.innerHTML = 10 - easter_egg_counter
-			document.getElementById("main_img").after(new_div)
-		}
-	}
-	if (easter_egg_counter > 3){
-		document.getElementById("main_img").style.borderRadius = "50%"
-	}
-	else{
-		document.getElementById("main_img").style.borderRadius = "50px"
-	}
-	if (easter_egg_counter > 5){
-		document.getElementById("easter_egg").innerHTML = Math.max(10 - easter_egg_counter, 0)
-	}
-	if (easter_egg_counter == 10){
-		setTimeout(function(){
-		if (document.getElementById("easter_egg")){
-				easter_egg_counter = 0
-				document.getElementById("main_img").style.borderRadius = "20px"
-				document.getElementById("main_img").title = ""
+		easter_egg_timer = setTimeout(function(){
+			easter_egg_counter = 0
+			document.getElementById("main_img").style.borderRadius = "20px"
+			if (document.getElementById("easter_egg")){
 				document.getElementById("easter_egg").remove()
 			}
-		}, 1500)
-		/*
-		// Snowflakes
-		document.getElementById("leaves_area").getElementsByTagName("snowfall")[0].style.height = "100vh"
-		document.getElementById("leaves_area").style.position = "fixed"
-		document.getElementById("leaves_area").style.opacity = 0.85
-		document.getElementById("header").style.overflow = "unset"
-		*/
+		}, 2000);
+		if (easter_egg_counter == 0){
+			if (currentMonth >= 9 && 11 <= currentMonth){
+				// Leaves
+				document.getElementById("leaves_area").style.opacity = ""
+				document.getElementById("leaves_area").style.position = ""
+				document.getElementById("header").style.overflow = ""
+				document.getElementById("leaves_area").getElementsByTagName("svg")[0].setAttribute("viewBox", 
+					`0 0 ${document.getElementById("leaves_area").offsetWidth} ${document.getElementById("leaves_area").offsetHeight}`)
+				
+				window.addEventListener('resize', () => document.getElementById("leaves_area").getElementsByTagName("svg")[0].setAttribute("viewBox", 
+					`0 0 ${document.getElementById("leaves_area").offsetWidth} ${document.getElementById("leaves_area").offsetHeight}`));
+			}
+			else if (currentMonth >= 12 && 2 <= currentMonth){
+				// Snowflakes
+				document.getElementById("leaves_area").getElementsByTagName("snowfall")[0].style.height = "inherit"
+				document.getElementById("leaves_area").style.opacity = ""
+				document.getElementById("leaves_area").style.position = ""
+				document.getElementById("header").style.overflow = ""
+			}
+		}
 
-		// Leaves
-		document.getElementById("leaves_area").style.opacity = 0.85
-		document.getElementById("leaves_area").style.position = "fixed"
-		document.getElementById("header").style.overflow = "unset"
+		easter_egg_counter += 1
+		document.getElementById("main_img").style.transition = "0.5s"
+		document.getElementById("main_img").style.cursor = "pointer"
+		document.getElementById("main_img").title = LANG.easter_egg
 
-		document.getElementById("leaves_area").getElementsByTagName("svg")[0].setAttribute("viewBox", 
-			`0 0 ${document.body.offsetWidth} ${document.body.offsetHeight}`)
+		if (easter_egg_counter == 5){
+			if (!document.getElementById("easter_egg")){
+				new_div = document.createElement("div")
+				new_div.id = "easter_egg"
+				new_div.innerHTML = 10 - easter_egg_counter
+				document.getElementById("main_img").after(new_div)
+			}
+		}
+		if (easter_egg_counter > 3){
+			document.getElementById("main_img").style.borderRadius = "50%"
+		}
+		else{
+			document.getElementById("main_img").style.borderRadius = "50px"
+		}
+		if (easter_egg_counter > 5){
+			document.getElementById("easter_egg").innerHTML = Math.max(10 - easter_egg_counter, 0)
+		}
+		if (easter_egg_counter == 10){
+			setTimeout(function(){
+			if (document.getElementById("easter_egg")){
+					easter_egg_counter = 0
+					document.getElementById("main_img").style.borderRadius = "20px"
+					document.getElementById("main_img").title = ""
+					document.getElementById("easter_egg").remove()
+				}
+			}, 1500)
 
-		window.addEventListener('resize', () => document.getElementById("leaves_area").getElementsByTagName("svg")[0].setAttribute("viewBox", 
-			`0 0 ${document.body.offsetWidth} ${document.body.offsetHeight}`));
+			if (currentMonth >= 9 && 11 <= currentMonth){
+				// Leaves
+				document.getElementById("leaves_area").style.opacity = 0.85
+				document.getElementById("leaves_area").style.position = "fixed"
+				document.getElementById("header").style.overflow = "unset"
+
+				document.getElementById("leaves_area").getElementsByTagName("svg")[0].setAttribute("viewBox", 
+					`0 0 ${document.body.offsetWidth} ${document.body.offsetHeight}`)
+
+				window.addEventListener('resize', () => document.getElementById("leaves_area").getElementsByTagName("svg")[0].setAttribute("viewBox", 
+					`0 0 ${document.body.offsetWidth} ${document.body.offsetHeight}`));
+			}
+			else if (currentMonth >= 12 && 2 <= currentMonth){
+				// Snowflakes
+				document.getElementById("leaves_area").getElementsByTagName("snowfall")[0].style.height = "100vh"
+				document.getElementById("leaves_area").style.position = "fixed"
+				document.getElementById("leaves_area").style.opacity = 0.85
+				document.getElementById("header").style.overflow = "unset"
+			}
+		}	
 	}
 }
 
