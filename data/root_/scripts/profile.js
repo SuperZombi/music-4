@@ -1176,6 +1176,7 @@ function initTabs(){
 	if (window.location.hash){
 		changeTab(window.location.hash.split("#")[1])
 	}
+	document.getElementById("page-content").classList.add("animation")
 }
 
 

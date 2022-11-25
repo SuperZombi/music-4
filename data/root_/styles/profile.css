@@ -219,16 +219,28 @@
 	position: relative;
 	scroll-behavior: smooth;
 	flex-direction: column;
+	position: relative;
 }
 
 .tab-content{
-	display: none;
+	visibility: hidden;
+	opacity: 0;
 	height: 100%;
 	overflow-y: auto;
 	scroll-behavior: smooth;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 }
 .tab-content.active{
-	display: block;
+	visibility: visible;
+	opacity: 1;
+}
+#page-content.animation .tab-content {
+	transition: 0.25s ease-in-out;
 }
 
 #menu.collapsed + #page-content{
@@ -1273,6 +1285,9 @@ details[open] > summary:before {
 	}
 	#menu .menu-element:before{
 		display: none;
+	}
+	#page-content.animation .tab-content {
+		transition: 0s;
 	}
 }
 
