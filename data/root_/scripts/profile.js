@@ -197,6 +197,17 @@ function getProfileInfo(){
 			if (answer["is_admin"]){
 				document.getElementById("console-icon").style.display = ""
 			}
+			function timeRemainingToStr(value){
+				var date = new Date(value * 1000);
+				var cur_date = new Date();
+				var diff = (date - cur_date) / 1000;
+				let info_string = "";
+				if (diff < 86_400){
+					return Math.ceil(diff / 3600) + LANG.until_hours;
+				} else{
+					return Math.ceil(diff / 86_400) + LANG.until_days;
+				}
+			}
 			if (answer["premium"]){
 				document.getElementById("premium_timer").style.display = ""
 				document.getElementById("premium_timer").innerHTML = "👑" + LANG.premium_until
@@ -204,24 +215,14 @@ function getProfileInfo(){
 					document.getElementById("premium_timer").innerHTML += ` <code>${LANG.unlimited}</code>`
 				}
 				else{
-					document.getElementById("premium_timer").innerHTML += ` <code>${answer['premium']}</code>`
+					document.getElementById("premium_timer").innerHTML += ` <code>${timeRemainingToStr(answer['premium'])}</code>`
 				}
 			}
 			if (answer["role"] == "banned"){
 				document.getElementById("premium_timer").style.display = ""
 				if (answer["banned"]){
 					document.getElementById("premium_timer").innerHTML = "🚫" + LANG.banned_until;
-					var date = new Date(answer["banned"] * 1000);
-					var cur_date = new Date();
-					var diff = (date - cur_date) / 1000;
-					let info_string = "";
-					if (diff < 86_400){
-						info_string += Math.ceil(diff / 3600) + LANG.banned_until_hours;
-					}
-					else{
-						info_string += Math.ceil(diff / 86_400) + LANG.banned_until_days;
-					}
-					document.getElementById("premium_timer").innerHTML += ` <code>${info_string}</code>`
+					document.getElementById("premium_timer").innerHTML += ` <code>${timeRemainingToStr(answer["banned"])}</code>`
 				}
 				else{
 					document.getElementById("premium_timer").innerHTML = "🚫" + LANG.banned;

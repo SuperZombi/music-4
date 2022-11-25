@@ -158,7 +158,7 @@ function do_with_event(event){
 			document.getElementById("console").innerHTML += `
 				Until: <input class="command" type="date">
 			`
-			select_arr = ["unlimited", "false"]
+			select_arr = ["24_hours", "7_days", "1_month", "unlimited", "false"]
 		}
 		else if (event == "Role"){
 			select_arr = ["user", "banned", "admin"]

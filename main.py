@@ -24,6 +24,7 @@ from tools.BrootForceProtection import BrootForceProtection
 import tools.htmlTemplates as htmlTemplates
 from textwrap import dedent
 import random
+import math
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 CORS(app)
@@ -522,18 +523,15 @@ def edit_config(data, old_data):
 
 def premium_available(user):
 	if 'advantages' in user.keys() and 'premium' in user['advantages'].keys():
-		if isinstance(user['advantages']['premium'], int):
-			return user['advantages']['premium'] == -1
+		if user['advantages']['premium'] == -1: return True
+		if user['advantages']['premium'] > int(time.time()):
+			return True
 		else:
-			cur = dataparse.parse(user['advantages']['premium'], dayfirst=True)
-			if int(cur.timestamp()) > int(time.time()):
-				return True
-			else:
-				del user['advantages']['premium']
-				if not len(user['advantages'].keys()) > 0:
-					del user['advantages']
-				users.save()
-				return False
+			del user['advantages']['premium']
+			if not len(user['advantages'].keys()) > 0:
+				del user['advantages']
+			users.save()
+			return False
 
 def is_banned(user):
 	if 'role' in user.keys() and user['role'] == "banned":
@@ -1056,7 +1054,31 @@ def reset_pwd_html():
 		'''
 		return Final_html + html
 		
+def getTimeRemaining(value):
+	lengths = {
+		     3_600: ("hour", "hours"),
+		    86_400: ("day", "days"),
+		 2_678_400: ("month", "months"), # 31 days
+		31_536_000: ("year", "years")    # 365 days
+	}
+	arr = value.split("_")
+	for key, val in lengths.items():
+		if arr[1] in val:
+			return int(arr[0]) * key
 
+def addPremiumToUser(user_, time_add):
+	if "premium" in user_ and user_["premium"] != -1:
+		user_["premium"] += time_add
+	else:
+		user_["premium"] = int(time.time()) + time_add
+
+def timeRemainingToStr(value):
+	if value == -1: return "unlimited"
+	diff = value - int(time.time())
+	if diff < 86_400:
+		return str(math.ceil(diff / 3_600)) + "hour(s)"
+	else: # < 2_678_400
+		return str(math.ceil(diff / 86_400)) + "day(s)"
 
 # Admin
 @app.route('/api/admin', methods=['POST'])
@@ -1098,7 +1120,9 @@ def is_admin():
 						if 'banned_until' in user.keys():
 							roles['banned_until'] = datetime.fromtimestamp(user['banned_until']).strftime('%d.%m.%Y')
 						if 'advantages' in user.keys():
-							roles['advantages'] = user['advantages']
+							roles['advantages'] = user['advantages'].copy()
+							if 'premium' in user['advantages'].keys():
+								roles['advantages']['premium'] = timeRemainingToStr(roles['advantages']['premium'])
 						return jsonify({'successfully': True, 'data': roles})
 					elif request.json['command'] == "change_role":
 						user = users.get(request.json['user_to_change'])
@@ -1123,26 +1147,35 @@ def is_admin():
 							else:
 								del user['advantages'][request.json['what_change']]
 						elif request.json['what_change'] == "premium":
+							new_value = None
 							if isinstance(request.json['new_value'], int):
-								new_value = datetime.fromtimestamp(request.json['new_value']).strftime('%d.%m.%Y')
+								new_value = request.json['new_value']
 							elif request.json['new_value'] == "false":
 								new_value = 0
 							elif request.json['new_value'] == "unlimited":
 								new_value = -1
 							else:
-								return jsonify({'successfully': False})
+								try:
+									time_remain = getTimeRemaining(request.json['new_value'])
+									addPremiumToUser(user['advantages'], time_remain)
+								except:
+									return jsonify({'successfully': False})
 							
 							if new_value == 0 and request.json['what_change'] in user['advantages'].keys():
 								del user['advantages'][request.json['what_change']]
 							else:
-								user['advantages'][request.json['what_change']] = new_value
+								if new_value: user['advantages'][request.json['what_change']] = new_value
 
 						if not len(user['advantages'].keys()) > 0:
 							del user['advantages']
 						users.save()
 						if not 'advantages' in user.keys():
 							return jsonify({'successfully': True, 'user': request.json['user_to_change'], '_': {}})
-						return jsonify({'successfully': True, 'user': request.json['user_to_change'], '_': user['advantages']})
+						
+						temp_davantages = copy.deepcopy(user['advantages'])
+						if 'premium' in user['advantages'].keys():
+							temp_davantages['premium'] = timeRemainingToStr(user['advantages']['premium'])
+						return jsonify({'successfully': True, 'user': request.json['user_to_change'], '_': temp_davantages})
 					elif request.json['command'] == "delete":
 						if request.json['type'] == 'track':
 							if delete_track_func(request.json['artist'], request.json['track']):
