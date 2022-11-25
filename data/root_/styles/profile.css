@@ -133,6 +133,31 @@
 	text-decoration: none;
 	border-radius: 15px;
 	margin: 2px 5px;
+	position: relative;
+	overflow: hidden;
+}
+#menu .menu-element:before{
+	content: '';
+	background: #00c0ff;
+	width: 4px;
+	height: 0;
+	position: absolute;
+	top: 0;
+	transform: translateY(-50%);
+	border-radius: 10px;
+	transition: 0.5s;
+	transform-origin: top;
+}
+#menu .menu-element.bottom:before{
+	top: 100%;
+	transform-origin: bottom;
+}
+#menu .menu-element.active:before{
+	height: 50%;
+	top: 50%;
+}
+#menu .menu-element.before_no_translation:before{
+	transition: 0s !important;
 }
 #menu.collapsed{
 	border-radius: 0 8px 8px 0;
@@ -1245,6 +1270,9 @@ details[open] > summary:before {
 	}
 	.form-switch{
 		margin: auto;
+	}
+	#menu .menu-element:before{
+		display: none;
 	}
 }
 

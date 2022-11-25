@@ -1136,8 +1136,24 @@ function changeTab(target){
 	let targetTab = document.querySelector(`#menu .menu-element[data=${target}]`);
 	if (currentTab != targetTab){
 		document.title = `${LANG.profile_title} - ${targetTab.title}`
-		currentTab.classList.remove("active")
-		targetTab.classList.add("active")
+
+		let from_tab = [...document.querySelectorAll("#menu .menu-element")].indexOf(currentTab);
+		let to_tab = [...document.querySelectorAll("#menu .menu-element")].indexOf(targetTab);
+
+		currentTab.classList.add("before_no_translation"); targetTab.classList.add("before_no_translation");
+		if (to_tab > from_tab){
+			currentTab.classList.add("bottom")
+			targetTab.classList.remove("bottom")
+		} else{
+			targetTab.classList.add("bottom")
+			currentTab.classList.remove("bottom")
+		}
+		setTimeout(_=>{
+			currentTab.classList.remove("active")
+			targetTab.classList.add("active")
+			currentTab.classList.remove("before_no_translation"); targetTab.classList.remove("before_no_translation");
+		}, 0)
+
 		window.location.hash = target;
 		let currentTabContent = document.querySelector("#page-content > .tab-content.active");
 		let targetTabContent = document.querySelector(`#page-content > .tab-content[data=${target}]`);
@@ -1146,7 +1162,6 @@ function changeTab(target){
 		if (document.getElementById('menu').classList.contains("menu_active")){
 			open_menu()
 		}
-
 		tabController.openedTab(target)
 	}
 }
