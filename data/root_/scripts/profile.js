@@ -66,12 +66,13 @@ function logout(){
 	goToLogin()
 }
 function goToLogin(){
-	let url = window.location.pathname;
-	let filename = url.substring(url.lastIndexOf('/')+1);
-	if (filename == ""){
-		filename = "../" + url.split("/").filter(x => x).at(-1)
+	let filename = window.location.pathname;
+	if (window.location.search){
+		filename += `${window.location.search}`
 	}
-
+	if (window.location.hash){
+		filename += `>${window.location.hash.substring(1)}`
+	}
 	let login = new URL("login", window.location.href);
 	login.searchParams.append('redirect', filename);
 
@@ -161,6 +162,26 @@ async function submain() {
 	
 	tabController.onFirstTimeOpen("settings", _=>{
 		loadSettings();
+	})
+	tabController.onFirstTimeOpen("bonus-code", _=>{
+		let code = new URL(window.location.href).searchParams.get('code')
+		if (code){
+			document.querySelector("#bonus-code-field").value = code
+		}
+
+		bonusCodeNotice = Notification("#bonus-code-notice")
+		function scrollNoticeTop(){
+			if (bonusCodeNotice.element.style.justifyContent != "unset"){
+				bonusCodeNotice.element.style.justifyContent = "unset"
+				bonusCodeNotice.element.scrollTop = -bonusCodeNotice.element.scrollHeight;
+			}
+		}
+		bonusCodeNotice.element.addEventListener("mouseenter", scrollNoticeTop)
+		bonusCodeNotice.element.addEventListener("touchstart", scrollNoticeTop)
+	})
+	tabController.onFirstTimeOpen("console", _=>{
+		let frame = document.querySelector(".tab-content[data=console] iframe")
+		frame.src = "/admin"
 	})
 	tabController.onFirstTimeOpen("statistics", _=>{
 		if (local_storage["sort_method"]){
@@ -1336,4 +1357,80 @@ function open_logins(){
 		popup_element.style.transform = "scale(1)"
 		modal.style.backdropFilter = "blur(8px)"
 	}, 1)
+}
+
+
+document.querySelector("#bonus-code-field").addEventListener("keydown", e=>{
+	if (e.keyCode == 13){
+		document.querySelector("#bonus_code_button").click()
+	}
+})
+var bonusCodeNotice;
+function activate_bonus_code(){
+	let input = document.querySelector("#bonus-code-field");
+	let input_val = input.value.trim();
+	if (!input_val){
+		input.classList.add("incorrect")
+		input.onkeydown = _=>{input.classList.remove("incorrect")}
+	}
+	else{
+		const url = new URL(window.location);
+		url.searchParams.set('code', input_val);
+		window.history.pushState(null, '', url.toString());
+
+		bonusCodeNotice.element.style.justifyContent = ""
+		let xhr = new XMLHttpRequest();
+		xhr.open("POST", '/api/bonus_code', false)
+		xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+		xhr.send(JSON.stringify({'code': input_val, 'user': local_storage.userName, 'password': local_storage.userPassword}))
+		let answer = JSON.parse(xhr.response)
+		if (answer.successfully){
+			bonusCodeNotice.Success(LANG.activated, false)
+			const url = new URL(window.location);
+			url.searchParams.delete('code');
+			window.history.pushState(null, '', url.toString());
+		}
+		else if (answer.reason == 'bonus_code_already_used'){
+			bonusCodeNotice.Warning(get_decode_error(answer.reason))
+			document.querySelector("#bonus_code_button").disabled = true;
+			setTimeout(function(){
+				document.querySelector("#bonus_code_button").disabled = false;
+			}, 1500)
+			const url = new URL(window.location);
+			url.searchParams.delete('code');
+			window.history.pushState(null, '', url.toString());
+		}
+		else if (answer.reason == 'bonus_code_expired'){
+			bonusCodeNotice.Warning(get_decode_error(answer.reason))
+		}
+		else if (answer.wait){
+			document.querySelector("#bonus_code_button").disabled = true;
+			document.querySelector("#bonus-code-timeout").parentElement.style.height = "50px"
+			setTimeout(function(){
+				document.querySelector("#bonus_code_button").disabled = false;
+				document.querySelector("#bonus-code-timeout").parentElement.style.height = "0"
+				bonusCodeNotice.clearAll();
+			}, answer.sleep * 1000)
+			bonusCodeNotice.Warning(get_decode_error(answer.reason), false)
+
+			let time = answer.sleep;
+			let target = document.querySelector("#bonus-code-timeout");
+			let interval = setInterval(function(){
+				let tmp = time * 100 / answer.sleep;
+				if (tmp <= 0){
+					target.style = '--value:0';
+					target.setAttribute("time-remain", 0)
+					clearInterval(interval)
+				}
+				else{
+					target.style = `--value:${tmp}`;
+					target.setAttribute("time-remain", Math.round(time))
+					time = time - 0.1;
+				}
+			}, 100)
+		}
+		else{
+			bonusCodeNotice.Error(LANG.incorrect_bonus_code)
+		}
+	}
 }

@@ -23,10 +23,15 @@
 			<span class="menu-text">Premium</span>
 		</div>
 
-		<a class="menu-element" href="/admin" target="_blank" title="${LANG.admin_console}" id="console-icon" style="display:none">
+		<div class="menu-element" data="console" title="${LANG.admin_console}" id="console-icon" style="display:none">
 			<span class="menu-icon"><img src="../root_/images/terminal.svg"></span>
 			<span class="menu-text">${LANG.admin_console}</span>
-		</a>
+		</div>
+
+		<div class="menu-element" data="bonus-code" title="${LANG.bonus_code}" style="display:none">
+			<span class="menu-icon"></span>
+			<span class="menu-text">${LANG.bonus_code}</span>
+		</div>
 
 		<div class="menu-element" data="settings" title="${LANG.settings}">
 			<span class="menu-icon">⚙</span>
@@ -304,6 +309,10 @@
 	</div>
 
 	<div class="tab-content" data="premium">
+		<div style="text-align:center">
+			<div class="expanding-link" onclick="javascript:document.querySelector('.menu-element[data=bonus-code]').click()" style="font-size: 16pt;margin-bottom: 10px;">${LANG.activate_bonus_code}</div>
+		</div>
+
 		<table id="limits" style="margin-top:20px;min-width:50%;">
 			<tr>
 				<th></th>
@@ -366,6 +375,20 @@
 				</span>
 			</div>
 		</div>
+	</div>
+
+	<div class="tab-content" data="console" style="overflow:hidden;">
+		<iframe src="" frameborder="0" height="100%" width="100%"></iframe>
+	</div>
+
+	<div class="tab-content" data="bonus-code" align="center">
+		<h1>${LANG.bonus_code}</h1>
+		<p><input type="text" id="bonus-code-field" placeholder="XXXXX" autocomplete="off"></p>
+		<p><button class="button" style="display:block;margin-top: 25px;padding-left: 3em;padding-right: 3em;" onclick="activate_bonus_code()" id="bonus_code_button">${LANG.activate}</button></p>
+		<div style="height:0;transition:0.5s;overflow:hidden;">
+			<div id="bonus-code-timeout" style="--value:100"></div>
+		</div>
+		<div id="bonus-code-notice"></div>
 	</div>
 
 </div>

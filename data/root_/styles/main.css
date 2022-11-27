@@ -327,6 +327,7 @@ hr{
 	padding: 5px 20px;
 	transition: 0.3s;
 	white-space: nowrap;
+	cursor: pointer;
 }
 .expanding-link:hover{
 	padding: 5px 35px;

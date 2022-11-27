@@ -217,7 +217,12 @@ function validatePhoneNumber(input_str) {
 function afterLogin(delay=1000){
 	setTimeout(function(){
 		if (searchParams.redirect){
-			window.location = searchParams.redirect;
+			let arr = searchParams.redirect.split(">")
+			let url = new URL(arr[0], window.location.href);
+			if (arr.length > 1){
+				url.hash = arr[1]
+			}
+			window.location = url.href;
 		}
 		else {
 			window.location = "./"

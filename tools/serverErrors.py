@@ -66,3 +66,18 @@ class Errors(Enum):
 		'ru': "Вы забанены!",
 		'uk': "Ви забанені!"
 	}
+	too_many_wrong_attempts = {
+		'en': "Too many wrong attempts.",
+		'ru': "Слишком много неправильных попыток.",
+		'uk': "Забагато неправильних спроб."
+	}
+	bonus_code_expired = {
+		'en': "Bonus code has expired.",
+		'ru': "Срок действия бонус-кода истек.",
+		'uk': "Термін дії бонус-коду закінчився"
+	}
+	bonus_code_already_used = {
+		'en': "Bonus code already used.",
+		'ru': "Бонус-код уже использован.",
+		'uk': "Бонус-код вже використано."
+	}

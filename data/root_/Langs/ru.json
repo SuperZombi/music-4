@@ -89,6 +89,12 @@
 	"until_hours": "ч",
 	"account_logins": "Входы в аккаунт",
 
+	"activate_bonus_code": "Активировать бонус-код",
+	"bonus_code": "Бонус код",
+	"activate": "Активировать",
+	"activated": "Активировано!",
+	"incorrect_bonus_code": "Неверный бонус-код",
+
 	"menu": "Меню",
 	"dashboard": "Главная",
 	"collapse": "Свернуть",

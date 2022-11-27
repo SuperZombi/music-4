@@ -2,7 +2,7 @@ import os
 import shutil
 import time
 from pathlib import Path
-from datetime import datetime
+import datetime
 from dateutil import parser as dataparse
 from flask import Flask, request, jsonify, send_from_directory, send_file, abort, redirect, Response
 import requests
@@ -35,6 +35,12 @@ limits = {'image': {'size': 2097152, 'resolution': 1280, 'extensions': ['.jpg', 
 		  'audio': {'size': 10485760, 'bitrate': 192}}
 premium_limits = {'image': {'size': 8388608, 'resolution': 1920, 'extensions': ['.jpg', '.png', '.gif', '.jpeg']},
 				  'audio': {'size': 16777216, 'bitrate': 320}}
+
+bonus_codes = {
+	"FreeTrial": {"valid_until": -1, 'action': lambda usr, code: bonus_code_premium(usr, code, "7_days")},
+	"NEWYEAR2023": {"valid_until": "07.01.2023", 'action': lambda usr, code: bonus_code_premium(usr, code, "12_days")}
+}
+bonus_codes = {k.upper(): v for k, v in bonus_codes.items()}
 
 @app.route("/status")
 def status():
@@ -976,7 +982,7 @@ def like():
 		tracks.save()
 
 		return jsonify({'successfully': True, "event": event})
-	return jsonify({'successfully': False})
+	return jsonify({'successfully': False, 'reason': Errors.incorrect_name_or_password.name})
 
 @app.route('/api/get_favorites', methods=['POST'])
 def get_favorites():
@@ -1008,6 +1014,54 @@ def get_favorites():
 			return jsonify({'successfully': True, "favorites": favs})
 
 	return jsonify({'successfully': False})
+
+
+def check_bonus_code(user, code):
+	if code.upper() in bonus_codes.keys():
+		return True
+	return False
+
+def bonus_code_premium(usr, code, premium_val):
+	all_codes = usr.get('used_bonus_codes')
+	if all_codes:
+		all_codes.append(code)
+	else:
+		usr['used_bonus_codes'] = [code]
+
+	if not 'advantages' in usr.keys():
+		usr['advantages'] = {}
+	time_remain = getTimeRemaining(premium_val)
+	addPremiumToUser(usr['advantages'], time_remain)
+	users.save()
+
+@app.route('/api/bonus_code', methods=['POST'])
+def bonus_code():
+	ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+	x = BrootForceProtection(request.json['user'], request.json['password'], ip, fast_login)()
+	if x['successfully']:
+		y = BrootForceProtection(request.json['user'], request.json['code'], "bonus_code", check_bonus_code)()
+		if y['successfully']:
+			usr = users.get(request.json['user'])
+			if 'used_bonus_codes' in usr.keys():
+				if request.json['code'].upper() in usr['used_bonus_codes']:
+					return jsonify({'successfully': False, 'reason': Errors.bonus_code_already_used.name})
+
+			if bonus_codes[request.json['code'].upper()]['valid_until'] == -1:
+				func = bonus_codes[request.json['code'].upper()]['action']
+				func(usr, request.json['code'].upper())
+				return jsonify({'successfully': True})
+			else:
+				date_valid = dataparse.parse(bonus_codes[request.json['code'].upper()]['valid_until'], dayfirst=True)
+				date_now = datetime.datetime.now()
+				if date_valid + datetime.timedelta(days=1) > date_now:
+					func = bonus_codes[request.json['code'].upper()]['action']
+					func(usr, request.json['code'].upper())
+					return jsonify({'successfully': True})
+
+			return jsonify({'successfully': False, 'reason': Errors.bonus_code_expired.name})
+		y['reason'] = Errors.too_many_wrong_attempts.name
+		return jsonify({'successfully': False, **y})
+	return jsonify({'successfully': False, 'reason': Errors.incorrect_name_or_password.name})
 
 
 
@@ -1118,7 +1172,7 @@ def is_admin():
 						if 'role' in user.keys():
 							roles['role'] = user['role']
 						if 'banned_until' in user.keys():
-							roles['banned_until'] = datetime.fromtimestamp(user['banned_until']).strftime('%d.%m.%Y')
+							roles['banned_until'] = datetime.datetime.fromtimestamp(user['banned_until']).strftime('%d.%m.%Y')
 						if 'advantages' in user.keys():
 							roles['advantages'] = user['advantages'].copy()
 							if 'premium' in user['advantages'].keys():

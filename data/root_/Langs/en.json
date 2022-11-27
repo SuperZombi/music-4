@@ -86,6 +86,12 @@
 	"until_hours": "hours(s)",
 	"account_logins": "Account logins",
 
+	"activate_bonus_code": "Activate bonus code",
+	"bonus_code": "Bonus code",
+	"activate": "Activate",
+	"activated": "Activated!",
+	"incorrect_bonus_code": "Incorrect bonus code",
+
 	"menu": "Menu",
 	"dashboard": "Dashboard",
 	"collapse": "Collapse",

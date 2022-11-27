@@ -169,9 +169,6 @@
 #menu .menu-element:first-child{
 	margin-top: 4px;
 }
-#menu a.menu-element{
-	cursor: alias;
-}
 #menu .menu-element:hover{
 	background: var(--menu-el-hover);
 }
@@ -674,6 +671,14 @@ select.form-control > option[selected]{
 }
 .button:active:after {
 	margin: 0px;
+}
+.button:disabled{
+	filter: grayscale(1) opacity(0.75);
+	box-shadow: unset !important;
+	cursor: not-allowed;
+}
+.button:disabled:after {
+	margin: 4px;
 }
 
 
@@ -1195,6 +1200,75 @@ details[open] > summary:before {
 	visibility: visible;
 }
 
+#bonus-code-field{
+	text-align: center;
+	text-transform: uppercase;
+	font-family: 'Ubuntu Mono', monospace;
+	font-size: 18pt;
+	letter-spacing: 4px;
+	border: 4px solid #00c0ff;
+	border-radius: 25px;
+	color: #00c0ff;
+	padding: 6px 8px;
+	background: transparent;
+	outline: none;
+	transition: 0.2s ease-in-out;
+}
+#bonus-code-field:focus{
+	box-shadow: 0 0 10px #00c0ff;
+}
+#bonus-code-field.incorrect{
+	border-color: red;
+	color: red;
+}
+#bonus-code-field.incorrect:focus{
+	box-shadow: 0 0 10px red;
+}
+
+
+#bonus-code-notice{
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	max-height: 50vh;
+	overflow: auto;
+	width: 36%;
+	display: flex;
+	flex-direction: column-reverse;
+	justify-content: flex-end;
+}
+#bonus-code-notice::-webkit-scrollbar
+{
+	width: 5px;
+}
+#bonus-code-notice > * {
+	background: var(--notifications-back);
+	margin-top: 0;
+}
+#bonus-code-notice > * > .Message-body{
+	text-align: center;
+}
+#bonus-code-notice > * > .Message-body > p{
+	float: unset;
+	text-align: center;
+}
+
+#bonus-code-timeout{
+	width: 50px; height: 50px;
+	border-radius: 50%;
+	position: relative;
+	background: radial-gradient(closest-side, var(--body-color) 80%, transparent 0 99.9%), conic-gradient(#369 calc(var(--value) * 1%), #def 0);
+}
+#bonus-code-timeout:after{
+	content: attr(time-remain);
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
 
 @media all and (min-width: 500px) {
 	.hide_on_desktop{ display: none !important; }
@@ -1287,6 +1361,9 @@ details[open] > summary:before {
 	}
 	#page-content.animation .tab-content {
 		transition: 0s;
+	}
+	#bonus-code-notice{
+		width: 90%;
 	}
 }
 
