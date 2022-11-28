@@ -1340,10 +1340,18 @@ details[open] > summary:before {
 	transition: 0.25s;
 	cursor: pointer;
 	margin: 8px;
+	color: white;
+	filter: drop-shadow(0 4px 6px black);
 }
 .items-list .item:hover{
 	border-radius: 20px;
 	transform: translateY(-10px);
+}
+.dark .items-list .item{
+	filter: drop-shadow(0 4px 6px grey);
+}
+.dark .items-list .item:hover{
+	filter: drop-shadow(0 4px 6px lightgrey);
 }
 .items-list .item .title{
 	font-weight: bold;
