@@ -1401,8 +1401,8 @@ details[open] > summary:before {
 	transform: rotate(40deg) translate(48%, 70%);
 	transform-origin: right top;
 	text-transform: uppercase;
+	font-size: 15pt;
 }
-
 
 
 @media all and (min-width: 500px) {
