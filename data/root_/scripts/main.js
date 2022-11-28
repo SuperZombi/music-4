@@ -617,7 +617,10 @@ function copyEmbed(){
 function changeEmbed(dont_reload=false, timeout=0){
 	let settings = {}
 	Array.from(document.getElementById("embed_menu").querySelectorAll("input")).forEach(function(e){
-		if (e.checked){
+		if (e.type == "checkbox"){
+			settings[e.name] = e.checked
+		}
+		else if (e.checked){
 			if (e.value != "auto"){
 				settings[e.name] = e.value
 			}

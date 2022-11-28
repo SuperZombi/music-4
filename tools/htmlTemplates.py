@@ -24,6 +24,7 @@ def track_index(artist, track, image):
 	<meta property='og:type' content="music.song">
 	<script src="../../root_/scripts/App.js" defer onload='loadApp(`
 		<script src="config.json"></script>
+		<link rel="stylesheet" href="../../root_/styles/aqua.min.css">
 		<link rel="stylesheet" href="../../root_/styles/main.css">
 		<link rel="stylesheet" href="../../root_/styles/track.css">
 		<link rel="stylesheet" href="../../root_/styles/ripple.css">
