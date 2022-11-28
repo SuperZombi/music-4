@@ -870,6 +870,10 @@ def get_profile_info():
 
 		if 'advantages' in user.keys() and 'premium' in user['advantages'].keys():
 			answer['premium'] = user['advantages']['premium']
+
+		if 'used_bonus_codes' in user.keys():
+			if "FREETRIAL" in user['used_bonus_codes']:
+				answer['used_free_trial'] = True
 		
 		return jsonify({'successfully': True, **answer})
 	else:

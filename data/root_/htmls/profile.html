@@ -310,7 +310,7 @@
 
 	<div class="tab-content" data="premium">
 		<div style="text-align:center">
-			<div class="expanding-link" onclick="javascript:document.querySelector('.menu-element[data=bonus-code]').click()" style="font-size: 16pt;margin-bottom: 10px;">${LANG.activate_bonus_code}</div>
+			<div class="expanding-link" onclick="javascript:document.querySelector('.menu-element[data=bonus-code]').click()" style="font-size:16pt;margin-bottom:0">${LANG.activate_bonus_code}</div>
 		</div>
 
 		<table id="limits" style="margin-top:20px;min-width:50%;">
@@ -345,7 +345,7 @@
 		</table>
 
 		<div class="items-list">
-			<div class="item">
+			<div class="item" name="free_trial">
 				<p class="title">${LANG.free_trial}</p>
 				<div class="image">
 					<img src="/root_/images/premium/grass.jpg">
@@ -353,11 +353,11 @@
 				<div class="other">
 					<div class="value">7 ${LANG.days}</div>
 					<div class="price">${LANG.free}</div>
-					<button class="button-82"><span>${LANG.get}</span></button>
+					<button class="button-82" onclick="getFreeTrial()"><span class="action_text">${LANG.get}</span></button>
 				</div>
 			</div>
 
-			<div class="item">
+			<div class="item" name="starter">
 				<p class="title">${LANG.starter}</p>
 				<div class="image">
 					<img src="/root_/images/premium/wood.jpg">
@@ -365,11 +365,11 @@
 				<div class="other">
 					<div class="value">7 ${LANG.days}</div>
 					<div class="price">0.25$</div>
-					<button class="button-82"><span>${LANG.buy}</span></button>
+					<button class="button-82" onclick="purchase('starter')"><span class="action_text">${LANG.buy}</span></button>
 				</div>
 			</div>
 
-			<div class="item">
+			<div class="item" name="middle">
 				<p class="title">${LANG.middle}</p>
 				<div class="image">
 					<img src="/root_/images/premium/stone.jpg">
@@ -377,12 +377,12 @@
 				<div class="other">
 					<div class="value">1 ${LANG.month}</div>
 					<div class="price">1$</div>
-					<button class="button-82"><span>${LANG.buy}</span></button>
+					<button class="button-82" onclick="purchase('middle')"><span class="action_text">${LANG.buy}</span></button>
 				</div>
 				<div class="additionally">HOT</div>
 			</div>
 
-			<div class="item">
+			<div class="item" name="profesional">
 				<p class="title">${LANG.profesional}</p>
 				<div class="image">
 					<img src="/root_/images/premium/gold.jpg">
@@ -390,7 +390,7 @@
 				<div class="other">
 					<div class="value">1 ${LANG.year}</div>
 					<div class="price">10$</div>
-					<button class="button-82"><span>${LANG.buy}</span></button>
+					<button class="button-82" onclick="purchase('profesional')"><span class="action_text">${LANG.buy}</span></button>
 				</div>
 				<div class="additionally">-16%</div>
 			</div>

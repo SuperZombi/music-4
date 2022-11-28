@@ -26,7 +26,7 @@
 
 	"official": "Официальный",
 	"embed": "Встроить",
-	"corners_rounding": "Скругление Углов",
+	"corners_rounding": "Скругление углов",
 	"size": "Размер",
 	"small": "Малый",
 	"big": "Большой",
@@ -107,6 +107,8 @@
 	"profesional": "Профессионал",
 	"standard": "Стандарт",
 	"premium": "Премиум",
+	"already_received": "Уже получено",
+	"purchases_not_available": "К сожалению, покупки сейчас недоступны.",
 
 	"menu": "Меню",
 	"dashboard": "Главная",

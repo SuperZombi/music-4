@@ -17,6 +17,20 @@ function tabSwitherController(){
 				this.eventHandler[tab]()
 			}
 		}
+
+		if (tab == "bonus-code"){
+			let input_val = document.querySelector("#bonus-code-field").value.trim();
+			if (input_val){
+				const url = new URL(window.location);
+				url.searchParams.set('code', input_val);
+				window.history.pushState(null, '', url.toString());
+			}
+		}
+		else{
+			const url = new URL(window.location);
+			url.searchParams.delete('code');
+			window.history.pushState(null, '', url.toString());
+		}
 	}
 }
 
@@ -248,6 +262,11 @@ function getProfileInfo(){
 				else{
 					document.getElementById("premium_timer").innerHTML = "🚫" + LANG.banned;
 				}
+			}
+			if (answer['used_free_trial']){
+				let item = document.querySelector(".tab-content[data=premium] .items-list .item[name='free_trial']")
+				item.classList.add("notactive")
+				item.querySelector(".action_text").innerHTML = LANG.already_received
 			}
 		}
 	}
@@ -1386,9 +1405,7 @@ function activate_bonus_code(){
 		let answer = JSON.parse(xhr.response)
 		if (answer.successfully){
 			bonusCodeNotice.Success(LANG.activated, false)
-			const url = new URL(window.location);
-			url.searchParams.delete('code');
-			window.history.pushState(null, '', url.toString());
+			getProfileInfo();
 		}
 		else if (answer.reason == 'bonus_code_already_used'){
 			bonusCodeNotice.Warning(get_decode_error(answer.reason))
@@ -1396,9 +1413,6 @@ function activate_bonus_code(){
 			setTimeout(function(){
 				document.querySelector("#bonus_code_button").disabled = false;
 			}, 1500)
-			const url = new URL(window.location);
-			url.searchParams.delete('code');
-			window.history.pushState(null, '', url.toString());
 		}
 		else if (answer.reason == 'bonus_code_expired'){
 			bonusCodeNotice.Warning(get_decode_error(answer.reason))
@@ -1433,4 +1447,15 @@ function activate_bonus_code(){
 			bonusCodeNotice.Error(LANG.incorrect_bonus_code)
 		}
 	}
+}
+
+function purchase(name){
+	let item = document.querySelector(`.tab-content[data=premium] .items-list .item[name='${name}']`)
+	let title = item.querySelector(".title").innerText;
+	let price = item.querySelector(".price").innerText;
+	notice.Warning(LANG.purchases_not_available)
+}
+function getFreeTrial(){
+	document.getElementById("bonus-code-field").value = "FreeTrial"
+	changeTab("bonus-code")
 }

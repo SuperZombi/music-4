@@ -26,7 +26,7 @@
 
 	"official": "Офіційний",
 	"embed": "Вбудувати",
-	"corners_rounding": "Скруглення Кутів",
+	"corners_rounding": "Скруглення кутів",
 	"size": "Розмір",
 	"small": "Малий",
 	"big": "Великий",
@@ -107,6 +107,8 @@
 	"profesional": "Професіонал",
 	"standard": "Стандарт",
 	"premium": "Преміум",
+	"already_received": "Вже отримано",
+	"purchases_not_available": "На жаль, покупки зараз недоступні.",
 
 	"menu": "Меню",
 	"dashboard": "Головна",

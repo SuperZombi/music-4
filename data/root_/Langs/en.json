@@ -104,6 +104,8 @@
 	"profesional": "Profesional",
 	"standard": "Standard",
 	"premium": "Premium",
+	"already_received": "Already received",
+	"purchases_not_available": "Unfortunately, purchases are not available now.",
 
 	"menu": "Menu",
 	"dashboard": "Dashboard",

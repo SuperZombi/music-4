@@ -4,11 +4,12 @@
 .flexing{
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: flex-start;
 	height: 100%;
 }
 #premium_timer{
 	padding-bottom: 10px;
+	margin-top: 20px;
 	font-size: 14pt;
 	width: 100%;
 	text-align: center;
@@ -1342,6 +1343,7 @@ details[open] > summary:before {
 	margin: 8px;
 	color: white;
 	filter: drop-shadow(0 4px 6px black);
+	user-select: none;
 }
 .items-list .item:hover{
 	border-radius: 20px;
@@ -1353,6 +1355,11 @@ details[open] > summary:before {
 .dark .items-list .item:hover{
 	filter: drop-shadow(0 4px 6px lightgrey);
 }
+.items-list .item.notactive{
+	filter: grayscale(1) opacity(0.75);
+	pointer-events: none;
+}
+
 .items-list .item .title{
 	font-weight: bold;
 	height: 24px;
@@ -1412,6 +1419,9 @@ details[open] > summary:before {
 @media all and (max-height: 500px) {
 	#statistic_graph_parrent{
 		height: 60vh;
+	}
+	#bonus-code-notice{
+		width: 60%;
 	}
 }
 
@@ -1494,11 +1504,9 @@ details[open] > summary:before {
 	#menu .menu-element:before{
 		display: none;
 	}
-	#page-content.animation .tab-content {
-		transition: 0s;
-	}
 	#bonus-code-notice{
 		width: 90%;
+		position: fixed;
 	}
 
 	.items-list .item{
