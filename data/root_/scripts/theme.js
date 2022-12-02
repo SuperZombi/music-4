@@ -1,25 +1,25 @@
 if (JSON.parse(localStorage.getItem('hard-anim'))){
 	let currentMonth = new Date().getMonth() + 1;
 
-	if (currentMonth >= 9 && 11 <= currentMonth){
+	if (currentMonth >= 9 && currentMonth <= 11){
 		/* Leaves */
 		(function leaves_(){
-		  if (typeof leaves_area !== 'undefined'){
-			var lea = document.createElement("link")
-			lea.rel = "stylesheet"
-			lea.setAttribute("href", "/root_/styles/leaves.css");
-			document.head.appendChild(lea)
-			var scr = document.createElement("script")
-			scr.setAttribute("src", "/root_/scripts/leaves.js");
-			document.head.appendChild(scr)   
-		  }
-		  else{
-		    setTimeout(function(){leaves_()}, 500)
-		  }
+			if (typeof leaves_area !== 'undefined'){
+				var lea = document.createElement("link")
+				lea.rel = "stylesheet"
+				lea.setAttribute("href", "/root_/styles/leaves.css");
+				document.head.appendChild(lea)
+				var scr = document.createElement("script")
+				scr.setAttribute("src", "/root_/scripts/leaves.js");
+				document.head.appendChild(scr)   
+			}
+			else{
+				setTimeout(function(){leaves_()}, 500)
+			}
 		})()
 		/**/
 	}
-	else if (currentMonth >= 12 && 2 <= currentMonth){
+	else if (currentMonth >= 12 || currentMonth <= 2){
 		/* Snowflakes */
 		(function snowflakes(){
 			if (typeof leaves_area !== 'undefined'){
@@ -45,7 +45,7 @@ if (JSON.parse(localStorage.getItem('hard-anim'))){
 		let currentDate = new Date().getDate();
 		if ((currentMonth == 12 && currentDate >= 24) || (currentMonth == 1 && currentDate <= 7)){
 			/* Lights */
-			function lights(){
+			(function lights(){
 					var lea = document.createElement("link")
 					lea.rel = "stylesheet"
 					lea.setAttribute("href", "/root_/styles/lights.css");
@@ -78,7 +78,7 @@ if (JSON.parse(localStorage.getItem('hard-anim'))){
 			            <li class="blue"></li>
 			        </ul>
 					`
-			}
+			})()
 			/**/
 		}
 	}
