@@ -203,7 +203,7 @@ function easter_egg() {
 			}
 		}, 2000);
 		if (easter_egg_counter == 0){
-			if (currentMonth >= 9 && 11 <= currentMonth){
+			if (currentMonth >= 9 && currentMonth <= 11){
 				// Leaves
 				document.getElementById("leaves_area").style.opacity = ""
 				document.getElementById("leaves_area").style.position = ""
@@ -214,7 +214,7 @@ function easter_egg() {
 				window.addEventListener('resize', () => document.getElementById("leaves_area").getElementsByTagName("svg")[0].setAttribute("viewBox", 
 					`0 0 ${document.getElementById("leaves_area").offsetWidth} ${document.getElementById("leaves_area").offsetHeight}`));
 			}
-			else if (currentMonth >= 12 && 2 <= currentMonth){
+			else if (currentMonth >= 12 || currentMonth <= 2){
 				// Snowflakes
 				document.getElementById("leaves_area").getElementsByTagName("snowfall")[0].style.height = "inherit"
 				document.getElementById("leaves_area").style.opacity = ""
@@ -255,7 +255,7 @@ function easter_egg() {
 				}
 			}, 1500)
 
-			if (currentMonth >= 9 && 11 <= currentMonth){
+			if (currentMonth >= 9 && currentMonth <= 11){
 				// Leaves
 				document.getElementById("leaves_area").style.opacity = 0.85
 				document.getElementById("leaves_area").style.position = "fixed"
@@ -267,7 +267,7 @@ function easter_egg() {
 				window.addEventListener('resize', () => document.getElementById("leaves_area").getElementsByTagName("svg")[0].setAttribute("viewBox", 
 					`0 0 ${document.body.offsetWidth} ${document.body.offsetHeight}`));
 			}
-			else if (currentMonth >= 12 && 2 <= currentMonth){
+			else if (currentMonth >= 12 || currentMonth <= 2){
 				// Snowflakes
 				document.getElementById("leaves_area").getElementsByTagName("snowfall")[0].style.height = "100vh"
 				document.getElementById("leaves_area").style.position = "fixed"
