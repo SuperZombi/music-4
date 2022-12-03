@@ -1,4 +1,5 @@
-if (JSON.parse(localStorage.getItem('hard-anim'))){
+if (JSON.parse(localStorage.getItem('hard-anim')) == false){}
+else{
 	let currentMonth = new Date().getMonth() + 1;
 
 	if (currentMonth >= 9 && currentMonth <= 11){
