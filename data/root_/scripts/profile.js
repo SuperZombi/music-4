@@ -1404,6 +1404,21 @@ function activate_bonus_code(){
 		xhr.send(JSON.stringify({'code': input_val, 'user': local_storage.userName, 'password': local_storage.userPassword}))
 		let answer = JSON.parse(xhr.response)
 		if (answer.successfully){
+			if (answer.result){
+				let note = ""
+				note += LANG.received + "<br>"
+				if (answer.result.premium){
+					function timeToStr(value){
+						if (value < 86_400){
+							return Math.ceil(value / 3600) + LANG.until_hours;
+						} else{
+							return Math.ceil(value / 86_400) + LANG.until_days;
+						}
+					}
+					note += LANG.premium_until + " <a style='color:yellow'>" + timeToStr(answer.result.premium) + "</a>"
+				}
+				bonusCodeNotice.Success(note, false)
+			}
 			bonusCodeNotice.Success(LANG.activated, false)
 			getProfileInfo();
 		}

@@ -1037,6 +1037,7 @@ def bonus_code_premium(usr, code, premium_val):
 	time_remain = getTimeRemaining(premium_val)
 	addPremiumToUser(usr['advantages'], time_remain)
 	users.save()
+	return {"premium": time_remain}
 
 @app.route('/api/bonus_code', methods=['POST'])
 def bonus_code():
@@ -1050,19 +1051,18 @@ def bonus_code():
 				if request.json['code'].upper() in usr['used_bonus_codes']:
 					return jsonify({'successfully': False, 'reason': Errors.bonus_code_already_used.name})
 
-			if bonus_codes[request.json['code'].upper()]['valid_until'] == -1:
-				func = bonus_codes[request.json['code'].upper()]['action']
-				func(usr, request.json['code'].upper())
-				return jsonify({'successfully': True})
-			else:
+			if bonus_codes[request.json['code'].upper()]['valid_until'] != -1:
 				date_valid = dataparse.parse(bonus_codes[request.json['code'].upper()]['valid_until'], dayfirst=True)
 				date_now = datetime.datetime.now()
-				if date_valid + datetime.timedelta(days=1) > date_now:
-					func = bonus_codes[request.json['code'].upper()]['action']
-					func(usr, request.json['code'].upper())
-					return jsonify({'successfully': True})
-
-			return jsonify({'successfully': False, 'reason': Errors.bonus_code_expired.name})
+				if date_valid + datetime.timedelta(days=1) < date_now:
+					return jsonify({'successfully': False, 'reason': Errors.bonus_code_expired.name})
+				
+			func = bonus_codes[request.json['code'].upper()]['action']
+			result = func(usr, request.json['code'].upper())
+			if result:
+				return jsonify({'successfully': True, "result": result})
+			return jsonify({'successfully': True})
+			
 		y['reason'] = Errors.too_many_wrong_attempts.name
 		return jsonify({'successfully': False, **y})
 	return jsonify({'successfully': False, 'reason': Errors.incorrect_name_or_password.name})
