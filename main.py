@@ -1111,6 +1111,54 @@ def reset_pwd_html():
 			<hr>
 		'''
 		return Final_html + html
+
+
+@app.route('/emails/<path:filepath>')
+@app.route('/emails/<string:lang>/<path:filepath>')
+def emails(filepath, lang="auto"):
+	def auto_lang():
+		lang = request.accept_languages.best_match(['en', 'ru', 'uk'])
+		auto_lang = lang if lang else 'en'
+		request_path = request.full_path.split('emails/')[-1]
+		request_path = auto_lang + "/" + request_path
+		return redirect("/emails/" + request_path)
+
+	def get_lang_path(lang):
+		full_path = request.base_url
+		current_lang = full_path.split("/emails/")[-1].split("/")[0]
+		return full_path.replace(f"/{current_lang}/", f"/{lang}/")
+
+	if lang == "auto":
+		return auto_lang()
+
+	p = os.path.join("data", "emails", filepath + ".json")
+	if os.path.exists(p):
+		with open(p, 'r', encoding='utf-8') as file:
+			data = json.loads(file.read())
+		if not lang in data["langs"].keys():
+			return redirect("/emails/en/" + filepath)
+
+		target_file = os.path.join("data", "emails", data['file'])
+		with open(target_file, 'r', encoding='utf-8') as f:
+			html = f.read()
+
+		for key in data["langs"][lang]:
+			html = html.replace("{__" + key + "__}", data["langs"][lang][key])
+
+		for lang_ in data["langs"].keys():
+			html = html.replace("{__url:" + lang_ + "__}", get_lang_path(lang_))
+			if lang == lang_:
+				styles = html.split("<python-url_selected>")[-1].split("</python>")[0]
+				html = html.replace('{__url_selected:' + lang_ + "__}", styles)
+			else:
+				html = html.replace('{__url_selected:' + lang_ + "__}", '')
+
+
+		if 'raw' in request.args.keys():
+			html = html.split("<body>")[-1].split("</body>")[0]
+			return Response(dedent(html.replace("	", "    ")), mimetype='text/plain')
+		return html
+	abort(404)
 		
 def getTimeRemaining(value):
 	lengths = {

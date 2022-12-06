@@ -1,0 +1,26 @@
+{
+	"file": "newyear.html",
+	"langs": {
+		"en": {
+			"gifts": "New Year is coming soon, so we have prepared gifts for you:",
+			"get": "Get 12 days of Premium account for free until 01.07.2023!",
+			"get_button": "GET",
+			"congratulation": "May the new year bring only good events and give bright, sincere memories.<br/>Happy holiday!",
+			"read_more": "Read more about Premium on the <a href='https://zombi-music-server.superzombi.repl.co/account/#premium'>website</a>"
+		},
+		"ru": {
+			"gifts": "Новый год уже скоро, поэтому мы приготовили для Вас подарки:",
+			"get": "Получите бесплатно 12 дней Премиум аккаунта до 07.01.2023!",
+			"get_button": "Получить",
+			"congratulation": "Пусть новый год принесет только хорошие события и подарит яркие, душевные воспоминания.<br/>С праздником!",
+			"read_more": "Подробнее про Premium читайте на <a href='https://zombi-music-server.superzombi.repl.co/account/#premium'>сайте</a>"
+		},
+		"uk": {
+			"gifts": "Новий рік вже скоро, тому ми приготували для Вас подарунки:",
+			"get": "Отримайте безкоштовно 12 днів Преміум аккаунту до 07.01.2023!",
+			"get_button": "Отримати",
+			"congratulation": "Нехай новий рік принесе лише гарні події та подарує яскраві, душевні спогади.<br/>Зі святом!",
+			"read_more": "Детальніше про Premium читайте на <a href='https://zombi-music-server.superzombi.repl.co/account/#premium'>сайті</a>"
+		}
+	}
+}
