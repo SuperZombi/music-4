@@ -105,18 +105,20 @@ async function load_source(element){
 			document.head.appendChild(element);
 		}
 		else{
-			fetch(link)
-				.then((response) => {
-					if (response.ok) {
-						load_this(response.blob())
-					}
-					else{
-						console.log(`Reloading ${link}`)
-						load_source(element)	
-					}
-				});
+			let xhr = new XMLHttpRequest();
+			xhr.open('GET', link, true)
+			xhr.onload = async function() {
+				if (xhr.status == 200){
+					load_this(xhr.response)
+				}
+				else{
+					console.log(`Reloading ${link}`);
+					await load_source(element)
+				}
+			};
+			xhr.send();
 			async function load_this(dat){
-				var data = await dat;
+				var data = new Blob([dat]);
 				var url = window.URL.createObjectURL(data);
 				if (element.src){ element.src = url }
 				else if (element.href){ element.href = url }
@@ -178,20 +180,19 @@ function try_dark(e){
 
 async function load_data(link){
 	return await new Promise((resolve) => {
-		fetch(link).then(async (response) => {
-			if (response.ok) {
-				let data = await response.blob();
-				let reader = new FileReader();
-				reader.addEventListener("loadend", function(e){
-					resolve(e.srcElement.result)
-				});
-				reader.readAsText(data);
+		let xhr = new XMLHttpRequest();
+		xhr.open('GET', link, true)
+		xhr.onload = async function() {
+			if (xhr.status == 200){
+				resolve(xhr.response)
 			}
 			else{
-				console.log(`Reloading ${link}`)
-				load_data(link)	
+				console.log(`Reloading ${link}`);
+				let tmp = await load_data(link)
+				resolve(tmp)
 			}
-		})
+		};
+		xhr.send();
 	});
 }
 
