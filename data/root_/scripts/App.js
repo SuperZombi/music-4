@@ -114,6 +114,7 @@ async function load_source(element){
 				else{
 					console.log(`Reloading ${link}`);
 					await load_source(element)
+					resolve()
 				}
 			};
 			xhr.send();
