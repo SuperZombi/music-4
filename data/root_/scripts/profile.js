@@ -224,7 +224,9 @@ function getProfileInfo(){
 	xhr.open("POST", '/api/get_profile_info', false)
 	xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 	xhr.send(JSON.stringify({'user': local_storage.userName}))
-	if (xhr.status != 200){ notice.Error(LANG.error) }
+	if (xhr.status != 200){ 
+		getProfileInfo()
+	}
 	else{
 		let answer = JSON.parse(xhr.response);
 		if (answer.successfully){
@@ -283,7 +285,7 @@ function get_limits(){
         if (req.status == 200){
             answer = JSON.parse(req.response)
             file_limits = answer.limits;
-        }
+        } else {get_limits()}
     }
     req.send(JSON.stringify({'user': local_storage.userName}));
 }
