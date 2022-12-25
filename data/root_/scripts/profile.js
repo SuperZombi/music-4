@@ -371,12 +371,15 @@ async function addNewCategory(tracks){
 			img.className = "loader"
 			img.alt = ""
 			img.src = `/${e.path.join("/")}/${e.image}?size=small`
-			img.onload = ()=>img.classList.remove("loader");
+			img.onload = ()=>{
+				setTimeout(_=>{img.classList.remove("loader")}, 100)
+			};
 
-			a.innerHTML = `
-					${img.outerHTML}
-					<div class="track_name"><span>${e.track}</span></div>
-			`
+			a.appendChild(img)
+			let div_ = document.createElement("div")
+			div_.className = "track_name"
+			div_.innerHTML = `<span>${e.track}</span>`
+			a.appendChild(div_)
 			subdiv.appendChild(a)
 		})
 		div.appendChild(subdiv)

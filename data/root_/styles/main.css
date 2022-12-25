@@ -574,11 +574,13 @@ hr{
 	transition: 0.4s;
 	user-select: none;
 	pointer-events: none;
+	object-fit: contain;
+	background: black;
 }
 .loader{
 	min-height: 140px;
 	min-width: 140px;
-	background:#B0B0B0;
+	background:#B0B0B0 !important;
 	animation: anim 1.5s infinite;
 }
 .deleted{
@@ -587,13 +589,13 @@ hr{
 }
 @keyframes anim {
 	from{
-		background:#B0B0B0;
+		background:#B0B0B0 !important;
 	}
 	50%{
-		background:lightgray;
+		background:lightgray !important;
 	}
 	to{
-		background:#B0B0B0;
+		background:#B0B0B0 !important;
 	}
 }
 

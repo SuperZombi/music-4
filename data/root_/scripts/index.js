@@ -92,22 +92,6 @@ function overflowed() {
 }
 async function addNewCategory(category_title, tracks, href){
 	await new Promise((resolve, reject) => {
-		var html = ""
-		tracks.forEach(function(e){
-			let img = document.createElement('img');
-			img.className = "loader"
-			img.src = `${e.path.join("/")}/${e.image}?size=small`
-			img.alt = "";
-			img.onload = ()=>img.classList.remove("loader");
-			html += `
-				<a href="${e.path.join("/")}" class="about_box">
-					${img.outerHTML}
-					<div class="track_name"><span>${e.track}</span></div>
-					<div class="artist">${e.artist}</div>
-				</a>
-			`
-		})
-
 		let category_el = document.createElement('div');
 		if (href){
 			category_el.className = "category";
@@ -127,8 +111,31 @@ async function addNewCategory(category_title, tracks, href){
 
 		let category_body_el = document.createElement('div');
 		category_body_el.className = "category_body";
-		category_body_el.innerHTML = html;
+		
+		tracks.forEach(function(e){
+			let img = document.createElement('img');
+			img.className = "loader"
+			img.src = `${e.path.join("/")}/${e.image}?size=small`
+			img.alt = "";
+			img.onload = ()=>{
+				setTimeout(_=>{img.classList.remove("loader")}, 100)
+			};
 
+			let a = document.createElement('a')
+			a.href = e.path.join("/")
+			a.className = "about_box"
+			a.appendChild(img)
+
+			let div1 = document.createElement('div')
+			div1.className = "track_name"
+			div1.innerHTML = `<span>${e.track}</span>`
+			let div2 = document.createElement('div')
+			div2.className = "artist"
+			div2.innerHTML = e.artist
+			a.appendChild(div1)
+			a.appendChild(div2)
+			category_body_el.appendChild(a)
+		})
 
 		category_el.appendChild(category_title_el);
 		category_el.appendChild(category_body_el);

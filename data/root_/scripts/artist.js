@@ -125,27 +125,31 @@ function overflowed() {
 }
 async function addNewCategory(tracks){
 	await new Promise((resolve, reject) => {
-		var html = ""
+		let cat = document.createElement("div")
+		cat.className = "category"
+		let cat_body = document.createElement("div")
+		cat_body.className = "category_body"
 		tracks.forEach(function(e){
 			let img = document.createElement('img');
 			img.className = "loader"
 			img.alt = ""
 			img.src = `../${e.path.join("/")}/${e.image}?size=small`
-			img.onload = ()=>img.classList.remove("loader");
-			html += `
-				<a href="../${e.path.join("/")}" class="about_box">
-					${img.outerHTML}
-					<div class="track_name"><span>${e.track}</span></div>
-				</a>
-			`
+			img.onload = ()=>{
+				setTimeout(_=>{img.classList.remove("loader")}, 100)
+			};
+			let a = document.createElement("a")
+			a.className = "about_box"
+			a.href = `../${e.path.join("/")}`
+			a.appendChild(img)
+
+			let div = document.createElement("div")
+			div.className = "track_name"
+			div.innerHTML = `<span>${e.track}</span>`
+			a.appendChild(div)
+			cat_body.appendChild(a)
 		})
-		document.getElementById("main_page").innerHTML += `
-			<div class="category">
-				<div class="category_body">
-					${html}
-				</div>
-			</div>
-		`;
+		cat.appendChild(cat_body)
+		document.getElementById("main_page").appendChild(cat)
 		resolve()
 	});
 }
