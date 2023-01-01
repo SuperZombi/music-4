@@ -339,8 +339,9 @@ hr{
 }
 
 .myAccountElement{
-	background: transparent;
 	display: inline-block;
+	margin-left: 25px;
+	position: relative;
 }
 #myAccount{
 	height: 50px;
@@ -348,18 +349,14 @@ hr{
 	display: inline-flex;
 	align-items: center;
 	font-family: 'Ubuntu Mono', monospace;
-	font-size: 24pt;
+	font-size: 14pt;
 	color: var(--contrast-color);
 	transition: 0.4s;
 }
-#myAccount:hover{
-	color: #0077FF;
-}
-#myAccount:hover > img{
-	filter: drop-shadow(0 0 4px #0077FF);
-}
-#myAccount:hover > svg{
-	fill: #0077FF;
+#myAccount > span{
+	font-size: 24pt;
+	margin-left: 15px;
+	transition: 0.4s;
 }
 #myAccount > img, #myAccount > svg{
 	height: 40px;
@@ -367,11 +364,126 @@ hr{
 	min-width: unset;
 	min-height: unset;
 	border-radius: 50px;
-	margin-left: 25px;
-	margin-right: 15px;
 	transition: 0.4s;
 	fill: var(--contrast-color);
 	object-fit: cover;
+	cursor: pointer;
+}
+#myAccount:hover > img, #myAccount:hover > svg, #myAccount:hover > span{
+	filter: drop-shadow(0 0 4px #0077FF);
+	fill: #0077FF;
+	color: #0077FF;
+}
+#account_popup{
+	position: absolute;
+	top: 10px;
+	left: 50px;
+	background: var(--header-color);
+	min-width: 260px;
+	z-index: 100;
+	filter: drop-shadow(2px 4px 6px black);
+	border-radius: 12px;
+	height: auto;
+	overflow: hidden;
+	transition: all 0.5s cubic-bezier(0.65, -0.55, 0.25, 1.55), background 1s;
+	visibility: hidden;
+	opacity: 0;
+	transform-origin: left top;
+	transform: scale(0);
+	max-width: calc(100vw - 100px);
+}
+#account_popup.show{
+	visibility: visible;
+	opacity: 1;
+	transform: scale(1);
+}
+
+.menu-area{
+	position: relative;
+	height: 100%;
+	color: var(--contrast-color);
+	min-height: 0;
+	transition: 0.3s;
+}
+.menu-area > .back_button{
+	display: none;
+}
+.menu-area ul{
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+	background: inherit;
+	height: 100%;
+	width: 100%;
+	transition: filter 0.5s;
+	white-space: nowrap;
+}
+.menu-area ul li{
+	padding: 15px;
+	border-bottom: 1px solid grey;
+	transition: 0.3s;
+	cursor: pointer;
+	display: flex;
+	align-items: flex-end;
+	gap: 6px;
+}
+.menu-area ul li:last-child{
+	border-bottom: 0;
+}
+.menu-area ul li > i{
+	height: 18px;
+	width: 18px;
+}
+.menu-area ul li:hover{
+	background: lightgrey;
+}
+.dark .menu-area ul li:hover{
+	background: #405070;
+}
+.menu-area ul li.menu_title{
+	pointer-events: none;
+	text-align: center;
+	font-weight: bold;
+	justify-content: center;
+}
+.menu-area ul li > .helper{
+	font-size: 0.9em;
+	color: grey;
+	margin-left: auto;
+}
+.menu-area ul li.selected{
+	background: #28bcff;
+}
+.menu-area ul li.selected:hover{
+	background: #00a3ff;
+}
+.dark .menu-area ul li.selected{
+	background: #005f94;
+}
+.dark .menu-area ul li.selected:hover{
+	background: #00446a;
+}
+.menu-area .submenu{
+	position: absolute;
+	transition: left 0.5s, background 1s;
+	top: 0;
+	left: -100%;
+	background: var(--header-color);
+}
+.back_button{
+	background: lightgrey;
+}
+.back_button:hover{
+	background: #ababab !important;
+}
+.dark .back_button{
+	background: #323241;
+}
+.dark .back_button:hover{
+	background: #576c97 !important;
+}
+.dark .menu-area ul li > .helper{
+	color: lightgrey;
 }
 
 
@@ -834,8 +946,13 @@ hr{
 		right: 10px;
 		overflow-x: hidden;
 	}
-	#myAccount > img, #myAccount > svg{
+	.myAccountElement {
 		margin-left: 17.5px;
+	}
+	#account_popup{
+		top: 50px;
+		left: 0;
+		max-width: calc(100vw - 40px);
 	}
 	.expanding-link{
 		font-size: 1.5em;

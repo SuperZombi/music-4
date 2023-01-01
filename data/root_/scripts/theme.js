@@ -148,6 +148,9 @@ function change_switcher(){
 		change_switcher_title()
 		themeEngine()
 	}
+	try{
+		updateMenuElement('theme', document.documentElement.getAttribute("theme"))
+	}catch{}
 	setTimeout(function(){try{
 		darking_images()
 	}catch{}
