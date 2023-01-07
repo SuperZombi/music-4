@@ -751,7 +751,7 @@ function like_this(){
 			body: JSON.stringify({
 				"user": local_storage.userName,
 				"password": local_storage.userPassword,
-				"url": window.location.pathname
+				"url": decodeURI(window.location.pathname)
 			})
 		}).then(response => response.json())
 		.then(unswer => {
