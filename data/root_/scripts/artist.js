@@ -28,7 +28,7 @@ async function main(){
 		}
 	}
 	xhr.send(JSON.stringify({
-		'path': window.location.pathname.slice(1, -1)
+		'path': decodeURIComponent(window.location.pathname.slice(1, -1))
 	}))
 }
 
