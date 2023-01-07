@@ -219,7 +219,7 @@ hr{
 	left: 50%;
 	transform: translateX(-50%);
 	width: 40%;
-	z-index: 10;
+	z-index: 100;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
