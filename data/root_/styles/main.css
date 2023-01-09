@@ -404,6 +404,7 @@ hr{
 	color: var(--contrast-color);
 	min-height: 0;
 	transition: 0.3s;
+	background: var(--header-color);
 }
 .menu-area > .back_button{
 	display: none;
@@ -468,7 +469,6 @@ hr{
 	transition: left 0.5s, background 1s;
 	top: 0;
 	left: -100%;
-	background: var(--header-color);
 }
 .back_button{
 	background: lightgrey;
