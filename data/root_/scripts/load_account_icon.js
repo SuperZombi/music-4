@@ -141,8 +141,9 @@ if (document.querySelector('#main_menu')){
 		document.getElementById("account_popup").classList.toggle("show")
 		setTimeout(()=>exitAllSubMenus(), 500)
 	}
-	document.body.addEventListener("click", e=>{
-		if (!e.path.includes(document.querySelector(".myAccountElement"))){
+	document.body.addEventListener("click", event=>{
+		let path = event.path || (event.composedPath && event.composedPath());
+		if (!path.includes(document.querySelector(".myAccountElement"))){
 			document.getElementById("account_popup").classList.remove("show")
 			setTimeout(()=>exitAllSubMenus(), 500)
 		}

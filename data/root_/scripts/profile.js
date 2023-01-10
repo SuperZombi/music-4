@@ -572,21 +572,22 @@ function hide(){
 	}, 400)
 }
 
-function checkHideMenu(e){
-	for (let i=0; i<e.path.length;i++){
-		if (e.path[i] == document.getElementById("card_previewer")){
+function checkHideMenu(event){
+	let path = event.path || (event.composedPath && event.composedPath());
+	for (let i=0; i<path.length;i++){
+		if (path[i] == document.getElementById("card_previewer")){
 			return
 		}
-		if (e.path[i] == document.getElementById("card_previewer_name")){
+		if (path[i] == document.getElementById("card_previewer_name")){
 			return
 		}
-		if (e.path[i].className == "about_box"){
+		if (path[i].className == "about_box"){
 			return
 		}
-		if (e.path[i] == document.getElementById("header")){
+		if (path[i] == document.getElementById("header")){
 			return
 		}
-		if (e.path[i] == document.getElementById("notifications")){
+		if (path[i] == document.getElementById("notifications")){
 			return
 		}
 	}

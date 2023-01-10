@@ -22,19 +22,20 @@ function darking_images(){
 }
 
 var shareMenuTimer;
-function shareMenu(e) {
-	for (let i=0; i<e.path.length;i++){
-		if (e.path[i] == document.getElementById("close_share_menu")){
+function shareMenu(event) {
+	let path = event.path || (event.composedPath && event.composedPath());
+	for (let i=0; i<path.length;i++){
+		if (path[i] == document.getElementById("close_share_menu")){
 			close()
 			return
 		}
-		if (e.path[i] == document.getElementById("header")){
+		if (path[i] == document.getElementById("header")){
 			return
 		}
-		if (e.path[i] == document.getElementById("share_menu")){
+		if (path[i] == document.getElementById("share_menu")){
 			return
 		}
-		if (e.path[i] == document.getElementById("notifications")){
+		if (path[i] == document.getElementById("notifications")){
 			return
 		}	
 	}

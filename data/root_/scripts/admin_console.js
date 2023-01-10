@@ -69,7 +69,8 @@ var consoleFocused = false;
 function focusConsole(event){
 	if (document.querySelector(`#console input[type="text"]`)){ return }
 	let console_ = document.getElementById("console")
-	let unfocused = event.path.every(function(e) {
+	let path = event.path || (event.composedPath && event.composedPath());
+	let unfocused = path.every(function(e) {
 		if (e == console_) return false
 		else return true
 	})
